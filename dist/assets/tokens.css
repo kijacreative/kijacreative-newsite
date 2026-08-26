@@ -1,0 +1,72 @@
+/* ==========================================================================
+   KIJA CREATIVE — DESIGN SYSTEM / TOKENS
+   Single source of truth. Never redeclare a raw hex anywhere else.
+   ========================================================================== */
+
+:root{
+  /* --- core palette ------------------------------------------------------ */
+  --k-ink:        #1E0A1E;   /* aubergine — page ground */
+  --k-ink-2:      #2C1230;   /* raised surface */
+  --k-ink-3:      #3A1A3E;   /* raised surface, second level */
+  --k-ink-4:      #4A2450;   /* borders on raised surfaces */
+  --k-mint:       #3DFFAE;   /* primary accent / action */
+  --k-magenta:    #C21E7A;   /* secondary accent / emphasis */
+  --k-cream:      #F5F3EC;   /* primary text */
+  --k-aqua:       #C6F5E8;   /* tertiary accent / code */
+  --k-yellow:     #F5E61A;   /* attention / warning */
+
+  /* --- derived ----------------------------------------------------------- */
+  --k-line:       rgba(245,243,236,.14);
+  --k-line-2:     rgba(245,243,236,.26);
+  --k-dim:        rgba(245,243,236,.62);
+  --k-dimmer:     rgba(245,243,236,.42);
+  --k-mint-08:    rgba(61,255,174,.08);
+  --k-mint-16:    rgba(61,255,174,.16);
+  --k-mint-30:    rgba(61,255,174,.30);
+  --k-mag-08:     rgba(194,30,122,.08);
+  --k-mag-16:     rgba(194,30,122,.16);
+  --k-mag-30:     rgba(194,30,122,.30);
+  --k-shadow:     0 18px 50px -20px rgba(0,0,0,.75);
+
+  /* --- type -------------------------------------------------------------- */
+  --k-display: 'League Gothic', 'Haettenschweiler', 'Arial Narrow', Impact, sans-serif;
+  --k-body:    'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --k-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* fluid type scale — 320px → 1440px */
+  --k-t-mega:  clamp(3.5rem, 1.6rem + 9.5vw, 10rem);     /*  56 → 160 */
+  --k-t-xxl:   clamp(2.6rem, 1.4rem + 6vw,  6.25rem);    /*  42 → 100 */
+  --k-t-xl:    clamp(2.1rem, 1.3rem + 4vw,  4.25rem);    /*  34 →  68 */
+  --k-t-lg:    clamp(1.55rem, 1.2rem + 1.8vw, 2.4rem);   /*  25 →  38 */
+  --k-t-md:    1.6875rem;                                /*  27 */
+  --k-t-lede:  clamp(1.05rem, .96rem + .5vw, 1.32rem);   /*  17 →  21 */
+  --k-t-base:  1.03rem;                                  /* 16.5 */
+  --k-t-sm:    .906rem;                                  /* 14.5 */
+  --k-t-xs:    .8125rem;                                 /*  13 */
+  --k-t-label: .6875rem;                                 /*  11 */
+  --k-t-micro: .59rem;                                   /* 9.5 */
+
+  /* --- space ------------------------------------------------------------- */
+  --k-s1: 4px;  --k-s2: 8px;  --k-s3: 12px; --k-s4: 16px;
+  --k-s5: 24px; --k-s6: 32px; --k-s7: 44px; --k-s8: 64px;
+  --k-s9: 96px; --k-s10: 128px;
+  --k-section: clamp(56px, 7vw, 104px);
+
+  /* --- layout ------------------------------------------------------------ */
+  --k-max: 1180px;
+  --k-max-wide: 1400px;
+  --k-max-prose: 68ch;
+  --k-gutter: clamp(20px, 4vw, 28px);
+  --k-nav-h: 64px;
+
+  /* --- shape ------------------------------------------------------------- */
+  --k-r-sm: 3px; --k-r: 6px; --k-r-lg: 12px; --k-r-pill: 999px;
+
+  /* --- motion ------------------------------------------------------------ */
+  --k-ease: cubic-bezier(.22,.61,.36,1);
+  --k-ease-out: cubic-bezier(.16,1,.3,1);
+  --k-fast: .15s;  --k-mid: .28s;  --k-slow: .6s;
+
+  /* --- z ----------------------------------------------------------------- */
+  --k-z-sticky: 50; --k-z-nav: 60; --k-z-modal: 90; --k-z-toast: 100;
+}

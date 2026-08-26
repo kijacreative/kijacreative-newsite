@@ -1,0 +1,388 @@
+[
+  {
+    "url": "/",
+    "title": "Home",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/home.html"
+  },
+  {
+    "url": "/work",
+    "title": "Work",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work.html"
+  },
+  {
+    "url": "/work/oak-cliff-pilates",
+    "title": "Oak Cliff Pilates — A studio that stopped selling classes and started selling a third space",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--oak-cliff-pilates.html"
+  },
+  {
+    "url": "/work/van-country",
+    "title": "Van Country — Rebuilding a booking site around the decision, not the inventory",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--van-country.html"
+  },
+  {
+    "url": "/work/mammogram-poster-girls",
+    "title": "Mammogram Poster Girls — A cause campaign that made screening feel like an invitation",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--mammogram-poster-girls.html"
+  },
+  {
+    "url": "/work/altacrest-capital",
+    "title": "Altacrest Capital — A credible digital front door for a private capital firm",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--altacrest-capital.html"
+  },
+  {
+    "url": "/work/seismic",
+    "title": "Seismic — A marketing system built to survive its own scale",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--seismic.html"
+  },
+  {
+    "url": "/work/ges",
+    "title": "GES — Internal marketing that scales without adding headcount",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--ges.html"
+  },
+  {
+    "url": "/work/blue-plate-network",
+    "title": "Blue Plate Network — Repositioning a network that had outgrown its own description",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--blue-plate-network.html"
+  },
+  {
+    "url": "/work/powerx",
+    "title": "PowerX — A build with the energy the product actually has",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--powerx.html"
+  },
+  {
+    "url": "/work/piehole-project",
+    "title": "Piehole Project — Culture-first identity for a brand with an actual personality",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/work--piehole-project.html"
+  },
+  {
+    "url": "/services",
+    "title": "Services",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/services.html"
+  },
+  {
+    "url": "/services/creative-strategy",
+    "title": "Creative Strategy",
+    "variant": null,
+    "noindex": false,
+    "widgets": [
+      "brand-signal-test"
+    ],
+    "ghlFragment": "ghl/services--creative-strategy.html"
+  },
+  {
+    "url": "/services/brand-development",
+    "title": "Brand Development",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/services--brand-development.html"
+  },
+  {
+    "url": "/services/website-design",
+    "title": "Website Design",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/services--website-design.html"
+  },
+  {
+    "url": "/services/marketing-automation",
+    "title": "Marketing Automation",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/services--marketing-automation.html"
+  },
+  {
+    "url": "/services/ongoing-marketing",
+    "title": "Ongoing Marketing",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/services--ongoing-marketing.html"
+  },
+  {
+    "url": "/packages",
+    "title": "Packages",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/packages.html"
+  },
+  {
+    "url": "/launch-kit",
+    "title": "Launch Kit",
+    "variant": "launch-kit-a",
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/launch-kit.html"
+  },
+  {
+    "url": "/launch-kit/b",
+    "title": "Launch Kit (variant B)",
+    "variant": "launch-kit-b",
+    "noindex": true,
+    "widgets": [],
+    "ghlFragment": "ghl/launch-kit--b.html"
+  },
+  {
+    "url": "/growth-engine",
+    "title": "Growth Engine",
+    "variant": "growth-engine-a",
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/growth-engine.html"
+  },
+  {
+    "url": "/growth-engine/b",
+    "title": "Growth Engine (variant B)",
+    "variant": "growth-engine-b",
+    "noindex": true,
+    "widgets": [],
+    "ghlFragment": "ghl/growth-engine--b.html"
+  },
+  {
+    "url": "/content-machine",
+    "title": "Content Machine",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/content-machine.html"
+  },
+  {
+    "url": "/personal-brand-launch-kit",
+    "title": "Personal Brand Launch Kit",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/personal-brand-launch-kit.html"
+  },
+  {
+    "url": "/strategic-partner",
+    "title": "Strategic Partner",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/strategic-partner.html"
+  },
+  {
+    "url": "/the-kija-method",
+    "title": "Brand Signal Test",
+    "variant": "b1",
+    "noindex": false,
+    "widgets": [
+      "brand-signal-test"
+    ],
+    "ghlFragment": "ghl/the-kija-method.html"
+  },
+  {
+    "url": "/the-kija-method/b2",
+    "title": "Brand Signal Test",
+    "variant": "b2",
+    "noindex": true,
+    "widgets": [
+      "brand-signal-test"
+    ],
+    "ghlFragment": "ghl/the-kija-method--b2.html"
+  },
+  {
+    "url": "/the-kija-method/b3",
+    "title": "Brand Signal Test",
+    "variant": "b3",
+    "noindex": true,
+    "widgets": [
+      "brand-signal-test"
+    ],
+    "ghlFragment": "ghl/the-kija-method--b3.html"
+  },
+  {
+    "url": "/brand-review",
+    "title": "Brand Review",
+    "variant": "c1",
+    "noindex": false,
+    "widgets": [
+      "lead-form"
+    ],
+    "ghlFragment": "ghl/brand-review.html"
+  },
+  {
+    "url": "/brand-review/c2",
+    "title": "Brand Review",
+    "variant": "c2",
+    "noindex": true,
+    "widgets": [
+      "lead-form"
+    ],
+    "ghlFragment": "ghl/brand-review--c2.html"
+  },
+  {
+    "url": "/fit-finder",
+    "title": "Fit Finder",
+    "variant": "d1",
+    "noindex": false,
+    "widgets": [
+      "fit-finder"
+    ],
+    "ghlFragment": "ghl/fit-finder.html"
+  },
+  {
+    "url": "/fit-finder/d2",
+    "title": "Fit Finder",
+    "variant": "d2",
+    "noindex": true,
+    "widgets": [
+      "fit-finder"
+    ],
+    "ghlFragment": "ghl/fit-finder--d2.html"
+  },
+  {
+    "url": "/book",
+    "title": "Book a call",
+    "variant": "a1",
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/book.html"
+  },
+  {
+    "url": "/book/a2",
+    "title": "Book a call",
+    "variant": "a2",
+    "noindex": true,
+    "widgets": [
+      "lead-form"
+    ],
+    "ghlFragment": "ghl/book--a2.html"
+  },
+  {
+    "url": "/thanks/signal-test",
+    "title": "Thank you",
+    "variant": null,
+    "noindex": true,
+    "widgets": [],
+    "ghlFragment": "ghl/thanks--signal-test.html"
+  },
+  {
+    "url": "/thanks/brand-review",
+    "title": "Thank you",
+    "variant": null,
+    "noindex": true,
+    "widgets": [],
+    "ghlFragment": "ghl/thanks--brand-review.html"
+  },
+  {
+    "url": "/thanks/fit-finder",
+    "title": "Thank you",
+    "variant": null,
+    "noindex": true,
+    "widgets": [],
+    "ghlFragment": "ghl/thanks--fit-finder.html"
+  },
+  {
+    "url": "/thanks/call",
+    "title": "Thank you",
+    "variant": null,
+    "noindex": true,
+    "widgets": [],
+    "ghlFragment": "ghl/thanks--call.html"
+  },
+  {
+    "url": "/brand-system",
+    "title": "Our brand system",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/brand-system.html"
+  },
+  {
+    "url": "/now",
+    "title": "What we are running now",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/now.html"
+  },
+  {
+    "url": "/oak-cliff-pilates-story",
+    "title": "The Oak Cliff Pilates story",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/oak-cliff-pilates-story.html"
+  },
+  {
+    "url": "/about",
+    "title": "About",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/about.html"
+  },
+  {
+    "url": "/insights",
+    "title": "Insights",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/insights.html"
+  },
+  {
+    "url": "/privacy",
+    "title": "Privacy",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/privacy.html"
+  },
+  {
+    "url": "/terms",
+    "title": "Terms",
+    "variant": null,
+    "noindex": false,
+    "widgets": [],
+    "ghlFragment": "ghl/terms.html"
+  },
+  {
+    "url": "/404",
+    "title": "Page not found",
+    "variant": null,
+    "noindex": true,
+    "widgets": [],
+    "ghlFragment": "ghl/404.html"
+  }
+]

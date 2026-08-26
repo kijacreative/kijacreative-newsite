@@ -1,0 +1,14 @@
+{
+  "name": "kija-rebuild",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "kijacreative.com rebuild — source of truth. Builds a standalone static site plus GHL-ready page fragments.",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && python3 -m http.server 8080 --directory dist",
+    "check": "node build.mjs && node scripts/check.mjs",
+    "vitals": "node scripts/vitals.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
