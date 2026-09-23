@@ -75,6 +75,18 @@ These are load-bearing. Changing one is a decision, not a tweak.
 
 ## Deploy
 
+### Vercel (the standalone site)
+
+`vercel.json` sets `outputDirectory: "dist"` — Vercel looks for `public/` by
+default and will fail the build without it, even though the build itself
+succeeded. `trailingSlash: false` matches the canonical URLs the build emits.
+
+Nothing else is needed: `npm run build` is the build command, `dist/404.html`
+is picked up automatically, and `api/lead.js` deploys alongside as an edge
+function.
+
+### GoHighLevel
+
 ### 1. Funnel-level assets (once per funnel, re-paste when they change)
 
 In GHL → Funnel → Settings → Custom CSS/JS, paste:
@@ -103,18 +115,28 @@ two mechanisms do not fight.
 
 ### 3. The lead proxy
 
-`server/ghl-proxy.mjs` is a fetch-standard handler. Deploy it to Vercel,
-Netlify or Cloudflare Workers, then set the endpoint on the site:
+`server/ghl-proxy.mjs` is a fetch-standard handler (Request in, Response out),
+so it runs unchanged on Vercel, Netlify or Cloudflare Workers.
 
-```html
-<script>window.KIJA_ENDPOINT = 'https://api.kijacreative.com/lead';</script>
+On **Vercel** it is already wired: `api/lead.js` mounts it as an edge function
+at `/api/lead`, and `site.leadEndpoint` points every form there. Nothing to
+configure beyond the environment variables below.
+
+On **GHL** the pages live on a different origin, so change
+`site.leadEndpoint` in `src/data/site.js` to the absolute URL of the deployed
+function and rebuild:
+
+```js
+leadEndpoint: 'https://kijacreative-newsite.vercel.app/api/lead',
 ```
 
-Put that above `global.js` in the funnel's custom JS.
+Then add that origin to `ALLOWED_ORIGINS` on the function, alongside the
+production domains.
 
-**Without an endpoint the site still works** — forms validate, widgets score,
+**Without the env vars the site still works** — forms validate, widgets score,
 visitors reach the right thank-you page — but nothing reaches the CRM. The
-payload is logged to the console when `?kdebug=1` is present.
+proxy returns `{ok:false, reason:"not_configured"}` and logs the payload;
+add `?kdebug=1` to any URL to see it client-side too.
 
 Required environment variables:
 

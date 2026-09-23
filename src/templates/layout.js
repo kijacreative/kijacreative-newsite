@@ -25,6 +25,7 @@ ${p.noindex ? '<meta name="robots" content="noindex,follow">\n' : ''}<meta prope
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="/assets/tokens.css">
 <link rel="stylesheet" href="/assets/global.css">
+<script>window.KIJA_ENDPOINT=${JSON.stringify(site.leadEndpoint)}</script>
 ${p.schema ? `<script type="application/ld+json">${JSON.stringify(p.schema)}</script>` : ''}
 ${p.headInline ? `<script>${p.headInline}</script>` : ''}`;
 }
@@ -146,7 +147,8 @@ export function fragment(p) {
   return `<!-- ${site.name} — ${p.path} ${p.variant ? `(variant ${p.variant})` : ''}
      Paste into the GHL page's custom code block.
      Requires funnel-level global.css + global.js. -->
-${p.variant ? `<script>document.documentElement.setAttribute('data-variant','${p.variant}');</script>\n` : ''}${p.body}
+<script>window.KIJA_ENDPOINT=window.KIJA_ENDPOINT||${JSON.stringify(site.leadEndpoint)};${p.variant ? `document.documentElement.setAttribute('data-variant','${p.variant}');` : ''}</script>
+${p.body}
 ${(p.scripts || []).map((s) => `<script src="${s}" defer></script>`).join('\n')}
 ${p.inline ? `<script>${p.inline}</script>` : ''}`;
 }

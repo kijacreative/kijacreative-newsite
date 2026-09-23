@@ -11,6 +11,11 @@ export const site = {
   email: 'hello@kijacreative.com',
   calendar: 'https://brand.kijacreative.com/widget/booking/IvRyDWXB23MJfz0G6ddg',
 
+  // Where every capture path posts. Relative works on Vercel, where the
+  // function ships with the site. Change to the absolute URL when the pages
+  // are pasted into GHL, since the site is then on a different origin.
+  leadEndpoint: '/api/lead',
+
   // GHL — see CLAUDE.md before changing any of these.
   ghl: {
     locationId: 'pPvsVabo4AEGhFUMtk0e',
