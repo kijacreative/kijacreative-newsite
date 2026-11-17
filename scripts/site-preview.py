@@ -34,7 +34,8 @@ JS = {
 }
 for f in os.listdir(os.path.join(A, 'widgets')):
     JS['widgets/' + f] = read(os.path.join(A, 'widgets', f))
-JS['vendor/gsap.min.js'] = read(os.path.join(A, 'vendor', 'gsap.min.js'))
+for f in os.listdir(os.path.join(A, 'vendor')):
+    JS['vendor/' + f] = read(os.path.join(A, 'vendor', f))
 
 # media: lighter preview copies if provided, else the real files
 if len(sys.argv) > 2 and os.path.exists(sys.argv[2]):
