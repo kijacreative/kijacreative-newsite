@@ -34,6 +34,18 @@ Spring maths and behaviour ported from MagneticButton, SpotlightCard,
 TiltCard, NumberTicker and MouseParallax in
 https://github.com/itsjwill/motion-primitives-website (MIT).
 
+## Motion 14.9.0 — src/vendor/motion-scroll.min.js
+https://github.com/motiondivision/motion — MIT License, Copyright (c) 2018 Framer B.V.
+A tree-shaken subset (18 KB, 7 KB gzipped): `animate` from motion/mini, plus
+`scroll` and `inView`. Used only on the homepage, for the scroll-linked effects
+(reel parallax, "Good taste" words, the alignment circles, the review badge),
+which run on native scroll timelines where the browser supports them. The
+full package (179 KB) is deliberately not shipped. To rebuild:
+
+    npm i motion@14.9.0 esbuild
+    echo "export { animate } from 'motion/mini'; export { scroll, inView } from 'motion';" > m.js
+    npx esbuild m.js --bundle --minify --format=iife --global-name=Motion --target=es2019 --legal-comments=inline --outfile=src/vendor/motion-scroll.min.js
+
 ## GSAP 3.15.0 — src/vendor/gsap.min.js
 Not MIT. GreenSock "Standard no-charge license"
 (https://gsap.com/standard-license): free, including commercial use.

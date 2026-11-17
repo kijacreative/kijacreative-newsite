@@ -1,6 +1,9 @@
 /* ==========================================================================
    KIJA CREATIVE — HOMEPAGE OPTION B v2 BEHAVIOUR  (/b)
-   Plain JS, no dependencies. Every effect starts from a finished, readable
+   Plain JS. Scroll-linked effects (reel parallax, "Good taste" words, the
+   alignment circles, the review badge) use Motion's scroll() when the vendored
+   Motion subset is present, so they can run on the compositor; otherwise the
+   hand-written fallbacks below do the same job on the main thread. Every effect starts from a finished, readable
    layout already in the HTML; without JS or with reduced motion nothing is
    pinned, hidden or delayed.
 
@@ -247,15 +250,22 @@
       new IntersectionObserver(function (en) { if (en[0].isIntersecting) tryPlay(); else video.pause(); }, { threshold: 0.05 }).observe(media);
     }
     if (REDUCE) return;
-    var px = 0, py = 0, mx = 0, my = 0, hero = media.parentElement;
-    var paint = function () {
-      var h = hero.offsetHeight || 1, y = Math.min(window.scrollY, h);
-      var scale = 1 + (y / h) * 0.08;
-      inner.style.transform = 'translate3d(' + (mx).toFixed(1) + 'px,' + (y * 0.32 + my).toFixed(1) + 'px,0) scale(' + scale.toFixed(4) + ')';
-    };
-    onScroll(paint);
-    if (FINE) {
-      var sx = new Spring(60, 16, function (v) { mx = v; paint(); }), sy = new Spring(60, 16, function (v) { my = v; paint(); });
+    var hero = media.parentElement, M = window.Motion;
+    if (M && M.scroll && M.animate) {
+      // Motion: the parallax is a scroll timeline. Where the browser supports
+      // ScrollTimeline it runs on the compositor, with no per-frame JS.
+      M.scroll(M.animate(inner, { transform: ['translateY(0%) scale(1)', 'translateY(27%) scale(1.08)'] }, { ease: 'linear' }),
+        { target: hero, offset: ['start start', 'end start'] });
+    } else {
+      onScroll(function () {
+        var h = hero.offsetHeight || 1, y = Math.min(window.scrollY, h);
+        inner.style.transform = 'translate3d(0,' + (y * 0.32).toFixed(1) + 'px,0) scale(' + (1 + (y / h) * 0.08).toFixed(4) + ')';
+      });
+    }
+    if (FINE) {   // the lean toward the cursor sits on the video, so it never fights the scroll timeline
+      var mx = 0, my = 0;
+      var lean = function () { video.style.translate = mx.toFixed(1) + 'px ' + my.toFixed(1) + 'px'; };
+      var sx = new Spring(60, 16, function (v) { mx = v; lean(); }), sy = new Spring(60, 16, function (v) { my = v; lean(); });
       hero.addEventListener('pointermove', function (e) {
         var r = hero.getBoundingClientRect();
         sx.set(((e.clientX - r.left) / r.width - 0.5) * -22); sy.set(((e.clientY - r.top) / r.height - 0.5) * -14);
@@ -333,7 +343,16 @@
   (function () {
     var sec = $('[data-kb-taste]');
     if (!sec || REDUCE) return;
-    var words = $$('[data-kb-drift]', sec), spin = $('[data-kb-spin]', sec);
+    var words = $$('[data-kb-drift]', sec), spin = $('[data-kb-spin]', sec), M = window.Motion;
+    if (M && M.scroll && M.animate) {
+      words.forEach(function (w, i) {
+        var dir = parseFloat(w.getAttribute('data-kb-drift')) || 1, from = (dir * (18 + i * 3)).toFixed(1) + 'vw';
+        M.scroll(M.animate(w, { transform: ['translateX(' + from + ')', 'translateX(0vw)'], opacity: [0.15, 1] }, { ease: [0.16, 1, 0.3, 1] }),
+          { target: sec, offset: ['start end', 'start 0.3'] });
+      });
+      if (spin) M.scroll(M.animate(spin, { transform: ['rotate(0deg)', 'rotate(' + Math.round((document.documentElement.scrollHeight - window.innerHeight) * 0.12) + 'deg)'] }, { ease: 'linear' }));
+      return;
+    }
     onScroll(function () {
       var p = progress(sec, 0.3), e = 1 - Math.pow(1 - p, 3), vw = window.innerWidth;
       words.forEach(function (w, i) {
@@ -349,14 +368,21 @@
   (function () {
     var sec = $('[data-kb-align]');
     if (!sec || REDUCE) return;
-    var a = $('[data-kb-venn="a"]', sec), b = $('[data-kb-venn="b"]', sec), c = $('[data-kb-venn="c"]', sec), k = $('[data-kb-venn-k]', sec);
+    var a = $('[data-kb-venn="a"]', sec), b = $('[data-kb-venn="b"]', sec), c = $('[data-kb-venn="c"]', sec), k = $('[data-kb-venn-k]', sec), M = window.Motion;
+    if (M && M.scroll && M.animate) {
+      var o = { target: sec, offset: ['start end', 'start 0.35'] }, ease = { ease: [0.16, 1, 0.3, 1] };
+      M.scroll(M.animate(a, { transform: ['translate(-120px,-66px)', 'translate(0px,0px)'] }, ease), o);
+      M.scroll(M.animate(b, { transform: ['translate(120px,-66px)', 'translate(0px,0px)'] }, ease), o);
+      M.scroll(M.animate(c, { transform: ['translate(0px,108px)', 'translate(0px,0px)'] }, ease), o);
+      M.scroll(M.animate(k, { opacity: [0, 0, 1] }, { ease: 'linear' }), o);
+      return;
+    }
     onScroll(function () {
       var p = progress(sec, 0.4), e = easeOut(p * 1.15 - 0.1), s = (1 - e) * 120;
       a.style.translate = (-s).toFixed(1) + 'px ' + (-s * 0.55).toFixed(1) + 'px';
       b.style.translate = s.toFixed(1) + 'px ' + (-s * 0.55).toFixed(1) + 'px';
       c.style.translate = '0 ' + (s * 0.9).toFixed(1) + 'px';
-      k.style.opacity = clamp(0, 1, (p - 0.7) / 0.25).toFixed(3);
-      sec.classList.toggle('is-aligned', p > 0.9);
+      k.style.opacity = Math.max(0, Math.min(1, (p - 0.7) / 0.25)).toFixed(3);
     });
   })();
 

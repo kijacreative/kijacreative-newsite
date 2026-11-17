@@ -54,6 +54,10 @@ src/
                         proof tiles built from cases.js, each opening a case panel.
                         Port of Infinite Gallery (MIT). Lazy-loads vendor/gsap.min.js.
   vendor/gsap.min.js    GSAP 3.15.0, pinned. Standard no-charge licence, not MIT.
+  vendor/motion-scroll.min.js
+                        Motion 14.9.0 (MIT), a 7 KB-gzipped subset: animate (mini),
+                        scroll, inView. Homepage scroll-linked effects only; home-b.js
+                        keeps hand-written fallbacks if it fails to load.
   motion.js             Motion layer: vanilla ports of Motion Primitives (magnetic, spotlight,
                         tilt, number ticker, mouse parallax). Optional; the site works without it.
   fonts.css + fonts/    Self-hosted League Gothic + Lato.

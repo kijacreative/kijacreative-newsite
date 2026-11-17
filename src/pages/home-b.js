@@ -284,6 +284,6 @@ export default function homeB() {
       address: { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.city, addressRegion: site.address.region, postalCode: site.address.postal, addressCountry: 'US' },
       slogan: 'Make your brand unmissable.'
     },
-    scripts: ['/assets/widgets/home-b.js', '/assets/widgets/work-explorer.js']
+    scripts: ['/assets/vendor/motion-scroll.min.js', '/assets/widgets/home-b.js', '/assets/widgets/work-explorer.js']
   };
 }
