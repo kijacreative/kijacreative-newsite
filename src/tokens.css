@@ -4,67 +4,110 @@
    ========================================================================== */
 
 :root{
-  /* --- core palette ------------------------------------------------------ */
+  /* --- core palette (unchanged brand) ------------------------------------ */
   --k-ink:        #1E0A1E;   /* aubergine — page ground */
   --k-ink-2:      #2C1230;   /* raised surface */
   --k-ink-3:      #3A1A3E;   /* raised surface, second level */
   --k-ink-4:      #4A2450;   /* borders on raised surfaces */
-  --k-mint:       #3DFFAE;   /* primary accent / action */
-  --k-magenta:    #C21E7A;   /* secondary accent / emphasis */
+  --k-mint:       #3DFFAE;   /* ACTION ONLY — if it is mint, it is clickable */
+  --k-magenta:    #C21E7A;   /* emphasis, proof, the left edge of the aberration */
   --k-cream:      #F5F3EC;   /* primary text */
-  --k-aqua:       #C6F5E8;   /* tertiary accent / code */
+  --k-aqua:       #C6F5E8;   /* tertiary accent / code / non-action highlights */
   --k-yellow:     #F5E61A;   /* attention / warning */
+  --k-void:       #0A030A;   /* CRT power-off black (proof wall explorer only) */
+
+  /* --- interaction states (were raw hex in global.css) -------------------- */
+  --k-mint-hi:    #7DFFC8;   /* primary button hover */
+  --k-mag-hi:     #DA2E8E;   /* magenta button hover */
+  --k-mag-text:   #F06AB4;   /* magenta set as small text on ink — passes AA */
 
   /* --- derived ----------------------------------------------------------- */
-  --k-line:       rgba(245,243,236,.14);
-  --k-line-2:     rgba(245,243,236,.26);
-  --k-dim:        rgba(245,243,236,.62);
-  --k-dimmer:     rgba(245,243,236,.42);
+  --k-ink-dim:    rgba(30,10,30,.68);   /* body copy on cream (Option B) */
+  --k-ink-line:   rgba(30,10,30,.16);   /* rules on cream (Option B) */
+  --k-print:      #FCFBF7;   /* photo prints, cards and fields on paper */
+  --k-paper-2:    #ECE8DE;   /* a step down from the paper: panels, hovers */
+  --k-paper-3:    #E2DDD0;   /* two steps down: skeletons, wells */
+  --k-ink-dimmer: rgba(30,10,30,.48);
+  --k-ink-line-2: rgba(30,10,30,.24);
+  --k-ink-line-3: rgba(30,10,30,.46);
+  /* the cream-on-ink originals, for dark islands inside paper pages */
+  --k-cream-68:   rgba(245,243,236,.68);
+  --k-cream-46:   rgba(245,243,236,.46);
+  --k-cream-12:   rgba(245,243,236,.12);
+  --k-cream-24:   rgba(245,243,236,.24);
+  --k-cream-50:   rgba(245,243,236,.5);
+  --k-shadow-soft: 0 1px 2px rgba(30,10,30,.16), 0 18px 36px -20px rgba(30,10,30,.5);
+  --k-shadow-lift: 0 2px 4px rgba(30,10,30,.14), 0 32px 56px -24px rgba(30,10,30,.55);
+  --k-paper-92:   rgba(245,243,236,.92);   /* hero wash over the reel (Option B) */
+  --k-paper-70:   rgba(245,243,236,.70);
+  --k-paper-30:   rgba(245,243,236,.30);
+  --k-paper-0:    rgba(245,243,236,0);
+  --k-line:       rgba(245,243,236,.12);
+  --k-line-2:     rgba(245,243,236,.24);
+  --k-line-3:     rgba(245,243,236,.5);
+  --k-dim:        rgba(245,243,236,.68);
+  --k-dimmer:     rgba(245,243,236,.46);
+  --k-ink-glass:  rgba(30,10,30,.86);
   --k-mint-08:    rgba(61,255,174,.08);
   --k-mint-16:    rgba(61,255,174,.16);
   --k-mint-30:    rgba(61,255,174,.30);
   --k-mag-08:     rgba(194,30,122,.08);
   --k-mag-16:     rgba(194,30,122,.16);
   --k-mag-30:     rgba(194,30,122,.30);
-  --k-shadow:     0 18px 50px -20px rgba(0,0,0,.75);
+  --k-mag-85:     rgba(194,30,122,.85);
+  --k-mint-75:    rgba(61,255,174,.75);
+  --k-aqua-08:    rgba(198,245,232,.08);
+  --k-shadow:     0 24px 60px -28px rgba(0,0,0,.8);
+
+  /* --- case thumbnail tones (cases[].thumb.tone) -------------------------- */
+  --k-tone-magenta-bg: var(--k-magenta); --k-tone-magenta-fg: var(--k-cream);
+  --k-tone-mint-bg:    var(--k-aqua);    --k-tone-mint-fg:    var(--k-ink);
+  --k-tone-yellow-bg:  var(--k-yellow);  --k-tone-yellow-fg:  var(--k-ink);
+  --k-tone-aqua-bg:    var(--k-aqua);    --k-tone-aqua-fg:    var(--k-ink);
+  --k-tone-plum-bg:    var(--k-ink-3);   --k-tone-plum-fg:    var(--k-cream);
+  --k-tone-cream-bg:   var(--k-cream);   --k-tone-cream-fg:   var(--k-ink);
 
   /* --- type -------------------------------------------------------------- */
+  /* Two families, two jobs. League Gothic shouts (h1, h2, numbers, thumbs);
+     Lato does everything else, including labels — in sentence case. */
   --k-display: 'League Gothic', 'Haettenschweiler', 'Arial Narrow', Impact, sans-serif;
   --k-body:    'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --k-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --k-mono:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* fluid type scale — 320px → 1440px */
-  --k-t-mega:  clamp(3.5rem, 1.6rem + 9.5vw, 10rem);     /*  56 → 160 */
-  --k-t-xxl:   clamp(2.6rem, 1.4rem + 6vw,  6.25rem);    /*  42 → 100 */
-  --k-t-xl:    clamp(2.1rem, 1.3rem + 4vw,  4.25rem);    /*  34 →  68 */
+  --k-t-hero:  clamp(5.25rem, min(.5rem + 20vw, 25svh), 19rem); /* capped by height so the CTA shares the first screen */
+  --k-t-mega:  clamp(3.75rem, 1.4rem + 10.5vw, 10.5rem); /*  60 → 168 */
+  --k-t-xxl:   clamp(3rem, 1.6rem + 6.6vw, 7rem);        /*  48 → 112 */
+  --k-t-xl:    clamp(2.6rem, 1.6rem + 4.8vw, 5.5rem);    /*  42 →  88 */
   --k-t-lg:    clamp(1.55rem, 1.2rem + 1.8vw, 2.4rem);   /*  25 →  38 */
-  --k-t-md:    1.6875rem;                                /*  27 */
-  --k-t-lede:  clamp(1.05rem, .96rem + .5vw, 1.32rem);   /*  17 →  21 */
-  --k-t-base:  1.03rem;                                  /* 16.5 */
-  --k-t-sm:    .906rem;                                  /* 14.5 */
+  --k-t-md:    clamp(1.2rem, 1.1rem + .4vw, 1.45rem);    /*  19 →  23 */
+  --k-t-lede:  clamp(1.1rem, 1rem + .45vw, 1.35rem);     /*  18 →  22 */
+  --k-t-base:  1.0625rem;                                /*  17 */
+  --k-t-sm:    .9375rem;                                 /*  15 */
   --k-t-xs:    .8125rem;                                 /*  13 */
-  --k-t-label: .6875rem;                                 /*  11 */
-  --k-t-micro: .59rem;                                   /* 9.5 */
+  --k-t-label: .8125rem;                                 /*  13 */
+  --k-t-micro: .75rem;                                   /*  12 */
 
   /* --- space ------------------------------------------------------------- */
   --k-s1: 4px;  --k-s2: 8px;  --k-s3: 12px; --k-s4: 16px;
-  --k-s5: 24px; --k-s6: 32px; --k-s7: 44px; --k-s8: 64px;
-  --k-s9: 96px; --k-s10: 128px;
-  --k-section: clamp(56px, 7vw, 104px);
+  --k-s5: 24px; --k-s6: 32px; --k-s7: 48px; --k-s8: 72px;
+  --k-s9: 104px; --k-s10: 144px;
+  --k-section: clamp(72px, 9vw, 136px);
 
   /* --- layout ------------------------------------------------------------ */
-  --k-max: 1180px;
-  --k-max-wide: 1400px;
-  --k-max-prose: 68ch;
-  --k-gutter: clamp(20px, 4vw, 28px);
-  --k-nav-h: 64px;
+  --k-max: 1240px;
+  --k-max-wide: 1440px;
+  --k-max-prose: 64ch;
+  --k-gutter: clamp(20px, 4vw, 40px);
+  --k-nav-h: 68px;
 
   /* --- shape ------------------------------------------------------------- */
-  --k-r-sm: 3px; --k-r: 6px; --k-r-lg: 12px; --k-r-pill: 999px;
+  --k-r-sm: 2px; --k-r: 4px; --k-r-lg: 10px; --k-r-pill: 999px;
 
   /* --- motion ------------------------------------------------------------ */
   --k-ease: cubic-bezier(.22,.61,.36,1);
   --k-ease-out: cubic-bezier(.16,1,.3,1);
+  --k-snap: cubic-bezier(.7,0,.2,1.4);
   --k-fast: .15s;  --k-mid: .28s;  --k-slow: .6s;
 
   /* --- z ----------------------------------------------------------------- */

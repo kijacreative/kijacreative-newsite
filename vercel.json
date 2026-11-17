@@ -7,17 +7,89 @@
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/b",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/our-work",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/oak-cliff-pilates",
+      "destination": "/work/oak-cliff-pilates",
+      "permanent": true
+    },
+    {
+      "source": "/blue-plate-network",
+      "destination": "/work/blue-plate-network",
+      "permanent": true
+    },
+    {
+      "source": "/mammogram-poster-girls",
+      "destination": "/work/mammogram-poster-girls",
+      "permanent": true
+    },
+    {
+      "source": "/van-country",
+      "destination": "/work/van-country",
+      "permanent": true
+    },
+    {
+      "source": "/latino-arts",
+      "destination": "/work/latino-arts",
+      "permanent": true
+    },
+    {
+      "source": "/beverage-displays",
+      "destination": "/work/beverage-displays",
+      "permanent": true
+    },
+    {
+      "source": "/event-weis",
+      "destination": "/work/event-weis",
+      "permanent": true
+    },
+    {
+      "source": "/honeycomb",
+      "destination": "/work/honeycomb",
+      "permanent": true
     }
   ]
 }

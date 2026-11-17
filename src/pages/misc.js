@@ -1,25 +1,31 @@
 import { esc } from '../templates/layout.js';
 import { head, hero, cards, ctaBand, steps } from '../templates/blocks.js';
 import { site } from '../data/site.js';
+import { listed, featured } from '../data/cases.js';
 
 /* ---------- /about -------------------------------------------------------- */
 export function aboutPage() {
   const body = `
 ${hero({
-    eyebrow: 'About',
-    title: 'A growth partner<br>that also operates',
-    lede: '<b>Kija Creative is a Dallas brand and growth studio that owns and runs businesses of its own.</b> That is not a personality detail — it is the reason our advice is sequenced the way it is, and the reason we will tell you to spend less than you were expecting more often than you would think.',
+    // from the live kijacreative.com "Who we are" section
+    eyebrow: 'Who we are · est. ' + site.established,
+    title: 'Design. Strategy.<br>Technical execution.',
+    lede: '<b>We’re the intersection of all three.</b> Kija Creative was built on the idea that brands don’t grow from one good idea — they grow from alignment. Alignment between message and design. Between strategy and execution. Between vision and systems. We’re here to make sure every one of those moments makes sense.',
+    ctas: [
+      { label: 'Book a call', href: '/book', track: 'cta_about_book' },
+      { label: 'Free brand review', href: '/brand-review', style: 'k-btn--ghost', track: 'cta_about_review' }
+    ],
     meta: [
       { k: 'Based in', v: site.location },
-      { k: 'Model', v: 'Partner, not vendor' },
-      { k: 'Also operates', v: 'Oak Cliff Pilates' },
-      { k: 'Team', v: 'Small, senior, hands on the work' }
+      { k: 'Established', v: site.established },
+      { k: 'Studio', v: site.address.street + ', ' + site.address.city },
+      { k: 'Contact', v: site.email }
     ]
   })}
 
 <section class="k-section">
   <div class="k-wrap">
-    ${head({ num: '01', title: 'What we believe', sub: 'Four positions we hold consistently enough that you should know them before a first call.' })}
+    ${head({ title: 'What we believe', sub: 'Four positions we hold consistently enough that you should know them before a first call.' })}
     ${cards([
       { label: 'Belief 01', title: 'Systems beat visuals', accent: 'accent', body: 'A beautiful asset solves one problem once. A system solves the same class of problem every time somebody new opens a file.' },
       { label: 'Belief 02', title: 'Sequence is not a preference', accent: 'accent', body: 'Brand before site. Site before paid. Skipping a step does not save money, it defers the cost and adds interest.' },
@@ -31,29 +37,21 @@ ${hero({
 
 <section class="k-section k-section--line">
   <div class="k-wrap">
-    ${head({ num: '02', title: 'The third<br>space idea', sub: 'The concept that came out of running Oak Cliff Pilates, and that now shapes how we look at every brand.' })}
-    <div class="k-split">
-      <div class="k-body-copy k-lede">
-        <p>A third space is the place that is neither home nor work — the one people choose to be in, and that becomes part of how they describe themselves.</p>
-        <p>We found the idea by accident, running a Pilates studio that was competing on price against chains and losing. The studio was selling a workout. Members were buying somewhere to belong.</p>
-        <p>Once that was named, everything downstream had a rule to follow: what the space should look like, who to hire, what to say, what to refuse. Revenue grew 400% and one location became three.</p>
-        <p>Most brands have a third-space idea buried somewhere in what their best customers already say about them. Finding it is most of what Creative Strategy actually is.</p>
-      </div>
-      <div>
-        <div class="k-card k-card--mag">
-          <h4 class="k-label--mag">Where it came from</h4>
-          <h3 style="margin-top:12px">Oak Cliff Pilates</h3>
-          <p class="k-dim" style="margin-top:14px">We own and operate it. Every play on this site was run there first, on our own money, before it was ever sold to a client.</p>
-          <p style="margin-top:18px"><a class="k-link" href="/oak-cliff-pilates-story">The full story</a></p>
-        </div>
-      </div>
+    ${head({ title: 'Good taste will<br>not be replaced.', sub: 'Kija Creative, est. ' + site.established + ', by designers, developers, and creative thinkers. Behind the work of artists, startups, and emerging brands, with the strategy, design, and systems to back it up.' })}
+    <div class="k-grid k-g4">
+      ${featured().map((c) => `
+      <a class="k-card k-card--accent" href="/work/${c.slug}" data-track="cta_about_case">
+        <p class="k-label k-label--dim">${esc(c.industry)}</p>
+        <h3 style="margin-top:8px">${esc(c.client)}</h3>
+        <p class="k-metric" style="margin-top:16px"><b>${esc(c.metrics[0].value)}</b><span>${esc(c.metrics[0].label)}</span></p>
+      </a>`).join('')}
     </div>
   </div>
 </section>
 
 <section class="k-section k-section--line">
   <div class="k-wrap">
-    ${head({ num: '03', title: 'How we work', sub: 'The same shape on every engagement, whatever the size.' })}
+    ${head({ title: 'How we work', sub: 'The same shape on every engagement, whatever the size.' })}
     ${steps([
       { t: 'Diagnose before quoting', d: 'We will not price work before we understand the problem. A number without scope is a guess with a decimal point.', out: 'Written diagnosis' },
       { t: 'Agree the sequence', d: 'What comes first, what comes later, what is explicitly out of scope. Both sides sign the same understanding.', out: 'Scope + sequence' },
@@ -74,7 +72,7 @@ ${ctaBand({
   return {
     path: '/about',
     title: 'About',
-    description: 'Kija Creative is a Dallas brand and growth partner that also owns and operates businesses of its own.',
+    description: 'Kija Creative is a Dallas creative studio, est. 2022: the intersection of design, strategy, and technical execution.',
     body
   };
 }
@@ -85,76 +83,6 @@ ${ctaBand({
    the page. Articles are authored in Phase 1; this is the index and the
    structure they slot into.
    ------------------------------------------------------------------------ */
-const ARTICLES = [
-  { slug: 'brand-before-website', q: 'Should you rebrand before rebuilding your website?',
-    a: 'Yes, in almost every case. A website is an application of a brand system; building one before the system exists means building it twice.',
-    tag: 'Creative Strategy', read: '6 min' },
-  { slug: 'what-a-brand-system-includes', q: 'What is actually in a brand system?',
-    a: 'Rules, not files. Colour roles, a type scale, spacing, motion, photography direction and voice — enough that someone who has never met you can produce on-brand work.',
-    tag: 'Brand Development', read: '8 min' },
-  { slug: 'website-conversion-rate-benchmarks', q: 'What is a good conversion rate for a B2B services website?',
-    a: 'Between 2% and 5% of visitors to enquiry is typical. The more useful number is the one you are at now, which most businesses cannot state.',
-    tag: 'Website Design', read: '5 min' },
-  { slug: 'speed-to-lead', q: 'How fast do you need to respond to a new lead?',
-    a: 'Inside five minutes to be competitive, inside sixty seconds to be memorable. After an hour you are usually competing for a decision that has already been made.',
-    tag: 'Marketing Automation', read: '4 min' },
-  { slug: 'when-to-start-paid-ads', q: 'When should you start running paid ads?',
-    a: 'After the position is settled and the landing page converts. Paid amplifies whatever is underneath it, including the problems.',
-    tag: 'Ongoing Marketing', read: '6 min' },
-  { slug: 'agency-vs-in-house', q: 'Should you hire an agency or build the function in-house?',
-    a: 'In-house wins on context and consistency. Agencies win on range and speed of setup. The honest split is usually agency to build the system, in-house to run it.',
-    tag: 'Creative Strategy', read: '7 min' }
-];
-
-export function insightsPage() {
-  const body = `
-${hero({
-    eyebrow: 'Insights',
-    title: 'Answers,<br>not think-pieces',
-    lede: '<b>Every article here answers one question in its first paragraph and then earns it.</b> Structured that way on purpose — so an answer engine can quote the answer, and so you can leave after the first paragraph if that is all you needed.'
-  })}
-
-<section class="k-section">
-  <div class="k-wrap">
-    <div class="k-grid k-g2">
-      ${ARTICLES.map((a, i) => `
-      <article class="k-card k-card--accent" data-reveal="${i * 50}">
-        <h4>${esc(a.tag)} &middot; ${esc(a.read)}</h4>
-        <h3 style="margin-top:12px;max-width:22ch">${esc(a.q)}</h3>
-        <p class="k-dim" style="margin-top:14px">${esc(a.a)}</p>
-        <p class="k-label k-label--dim" style="margin-top:16px">Full article publishing in phase 1</p>
-      </article>`).join('')}
-    </div>
-    <div class="k-callout" style="margin-top:30px">
-      <h4 class="k-label--yellow">Why the answer comes first</h4>
-      <p style="margin-top:10px;max-width:66ch">Search is increasingly answered rather than listed. An article that buries its conclusion under six hundred words of preamble does not get quoted, and a page nobody quotes does not get found. The structure is the SEO.</p>
-    </div>
-  </div>
-</section>
-
-${ctaBand({
-    num: '02',
-    title: 'Or ask us<br>directly',
-    lede: 'Reading is slower than asking. Thirty minutes and we will answer the version of the question that is actually yours.',
-    primary: { label: 'Book a call', href: '/book', track: 'cta_insights_band_book' },
-    secondary: { label: 'Test your brand signal', href: '/the-kija-method', track: 'cta_insights_band_signal' }
-  })}`;
-
-  return {
-    path: '/insights',
-    title: 'Insights',
-    description: 'Direct answers to the questions that come up before a brand, website or campaign project — structured to be quoted, not just indexed.',
-    body,
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: ARTICLES.map((a) => ({
-        '@type': 'Question', name: a.q,
-        acceptedAnswer: { '@type': 'Answer', text: a.a }
-      }))
-    }
-  };
-}
 
 /* ---------- legal + 404 --------------------------------------------------- */
 const legalShell = (path, title, intro, sections) => ({
@@ -210,7 +138,7 @@ ${hero({
   <div class="k-wrap">
     <div class="k-grid k-g4">
       ${[
-        ['See the work', '/work', 'Nine projects, verified numbers.'],
+        ['See the work', '/work', `${listed().length} projects, real numbers.`],
         ['The services', '/services', 'Five capability lines, in sequence.'],
         ['Test your brand', '/the-kija-method', 'Four minutes, real diagnosis.'],
         ['Book a call', '/book', 'Thirty minutes, no deck.']

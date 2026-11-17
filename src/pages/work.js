@@ -1,30 +1,39 @@
 import { esc } from '../templates/layout.js';
 import { head, hero, caseCard, ctaBand, kpiCard, metaStrip } from '../templates/blocks.js';
-import { cases, bySlug } from '../data/cases.js';
+import { cases, bySlug, listed } from '../data/cases.js';
+import { explorerJSON } from '../data/explorer.js';
+import { wall } from '../data/wall.js';
+import { hasMedia, mediaUrl } from '../data/media.js';
 import { services, serviceBySlug } from '../data/services.js';
 
 /* ---------- /work — filterable proof wall -------------------------------- */
 export function workIndex() {
+
   const body = `
 ${hero({
-    eyebrow: 'Selected work · nine projects',
+    eyebrow: `Selected case studies · ${listed().length} projects`,
     title: 'The proof wall',
-    lede: 'Every figure here was confirmed in writing by the client. Where a project has no number, it has no number — we would rather show you a project honestly than decorate it. Filter by the capability that carried the work.',
-    ctas: [{ label: 'Book a call', href: '/book', track: 'cta_work_hero_book' }]
+    lede: 'Every figure here was confirmed in writing by the client. Where a project has no number, it has no number. We would rather show you a project honestly than decorate it. Explore all of it at once, or filter by the capability that carried the work.',
+    ctas: [
+      { label: 'Explore the wall', href: '#wall', track: 'cta_work_hero_explore', extra: 'data-explore' },
+      { label: 'Book a call', href: '/book', style: 'k-btn--ghost', track: 'cta_work_hero_book' }
+    ]
   })}
 
-<section class="k-section">
+<section class="k-section" id="wall">
   <div class="k-wrap">
     <div class="k-filters" role="group" aria-label="Filter projects by service">
       <button class="k-filter" data-filter="all" aria-pressed="true">All work</button>
       ${services.map((s) => `<button class="k-filter" data-filter="${s.slug}" aria-pressed="false">${esc(s.name)}</button>`).join('')}
     </div>
-    <p class="k-label k-label--dim" style="margin-top:18px" data-wall-count>${cases.length} projects</p>
+    <p class="k-label k-label--dim" style="margin-top:18px" data-wall-count>${listed().length} projects</p>
     <div class="k-grid k-g3" data-wall style="margin-top:22px">
-      ${cases.map((c) => caseCard(c)).join('')}
+      ${listed().map((c) => caseCard(c)).join('')}
     </div>
   </div>
 </section>
+
+<script type="application/json" id="k-cases-data">${explorerJSON()}</script>
 
 ${ctaBand({
     num: '02',
@@ -37,7 +46,8 @@ ${ctaBand({
   return {
     path: '/work',
     title: 'Work',
-    description: 'Nine projects across brand, website, automation and campaigns — with verified results, filterable by capability.',
+    description: `${listed().length} case studies across brand, website, automation and campaigns, with their results, filterable by capability.`,
+    scripts: ['/assets/widgets/work-explorer.js'],
     body
   };
 }
@@ -50,15 +60,16 @@ export function casePage(slug) {
   const body = `
 <header class="k-section k-glow" style="padding-top:clamp(48px,7vw,84px)">
   <div class="k-wrap">
-    <p class="k-eyebrow">${esc(tierLabel)} · ${esc(c.client)}</p>
+    <p class="k-eyebrow">${esc(tierLabel)} · ${esc(c.client)}${c.tagline ? ` · “${esc(c.tagline.replace(/[“”"]/g, ''))}”` : ''}</p>
     <h1 class="k-split-text" style="margin-top:20px;font-size:var(--k-t-xxl);max-width:18ch">${esc(c.headline)}</h1>
     <p class="k-lede" style="margin-top:26px;max-width:58ch">${esc(c.summary)}</p>
+    ${c.url ? `<p style="margin-top:20px"><a class="k-link" href="${esc(c.url)}" rel="noopener" target="_blank">Visit ${esc(c.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a></p>` : ''}
     ${metaStrip([
       { k: 'Client', v: c.client },
       { k: 'Industry', v: c.industry },
-      { k: 'Engagement', v: c.year },
+      { k: c.location ? 'Location' : 'Engagement', v: c.location || c.year },
       { k: 'Services', v: c.services.map((s) => serviceBySlug(s)?.name || s).join(', ') }
-    ])}
+    ].filter((m) => m.v))}
   </div>
 </header>
 
@@ -102,6 +113,19 @@ ${c.metrics.length ? `
   </div>
 </section>
 
+${(() => {
+    const shots = (wall[c.slug]?.media || []).filter((m) => hasMedia(m.src));
+    return shots.length ? `
+<section class="k-section k-section--line">
+  <div class="k-wrap">
+    ${head({ title: 'The work' })}
+    <div class="k-gallery">
+      ${shots.map((m) => `<figure${m.logo ? ' class="is-logo"' : ''}><img src="${mediaUrl(m.src)}" alt="${esc(m.alt)}" loading="lazy" decoding="async"><figcaption>${esc(m.caption)}</figcaption></figure>`).join('')}
+    </div>
+  </div>
+</section>` : '';
+  })()}
+
 <section class="k-section k-section--line">
   <div class="k-wrap">
     ${head({ num: '04', title: 'Result' })}
@@ -116,12 +140,14 @@ ${c.metrics.length ? `
   </div>
 </section>
 
+${c.next ? `
 <section class="k-section k-section--line">
   <div class="k-wrap">
     ${head({ num: '05', title: 'What’s next' })}
     <p class="k-lede k-prose">${esc(c.next)}</p>
   </div>
 </section>
+` : ''}
 
 ${ctaBand({
     num: '06',
@@ -135,7 +161,7 @@ ${ctaBand({
   <div class="k-wrap">
     ${head({ num: '07', title: 'More work' })}
     <div class="k-grid k-g3">
-      ${cases.filter((x) => x.slug !== c.slug).slice(0, 3).map((x) => caseCard(x, { compact: true })).join('')}
+      ${listed().filter((x) => x.slug !== c.slug).slice(0, 3).map((x) => caseCard(x, { compact: true })).join('')}
     </div>
   </div>
 </section>`;

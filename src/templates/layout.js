@@ -1,3 +1,4 @@
+import { hasMedia, mediaUrl } from '../data/media.js';
 import { site, nav, footerNav } from '../data/site.js';
 
 export const esc = (s) => String(s == null ? '' : s)
@@ -20,9 +21,11 @@ ${p.noindex ? '<meta name="robots" content="noindex,follow">\n' : ''}<meta prope
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1E0A1E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="preload" href="/assets/fonts/league-gothic-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/lato-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+${hasMedia(site.logo.iconSmall) ? `<link rel="icon" type="image/png" href="${mediaUrl(site.logo.iconSmall)}">
+<link rel="apple-touch-icon" href="${mediaUrl(site.logo.icon)}">` : ''}
 <link rel="stylesheet" href="/assets/tokens.css">
 <link rel="stylesheet" href="/assets/global.css">
 <script>window.KIJA_ENDPOINT=${JSON.stringify(site.leadEndpoint)}</script>
@@ -57,15 +60,22 @@ function footer() {
   <div class="k-wrap">
     <div class="k-foot__grid">
       <div>
-        <a class="k-mark" href="/" style="font-size:32px">KIJA<span>/</span>CREATIVE</a>
+        <a class="k-mark" href="/" style="font-size:36px">KIJA<span>/</span>CREATIVE</a>
         <p class="k-dim k-sm" style="margin-top:16px;max-width:34ch">${esc(site.tagline)}</p>
         <p class="k-sm" style="margin-top:20px"><a class="k-link" href="/book" data-track="cta_footer_book">Book a call</a></p>
+        <address class="k-foot__contact">
+          <a href="mailto:${esc(site.email)}">${esc(site.email)}</a>
+          <a href="${esc(site.phoneHref)}">${esc(site.phone)}</a>
+          <span>${esc(site.address.street)}<br>${esc(site.address.city)}, ${esc(site.address.region)} ${esc(site.address.postal)}</span>
+          <span class="k-foot__social"><a href="${esc(site.social.instagram)}" rel="noopener">Instagram</a> · <a href="${esc(site.social.linkedin)}" rel="noopener">LinkedIn</a></span>
+        </address>
       </div>
       ${footerNav.map((col) => `<div>
         <h4>${esc(col.title)}</h4>
         ${col.links.map((l) => `<a href="${l.href}">${esc(l.label)}</a>`).join('\n        ')}
       </div>`).join('\n      ')}
     </div>
+    <p class="k-foot__big" aria-hidden="true">Systems, not visuals</p>
     <div class="k-foot__base">
       <div>
         <span>&copy; ${new Date().getFullYear()} ${esc(site.name)}. ${esc(site.location)}.</span>
@@ -94,7 +104,7 @@ function sticky(p) {
 
 /* ---------- assembly ------------------------------------------------------ */
 export function page(p) {
-  const scripts = ['/assets/global.js', ...(p.scripts || [])]
+  const scripts = ['/assets/global.js', '/assets/motion.js', ...(p.scripts || [])]
     .map((s) => `<script src="${s}" defer></script>`).join('\n');
   return `<!doctype html>
 <html lang="en"${p.variant ? ` data-variant="${p.variant}"` : ''}>
@@ -105,9 +115,11 @@ ${head(p)}
 <a class="k-skip" href="#main">Skip to content</a>
 <div class="k-stripe"></div>
 ${navbar(p)}
-<main id="main">
+<main id="main" class="k-paper">
 ${p.body}
 </main>
+<div class="kb-bubble" aria-hidden="true"><span></span></div>
+<div class="kb-scribble" aria-hidden="true"><div class="kb-wipe">${hasMedia(site.logo.mark) ? `<img src="${mediaUrl(site.logo.mark)}" alt="">` : ''}</div></div>
 ${footer()}
 ${sticky(p)}
 ${scripts}

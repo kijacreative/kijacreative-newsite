@@ -32,6 +32,31 @@ src/
   tokens.css            48 custom properties. The single source of truth for the brand.
   global.css            Component library. Paste once at the GHL funnel level.
   global.js             Runtime: nav, accordion, reveal, A/B, attribution, analytics, submit.
+  content-import/       Everything pulled from the live WordPress site (2026-11-17):
+                        verbatim pages, structured JSON, asset list, transfer report.
+                        Source material only; the build does not read it.
+  pages/home-b.js       The homepage (/), "the workshop table": cream paper, the reel, prints of
+                        real work you can throw and turn over, live kijacreative.com copy.
+                        (Option A's homepage is in archive/option-a-home; /b redirects to /.)
+  scripts/site-preview.py  One-file clickable preview of the whole built site (iframe router).
+  archive/option-b-v1/  The first Option B (BROKEN headline). Not built; kept to compare.
+  data/wall.js          Proof wall pieces from kijacreative.com: taglines, voices, palettes,
+                        locations, partners, method steps, and each project's photo list.
+  data/explorer.js      What the wall receives: live projects only (cases with listed !== false).
+  data/media.js         hasMedia()/mediaUrl(): pages reference live-site photos and the hero
+                        reel only if the files exist in src/media/wp-uploads.
+  media/                Live-site photos and video. Empty until download-assets.sh is run
+                        there (see media/README.md). Copied to /assets/media at build.
+  widgets/home-b.js     Option B behaviour: pinned sideways sequence, fling, wobble,
+                        fan, push, cursor label, scribble exit. Plain JS, no deps.
+  widgets/work-explorer.js
+                        /work "Explore the wall": infinite plane ⇄ sphere of 69
+                        proof tiles built from cases.js, each opening a case panel.
+                        Port of Infinite Gallery (MIT). Lazy-loads vendor/gsap.min.js.
+  vendor/gsap.min.js    GSAP 3.15.0, pinned. Standard no-charge licence, not MIT.
+  motion.js             Motion layer: vanilla ports of Motion Primitives (magnetic, spotlight,
+                        tilt, number ticker, mouse parallax). Optional; the site works without it.
+  fonts.css + fonts/    Self-hosted League Gothic + Lato.
   data/                 Content. Edit here, never in a template.
     site.js             Nav, footer, GHL ids, published vitals.
     cases.js            9 case studies. PROOF RULE enforced in comments.
@@ -70,7 +95,22 @@ These are load-bearing. Changing one is a decision, not a tweak.
    accordions both fail open. GHL's editor and some in-app browsers do not run
    observers or transitions reliably, and a page that renders blank there is
    worse than one that renders unanimated.
-8. **The footer vitals are a promise.** Update them from a real Lighthouse run
+8. **Motion answers, it does not perform.** `motion.js` effects start from the
+   finished state already in the HTML and only move it. Hover effects need a
+   fine pointer; reduced motion turns the file off. Number tickers land on the
+   exact published string — they never display a figure that is not in `cases.js`.
+9. **The explorer is an extra door, never the only one.** The /work grid stays
+   the canonical, crawlable, keyboard-first list. The explorer reads the same
+   cases.js data, adds nothing that is not on a case page, and must never
+   load GSAP before someone asks for it.
+10. **Paper everywhere.** Every page sits on cream inside <main class="k-paper">;
+    the nav, footer and proof wall overlay stay ink. Restyle shared components
+    in the PAPER block of global.css rather than per page, and never hard-code
+    cream text inline (use .k-lead for bold lead-ins).
+11. **One homepage.** Option B is the homepage at /. Option A is archived
+    (archive/option-a-home) and /b redirects to /. To test homepages again, restore
+    A as a variant through the A/B redirect and measure booked calls, not time on page.
+12. **The footer vitals are a promise.** Update them from a real Lighthouse run
    (`npm run vitals`), never by hand.
 
 ## Deploy
@@ -92,7 +132,12 @@ function.
 In GHL → Funnel → Settings → Custom CSS/JS, paste:
 
 - `dist/assets/tokens.css` then `dist/assets/global.css` into **Custom CSS**
-- `dist/assets/global.js` into **Custom JS (footer)**
+- `dist/assets/fonts.css` above the CSS, with its `url()` paths pointed at the
+  Vercel host (GHL has no `/assets/fonts`)
+- `dist/assets/global.js` then `dist/assets/motion.js` into **Custom JS (footer)**
+- On the /work funnel step only, `dist/assets/widgets/work-explorer.js`, with
+  `window.KIJA_ASSET_BASE = 'https://<vercel host>'` set before it so it can
+  fetch `/assets/vendor/gsap.min.js` from the standalone deploy
 
 Widget scripts (`brand-signal-test.js`, `fit-finder.js`, `lead-form.js`) go on
 the pages that need them — `manifest.json` says which. Host them somewhere with

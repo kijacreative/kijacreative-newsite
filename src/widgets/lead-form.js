@@ -95,7 +95,7 @@
 
       try { sessionStorage.setItem('kija_last_result', JSON.stringify(payload)); } catch (err) {}
 
-      var go = function () { location.href = thanks; };
+      var go = function () { if (window.KIJA_NAV) window.KIJA_NAV(thanks); else location.href = thanks; };
       if (!K) return go();
       K.submitLead(payload).then(go).catch(function () {
         // The lead is stashed in sessionStorage; the thank-you page retries.

@@ -4,11 +4,24 @@ export const site = {
   name: 'Kija Creative',
   domain: 'kijacreative.com',
   url: 'https://kijacreative.com',
-  tagline: 'Most brands are broken. We fix them by building systems, not visuals.',
+  tagline: 'Make your brand unmissable. Creative direction for what’s next.',
   description:
     'Kija Creative is a Dallas growth partner. We build brand systems, conversion-focused websites and the automation behind them — then run the campaigns that feed them.',
   location: 'Dallas, Texas',
-  email: 'hello@kijacreative.com',
+  // Contact details as published on the live site (pulled 2026-11-17).
+  email: 'signal@kijacreative.com',
+  phone: '+1 480-544-6204',
+  phoneHref: 'tel:+14805446204',
+  address: { street: '2000 Greenville Ave. #6', city: 'Dallas', region: 'TX', postal: '75206' },
+  established: '2022',
+  // Brand marks from the live site (wp-uploads). The K mark carries the same offset as the site's split-text motif.
+  logo: { mark: '2026/01/Kija-K-Dark-1.png', icon: '2026/01/cropped-Kija-Stacked-Multicolored.png', iconSmall: '2026/01/cropped-Kija-Stacked-Multicolored-270x270.png' },
+  // The reel from the live homepage hero. Path is inside wp-uploads (see src/media/README.md).
+  heroVideo: { src: '2026/02/02182.mp4', poster: '2026/02/02182-poster.jpg' },
+  social: {
+    instagram: 'https://www.instagram.com/kijacreative/',
+    linkedin: 'https://www.linkedin.com/company/kijacreative/'
+  },
   calendar: 'https://brand.kijacreative.com/widget/booking/IvRyDWXB23MJfz0G6ddg',
 
   // Where every capture path posts. Relative works on Vercel, where the
@@ -60,7 +73,7 @@ export const footerNav = [
     links: [
       { label: 'Our brand system', href: '/brand-system' },
       { label: 'What we are running now', href: '/now' },
-      { label: 'The Oak Cliff Pilates story', href: '/oak-cliff-pilates-story' },
+      // '/oak-cliff-pilates-story' hidden until the OCP relationship wording is confirmed (TRANSFER-REPORT §7)
       { label: 'Insights', href: '/insights' }
     ]
   }

@@ -135,7 +135,7 @@ ${hero({
       <h3 class="k-h3-lg" style="margin-top:14px">${esc(s.demo.t)}</h3>
       <p class="k-lede" style="margin-top:16px;max-width:60ch">${esc(s.demo.d)}</p>
       <div class="k-btns" style="margin-top:26px">
-        <a class="k-btn k-btn--primary" href="${s.demo.cta.href}" data-track="cta_${slug}_demo">${esc(s.demo.cta.label)} <span class="k-btn__arrow">&rarr;</span></a>
+        <a class="k-btn k-btn--primary" href="${s.demo.cta.href}" data-track="cta_${slug}_demo" data-magnetic>${esc(s.demo.cta.label)}</a>
       </div>
     </div>
     ${s.demo.embed === 'signal-test' ? `

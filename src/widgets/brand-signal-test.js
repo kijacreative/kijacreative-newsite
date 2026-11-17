@@ -200,7 +200,7 @@
             : '<div style="margin-top:30px"><h4>Your three weakest areas</h4>' +
                 '<ol class="k-list k-list--num" style="margin-top:14px">' +
                   r.weakest.map(function (p) {
-                    return '<li><b style="color:var(--k-cream)">' + esc(p.name) + ' &mdash; ' + p.pct + '%</b><br>' + esc(p.fix) + '</li>';
+                    return '<li><b class="k-lead">' + esc(p.name) + ' &mdash; ' + p.pct + '%</b><br>' + esc(p.fix) + '</li>';
                   }).join('') +
                 '</ol></div>') +
           '<div class="k-btns" style="margin-top:32px">' +

@@ -1,0 +1,785 @@
+{
+  "pulled": "2026-11-17",
+  "source": "https://kijacreative.com (WordPress, WPBakery/Salient), live site is noindex,nofollow",
+  "brand": {
+    "established": "2022",
+    "kicker": "Kija Creative est. 2022. by designers, developers, and creative thinkers.",
+    "taglines": [
+      "Make your brand unmissable",
+      "Creative direction for what's next.",
+      "Good taste will not be replaced."
+    ],
+    "about": {
+      "h2": "We're the intersection of design, strategy, and technical execution.",
+      "body": "Kija Creative was built on the idea that brands don't grow from one good idea — they grow from alignment. Alignment between message and design. Between strategy and execution. Between vision and systems.",
+      "close": "We're here to make sure every one of those moments makes sense."
+    },
+    "what_we_do": "Good branding makes people get it faster. Good strategy makes sure they find you first.",
+    "audience": "Behind the work of artists, startups, and emerging brands."
+  },
+  "contact": {
+    "email": "signal@kijacreative.com",
+    "phone": "+1 480-544-6204",
+    "phone_href": "tel:+14805446204",
+    "address": {
+      "street": "2000 Greenville Ave. #6",
+      "city": "Dallas",
+      "region": "TX",
+      "postal": "75206"
+    },
+    "instagram": "https://www.instagram.com/kijacreative/",
+    "linkedin": "https://www.linkedin.com/company/kijacreative/",
+    "booking": {
+      "nav_book_a_call": "https://calendly.com/kiel-kijacreative/30min",
+      "brand_review_widget": "https://brand.kijacreative.com/widget/booking/IvRyDWXB23MJfz0G6ddg"
+    }
+  },
+  "closing_block": {
+    "h2": "LET'S TALK. WE'RE READY.",
+    "body": "Get in touch. We're probably working with the headphones on—but we'll see your message and get back to you soon.",
+    "cta": {
+      "label": "Brand Review",
+      "href": "/brand-review"
+    }
+  },
+  "signal_test": {
+    "h1": "What is your brand really saying?",
+    "lede": "Answer 6 quick questions and find out where your brand is getting lost, losing trust, or missing the mark.",
+    "teaser": [
+      "Your brand is already sending a signal.",
+      "Every click, scroll, email, ad, package, and first impression is either building trust or quietly losing it.",
+      "The Signal Test helps you see what people may already be feeling but not saying: where your message gets fuzzy, where your brand feels less legit than it is, and where potential customers drop off before they ever reach out.",
+      "Answer 6 quick questions and find out what your brand is really signaling, what's getting lost, and what to fix first."
+    ],
+    "steps": [
+      {
+        "t": "Answer six questions",
+        "d": "Quick, honest, no fluff. About 90 seconds, no email required to see your result."
+      },
+      {
+        "t": "Pinpoint the gap",
+        "d": "We pinpoint the one gap doing the most damage, message, look, conversion, or consistency."
+      },
+      {
+        "t": "See the work that fixed it",
+        "d": "Real case studies that closed the same gap, then book a call if it resonates."
+      }
+    ],
+    "honesty": {
+      "h2": "Time to get honest",
+      "d": "Be honest in your answers, the read is only as sharp as you are."
+    },
+    "dimensions": [
+      "message",
+      "look",
+      "conversion",
+      "consistency"
+    ],
+    "questions": null,
+    "questions_note": "Rendered by JavaScript (#kmp-quiz); not in page HTML. Export from WordPress needed.",
+    "proof_strip": [
+      [
+        "400%+",
+        "revenue growth",
+        "Oak Cliff Pilates"
+      ],
+      [
+        "+78%",
+        "direct inquiries",
+        "Blue Plate Network"
+      ],
+      [
+        "+83%",
+        "direct bookings",
+        "Van Country"
+      ],
+      [
+        "9+",
+        "national brand partners",
+        "Beverage Display"
+      ]
+    ],
+    "booking_block": {
+      "h2": "Stop guessing at the gap.",
+      "d": "Get a senior set of eyes on your brand. Pick a time below and we'll tell you straight where the opportunity is.",
+      "email_fallback": "Prefer email? signal@kijacreative.com"
+    }
+  },
+  "brand_review": {
+    "kicker": "Free brand audit",
+    "h2": "Let us take a look under the hood.",
+    "video": "https://www.youtube.com/watch?v=j8oW48JQhGc",
+    "booking": "https://brand.kijacreative.com/widget/booking/IvRyDWXB23MJfz0G6ddg"
+  },
+  "cases": [
+    {
+      "slug": "oak-cliff-pilates",
+      "order": 1,
+      "client": "Oak Cliff Pilates",
+      "short": "OCP",
+      "tags": [
+        "Brand Systems",
+        "Performance Marketing",
+        "Website Design"
+      ],
+      "industry": "Boutique Fitness · Reformer Pilates",
+      "location": "Bishop Arts · Uptown · Lower Greenville (Dallas)",
+      "people": "Amanda Mecsey, Co-Owner",
+      "founded": "Coming up on 5 years",
+      "url": "https://oakcliffpilates.com",
+      "card": "One brand system flexed across three Dallas studios. Bishop Arts, Uptown, Lower Greenville. Same DNA, three distinct neighborhood personalities.",
+      "services": [
+        "Multi-location brand architecture",
+        "Full-stack website development",
+        "Paid advertising on Meta and Google",
+        "Event marketing and on-site signage",
+        "Localized marketing strategy per studio",
+        "Ongoing creative and performance support"
+      ],
+      "tagline": "Pilates Reimagined, Energy Elevated.",
+      "lede": "Oak Cliff Pilates didn't just open studios. They built a Dallas movement.",
+      "body": [
+        "Amanda Mecsey and her co-founders had something rare: a single Bishop Arts studio with a cult following. The opportunity was to scale without losing what made it feel like family.",
+        "We architected the brand to flex across three locations, built the digital infrastructure that makes one studio feel like many, and ran the paid campaigns that filled the calendar week after week. From signage to Instagram, every touchpoint reads \"Are You Down with OCP?\"."
+      ],
+      "stats": [
+        [
+          "400%+",
+          "Revenue growth"
+        ],
+        [
+          "1 → 3",
+          "Studio locations"
+        ],
+        [
+          "2x",
+          "Membership"
+        ],
+        [
+          "1,100+",
+          "Members across 3 studios"
+        ]
+      ],
+      "quote": {
+        "text": "The brand we built with Kija doesn't just look great. It's the reason we could scale from one studio to three without losing the family we started with.",
+        "name": "Amanda Mecsey",
+        "role": "Co-Owner, Oak Cliff Pilates"
+      },
+      "extras": {
+        "signature_phrase": {
+          "line": "Are You Down with OCP?",
+          "d": "A question that became a community password. From new-member welcomes to t-shirts to Instagram captions, the line carries the brand without ever feeling like a tagline."
+        },
+        "locations": [
+          {
+            "name": "Bishop Arts",
+            "label": "Original Studio · Est. 2020",
+            "address": "196 W. Davis St., Dallas, TX",
+            "line": "Where it started.",
+            "d": "The original cult studio. Walkable, brunch-after, neighborhood-first. Bishop Arts gave OCP its language and its community before any other floor existed.",
+            "local_line": "Are You Down with OCP?"
+          },
+          {
+            "name": "Uptown",
+            "label": "Expansion 01 · Est. 2022",
+            "address": "2222 McKinney Ave., Dallas, TX",
+            "line": "Pre-meeting energy. Post-meeting calm.",
+            "d": "Built for the high-rise crowd. 6am classes that beat the traffic, polished signage that lives next to luxury retail. Same brand DNA, sharper edges.",
+            "local_line": "Strong before the inbox."
+          },
+          {
+            "name": "Lower Greenville",
+            "label": "Expansion 02 · Est. 2024",
+            "address": "2000 Greenville Ave., Dallas, TX",
+            "line": "Sunday-morning vibes. Tuesday-night discipline.",
+            "d": "The warmest floor. Cream and gold colorway, coffee-after culture, and a programming mix designed for the Lower Greenville rhythm. The system's range, made visible.",
+            "local_line": "Slow morning, strong week."
+          }
+        ],
+        "brand_promise": "A studio that feels like the neighborhood you live in.",
+        "interactive": [
+          "Growth curve slider 2020→2026 (studios, members from 450, revenue index)",
+          "Map/tab brand architecture across 3 locations"
+        ]
+      },
+      "images": [
+        "https://kijacreative.com/wp-content/uploads/2026/06/OCP-Logo-Gold_cirlce.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/OCP-Grand-Opening-308-scaled.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/06/OCP-Uptown-scaled.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/06/LowerGreenville-scaled.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/OCP-Case-Study-Wallpaper-scaled.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/CharliesOCPCard-Not-So-AI.jpg"
+      ]
+    },
+    {
+      "slug": "honeycomb",
+      "order": 2,
+      "client": "Honeycomb",
+      "tags": [
+        "Brand Development",
+        "Website Design",
+        "Marketing Automation"
+      ],
+      "industry": "PropTech · Commercial Real Estate Software",
+      "location": "North America",
+      "url": "https://honeycomb.be",
+      "card": "A PropTech brand redesign built for operators, not software people.",
+      "services": [
+        "Brand identity redesign",
+        "Modern color and typography system",
+        "Website architecture and build",
+        "Marketing automation infrastructure"
+      ],
+      "tagline": "Start with parking. Run your whole building.",
+      "lede": "Honeycomb turns underutilized parking into a profit center, then unifies access, amenities, and billing on one platform.",
+      "body": [
+        "Honeycomb is built and proven by operators, not software people. The product is sharp; the brand needed to catch up. We led a full brand redesign, rebuilt the website around the operator buying journey, and stood up marketing automation that nurtures from demo request through close.",
+        "The new identity reads direct, data-driven, and unpretentious — just like the product."
+      ],
+      "stats": [
+        [
+          "+67%",
+          "Demo bookings"
+        ],
+        [
+          "-18%",
+          "Sales cycle"
+        ],
+        [
+          "85%+",
+          "Parking revenue captured"
+        ]
+      ],
+      "quote": null,
+      "extras": {
+        "palette": {
+          "Signal Orange": "#FF7548",
+          "Op Cyan": "#5FD4D4",
+          "Data Violet": "#9966D4",
+          "Deep Plum": "#0F0D14"
+        },
+        "building_partners": [
+          "St. Paul Place",
+          "The Centrum",
+          "Tennyson",
+          "Seeker Labs",
+          "Founders Square",
+          "The Capital"
+        ],
+        "interactive": [
+          "Operator Math parking calculator — illustrative: ~60% utilization at $150/space/month → ~85% at $220/space/month; 'This is illustrative, not a quote.'"
+        ]
+      },
+      "images": []
+    },
+    {
+      "slug": "blue-plate-network",
+      "order": 3,
+      "client": "Blue Plate Network",
+      "tags": [
+        "Brand Development",
+        "Website Design"
+      ],
+      "industry": "Commercial Real Estate · Restaurant Tenant Rep",
+      "location": "Dallas, TX",
+      "people": "Carter Wilson",
+      "founded": "2012",
+      "url": "https://blueplatenetwork.com",
+      "card": "Tenant-rep for Dallas restaurateurs. We rebuilt the identity to match the caliber of restaurants they place.",
+      "services": [
+        "Brand identity refresh",
+        "Website redesign with visual storytelling focus",
+        "Print identity and business card system",
+        "Marketing asset toolkit"
+      ],
+      "tagline": "Your restaurant real estate partner for the long haul.",
+      "lede": "Blue Plate Network places some of the most exciting restaurants in Dallas. But their brand wasn't telling that story.",
+      "body": [
+        "Carter Wilson built Blue Plate around a long-haul partner philosophy, pairing restaurateurs with the right communities for sustainable growth. The work demanded a brand with the same caliber as the spaces it brokers.",
+        "We rebuilt the identity from typography to color system, redesigned the website around visual storytelling of every venue, refreshed print collateral, and packaged a marketing toolkit Carter's team could deploy without us in the room.",
+        "The result is a brand that feels as premium as the restaurants it represents, with measurable lift in inquiries and engagement."
+      ],
+      "stats": [
+        [
+          "+78%",
+          "Direct inquiries"
+        ],
+        [
+          "2.3x",
+          "Website engagement"
+        ],
+        [
+          "12",
+          "Year partnership (see report)"
+        ]
+      ],
+      "quote": null,
+      "extras": {
+        "palette": {
+          "Deep Navy": "#0A1A2E",
+          "Brand Blue": "#1D3A5A",
+          "Gold": "#D4AF37",
+          "Cream": "#F5E9C4"
+        },
+        "voice": "Calm, confident, partnership-first. Avoids hard sell. Talks about communities, caliber, and the people behind the restaurants.",
+        "interactive": [
+          "Concept → space matcher (e.g. Trinity Groves, 3,000 sq ft, comparable Jake's Gameday)"
+        ]
+      },
+      "images": [
+        "https://kijacreative.com/wp-content/uploads/2026/06/BluePlate-Brand-Identity-Evolution.png",
+        "https://kijacreative.com/wp-content/uploads/2021/11/blueplate-SS.png",
+        "https://kijacreative.com/wp-content/uploads/2022/08/Jakes_Gameday_Primary_Flat.png",
+        "https://kijacreative.com/wp-content/uploads/2021/11/bowlounge.jpeg"
+      ]
+    },
+    {
+      "slug": "latino-arts",
+      "order": 4,
+      "client": "Latino Arts Project",
+      "tags": [
+        "Brand Development",
+        "Creative Strategy",
+        "E-Commerce"
+      ],
+      "industry": "Nonprofit · Arts and Culture",
+      "location": "Dallas, TX",
+      "url": "https://latinoartsproject.com",
+      "card": "Contemporary Latino and Mexican art. A bilingual identity as intentional and rooted as the culture it celebrates.",
+      "services": [
+        "Brand identity development",
+        "Website plus Shopify storefront",
+        "Exhibition collateral and signage",
+        "Art consulting marketing",
+        "Retail and donor brand touchpoints"
+      ],
+      "tagline": null,
+      "lede": "Contemporary Latino and Mexican art deserves an institution that looks the part. We built the identity, the platform, and the retail experience to match.",
+      "body": [
+        "Latino Arts Project curates work from Huichol artisans, contemporary Mexican painters, and rotating exhibitions that bridge tradition and now. The brand needed to feel rooted in heritage and uncompromisingly modern at the same time.",
+        "We developed a typographic and color system that carries from exhibition signage to online retail, then built the Shopify storefront and supporting collateral that lets the community shop, donate, and engage in one seamless experience."
+      ],
+      "stats": [
+        [
+          "2+",
+          "Major exhibitions / year"
+        ],
+        [
+          "3",
+          "Channels unified"
+        ],
+        [
+          "Dallas",
+          "Cultural anchor"
+        ]
+      ],
+      "quote": null,
+      "extras": {
+        "bilingual": {
+          "en": "LATINO ARTS Project",
+          "es": "ARTE LATINO Proyecto"
+        },
+        "identity": "Rooted. Modern. Bilingual. An identity that honors Huichol pattern language and reads contemporary on a museum wall. Heritage and now, in the same breath.",
+        "palette": {
+          "Negro": "#151515",
+          "Tierra": "#B04A18",
+          "Naranja": "#EC7B3A",
+          "Crema": "#FFF4D6"
+        },
+        "voice": "Celebratory. Inclusive. Intentional. Speaks to artist, collector, and community in the same breath.",
+        "programs": [
+          "Exhibitions",
+          "Retail",
+          "Art Consulting",
+          "Community Events"
+        ],
+        "interactive": [
+          "EN/ES toggle flips the whole page"
+        ]
+      },
+      "images": [
+        "https://kijacreative.com/wp-content/uploads/2026/06/Logo-Color@2x.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/09042022-12.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/Capture.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/Shopping.jpg"
+      ]
+    },
+    {
+      "slug": "mammogram-poster-girls",
+      "order": 5,
+      "client": "Mammogram Poster Girls",
+      "short": "MPG",
+      "tags": [
+        "Brand Development",
+        "Content and Campaign",
+        "Website"
+      ],
+      "industry": "Nonprofit · Breast Cancer Awareness",
+      "location": "North Texas",
+      "url": "https://mammogrampostergirls.org",
+      "card": "A nonprofit brand system loud enough to fund the mission.",
+      "services": [
+        "Brand refresh and full brand guide",
+        "Website rebuild from scratch",
+        "Donor and sponsor campaign assets",
+        "Man UP! To Breast Cancer event branding",
+        "Busted poster campaign series"
+      ],
+      "tagline": "Saving lives, one mammogram at a time.",
+      "lede": "MPG funds free screenings across North Texas. We rebuilt the brand so the mission lands as loud as the message deserves.",
+      "body": [
+        "MPG partners with Methodist, Parkland's Moody Center, and Hill Regional to fund mammograms for women who can't afford them, plus mobile screenings in underserved neighborhoods.",
+        "We modernized the identity, rebuilt the website, packaged donor-ready campaign assets, and developed the brand system for the annual Man UP! To Breast Cancer fundraiser and the Busted poster series."
+      ],
+      "stats": [
+        [
+          "+49%",
+          "Event signups"
+        ],
+        [
+          "1000s",
+          "Screenings funded"
+        ],
+        [
+          "3",
+          "Hospital partners"
+        ]
+      ],
+      "quote": null,
+      "extras": {
+        "partners": [
+          "Methodist Health System",
+          "Parkland Moody Center",
+          "Hill Regional Hospital"
+        ],
+        "voices": [
+          {
+            "name": "Mammogram Poster Girls",
+            "role": "Master brand · year-round",
+            "audience": "Women in North Texas, donors, medical partners",
+            "goal": "Year-round funding, mission awareness",
+            "voice": "Saving lives, one mammogram at a time.",
+            "d": "Approachable, warm, mission-first. The Girls speak directly to women and to the partners who fund the work. Every sub-brand answers to this voice."
+          },
+          {
+            "name": "Man UP! To Breast Cancer",
+            "role": "Sub-brand · June fundraiser",
+            "audience": "Men supporting the women in their lives",
+            "goal": "Annual June fundraiser, peer-to-peer outreach",
+            "voice": "Real men know early detection saves the women they love.",
+            "d": "Bolder, more direct, masculine tone. Same brand DNA stretched into a peer-to-peer fundraising moment. Darker palette, sharper edges, June activation."
+          },
+          {
+            "name": "Busted",
+            "role": "Campaign · poster series",
+            "audience": "Broader awareness, clinic and public space placement",
+            "goal": "Make screening reminders impossible to miss",
+            "voice": "Get it checked. Get it caught. Get on with it.",
+            "d": "Editorial typography. Direct campaign language. Designed for clinic waiting rooms and partner walls where the brand has seconds to land. The cheekiest voice in the family, on purpose."
+          }
+        ],
+        "interactive": [
+          "Impact Math donation slider — $150 per screening (MPG's published per-mammogram cost); partner split illustrative"
+        ]
+      },
+      "images": [
+        "https://kijacreative.com/wp-content/uploads/2026/06/MPG-Logo.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/ManUP-Logos-wh-OL-01.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/Busted-Poster-scaled.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/MPG-Brand-Guide-Cover-1.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/Banner-MAN-UP-Poster-Flyer-print-1.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/MPG-scaled.png"
+      ]
+    },
+    {
+      "slug": "beverage-displays",
+      "order": 6,
+      "client": "Beverage Display Design",
+      "tags": [
+        "Creative Strategy",
+        "Retail",
+        "Structural Design"
+      ],
+      "industry": "Retail · Point-of-Sale · Structural Design",
+      "location": "National",
+      "url": null,
+      "card": "Retail displays engineered for American Airlines, Veuve Clicquot, Shiner, Bishop Cider. Built to win the shelf.",
+      "services": [
+        "Concept development per brand",
+        "Structural design and CAD engineering",
+        "Production-ready files for fabrication",
+        "Mass-display program management",
+        "Brand-specific theme adaptation"
+      ],
+      "tagline": "Win the shelf.",
+      "lede": "When the brief is \"win the shelf,\" the design has to earn the look from across the aisle. We engineer retail displays for some of America's most recognizable beverage and lifestyle brands.",
+      "body": [
+        "Every project starts with the brand's iconography and ends with shop-floor reality. The Veuve Clicquot deer-head display, the Bishop Cider mass-display, the American Airlines wall wraps, the Shiner truck rig: each one is built to interrupt at retail and survive in production.",
+        "Our work spans concept sketches through production-ready CAD, with structural choices made for shelf-life, stack-ability, and brand integrity."
+      ],
+      "stats": [
+        [
+          "9+",
+          "Active brand partners"
+        ],
+        [
+          "POS → Mass",
+          "Display scale range"
+        ],
+        [
+          "National",
+          "Distribution reach"
+        ]
+      ],
+      "quote": null,
+      "extras": {
+        "brands": [
+          [
+            "Veuve Clicquot",
+            "Luxury Sculptural"
+          ],
+          [
+            "Bishop Cider",
+            "Mass Floor Stack"
+          ],
+          [
+            "American Airlines",
+            "Wall Wraps"
+          ],
+          [
+            "Shiner",
+            "Mobile Activation"
+          ],
+          [
+            "Corralejo",
+            "Premium Spirits"
+          ],
+          [
+            "Korbel",
+            "Sparkling POS"
+          ],
+          [
+            "Skyy",
+            "Spirits Display"
+          ],
+          [
+            "Deschutes",
+            "Craft Beer POS"
+          ],
+          [
+            "Interstate Batteries",
+            "Retail Wraps"
+          ],
+          [
+            "Uncommon Brands",
+            "Mass Display Co-Build"
+          ]
+        ],
+        "process": [
+          {
+            "stage": "01 · The Brief",
+            "t": "Concept.",
+            "d": "Brand-led concept dev. Iconography decoded, theme set, retail context mapped. For Bishop Cider, that meant translating the craft-cider attitude into a mass floor stack operators could spot from the entrance. Hand sketches, mood boards, and shelf-context studies before a single CAD line gets drawn.",
+            "q": "What does the brand want to be remembered for from across the aisle?",
+            "out": [
+              "Concept sketches",
+              "Mood and material boards",
+              "Shelf-context studies",
+              "Brand workshop notes",
+              "Approved direction"
+            ]
+          },
+          {
+            "stage": "02 · The Build",
+            "t": "Structural Design.",
+            "d": "CAD engineering for stack-ability, shelf life, and fabrication tolerances. The Bishop sketch becomes a 3D rendering with real dimensions, real materials, and a real palletization plan. The structure has to survive the warehouse, ship on a pallet, and assemble on a Tuesday afternoon by a stocker who has never seen the deck before.",
+            "q": "If a stocker cannot assemble it in twelve minutes, it does not ship.",
+            "out": [
+              "3D CAD models",
+              "Technical drawings",
+              "Materials specification",
+              "Stack and ship calculations",
+              "Fabricator-ready package"
+            ]
+          },
+          {
+            "stage": "03 · The Floor",
+            "t": "Production.",
+            "d": "Print-ready files, fabricator-spec packets, palletized for national distribution. The Bishop Cider mass display arrives on the shop floor looking like the rendering, holding inventory the way the CAD modeled, and pulling shoppers the way the sketch promised. Three stages collapse into one shelf moment, co-built with Uncommon Brands.",
+            "q": "From across the aisle, it has to read in three seconds or less.",
+            "out": [
+              "Print-ready production files",
+              "Fabricator-spec packet",
+              "Palletization plan",
+              "Field-installation guide",
+              "QC checklist"
+            ]
+          }
+        ],
+        "bishop_spec": "Footprint 48 × 40 in · capacity 240 units"
+      },
+      "images": [
+        "https://kijacreative.com/wp-content/uploads/2026/06/Bishop-Sketch.png",
+        "https://kijacreative.com/wp-content/uploads/2026/06/Bishop-Rendering.png",
+        "https://kijacreative.com/wp-content/uploads/2026/06/Bishop-Instore.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/Veuve-Deer-Head-scaled.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/AmericanAirlines_Wallwraps_upscaled_4x-1.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/CORRALEJO_Silver_NS-scaled.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/ShinerTruckISORight.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/WoodenDisplays-2.jpg"
+      ]
+    },
+    {
+      "slug": "van-country",
+      "order": 7,
+      "client": "Van Country",
+      "tags": [
+        "Brand Development",
+        "Performance Marketing",
+        "Marketing Automation"
+      ],
+      "industry": "Passenger Van Rental · Group Travel",
+      "location": "Arlington, TX · Amarillo, TX",
+      "url": "https://vancountry.com",
+      "card": "DFW's go-to for 12 and 15-passenger vans.",
+      "services": [
+        "Brand identity design",
+        "Website development",
+        "Google Ads strategy and management",
+        "Email marketing automation"
+      ],
+      "tagline": "North Texas Proud. Customer Service Driven.",
+      "lede": "Van Country is the DFW go-to for clean, dependable 12 and 15-passenger vans. We built the brand and the funnel.",
+      "body": [
+        "The fleet ranges from the VC Cruiser Collection to luxury Mercedes-Benz Sprinter Hi-Tops, with 12 and 15-passenger Ford T350s and Chevy G2500/G3500s for groups of every size. The previous brand felt utilitarian. The category demanded warmth, trust, and conversion.",
+        "We built the visual identity around \"Ready to Roll?\", designed the website to convert browse to booking, and ran the Google Ads strategy plus email automation that nearly doubled the funnel."
+      ],
+      "stats": [
+        [
+          "+83%",
+          "Direct bookings"
+        ],
+        [
+          "2.1x",
+          "Google Ads conversion"
+        ],
+        [
+          "2",
+          "Texas locations"
+        ]
+      ],
+      "quote": null,
+      "extras": {
+        "palette": [
+          "#4D1816",
+          "#712320",
+          "#427962",
+          "#F4D27A"
+        ],
+        "system": "Maroon, forest green, cream. A wordmark that reads at 70 mph and on a phone screen. Brand applied to vehicle, web, and email with the same confidence.",
+        "fleet": [
+          "VC Cruiser Collection",
+          "12-Passenger Vans (Ford T350, Chevy G2500)",
+          "15-Passenger Vans (Ford T350, Chevy G3500)",
+          "Luxury Mercedes-Benz Sprinters"
+        ]
+      },
+      "images": [
+        "https://kijacreative.com/wp-content/uploads/2026/06/VanCountry-Cream-Logo.png"
+      ],
+      "hotlinked": [
+        "https://vancountry.com/wp-content/uploads/2025/06/vancountry-logo.webp",
+        "https://vancountry.com/wp-content/uploads/2025/07/luxury-15-passanger-van.jpg",
+        "https://vancountry.com/wp-content/uploads/2025/07/vc-cruiser.jpg"
+      ]
+    },
+    {
+      "slug": "event-weis",
+      "order": 8,
+      "client": "Event Weis",
+      "tags": [
+        "Brand Development",
+        "Marketing Automation",
+        "Website Design"
+      ],
+      "industry": "Event Planning · Corporate and Nonprofit",
+      "location": "Dallas, TX (DFW)",
+      "people": "Cheryl Weis, Founder",
+      "url": "https://www.eventweis.com",
+      "card": "Cheryl Weis launched her firm with our brand and systems.",
+      "services": [
+        "Brand creation from scratch",
+        "Website design and development",
+        "Social media template system",
+        "Marketing infrastructure setup",
+        "Self-management training for the founder"
+      ],
+      "tagline": "Define. Develop. Deploy.",
+      "lede": "Cheryl Weis spent years producing corporate events for other people's brands. We helped her launch hers.",
+      "body": [
+        "Cheryl had the experience and the network. What she didn't have was a brand that signaled the caliber of her work, a system to run marketing without an agency on retainer, and the digital infrastructure to convert inquiries into bookings.",
+        "We created the brand from the ground up, developed the website, built the social template system, and trained her on the marketing stack so she could run it independently from day one. The methodology Define, Develop, Deploy became her three-step pitch and ours too."
+      ],
+      "stats": [
+        [
+          "9",
+          "Bookings in 90 days"
+        ],
+        [
+          "3x",
+          "Inquiry submissions"
+        ],
+        [
+          "-60%",
+          "Marketing spend"
+        ]
+      ],
+      "quote": {
+        "text": "Kija helped me turn years of event experience into a brand that finally felt established. The website, tools, and systems they built made it easy to run my marketing without depending on outside help.",
+        "name": "Cheryl Weis",
+        "role": "Founder, Event Weis"
+      },
+      "extras": {
+        "method": [
+          {
+            "n": "01 · The Brief",
+            "t": "Define.",
+            "d": "Goals, audience, success metrics. Every event starts with a written brief that aligns Cheryl's team with the client before a venue is even called."
+          },
+          {
+            "n": "02 · The Build",
+            "t": "Develop.",
+            "d": "Vendors, run-of-show, permits, design. Every moving piece scheduled, vetted, and stress-tested in advance."
+          },
+          {
+            "n": "03 · The Day",
+            "t": "Deploy.",
+            "d": "On-site execution. Cheryl runs the floor while the client runs the room. Calm, capable, on schedule."
+          }
+        ],
+        "tagline_client": "Your trusted event partner.",
+        "palette": [
+          "#0F1A14",
+          "#1F3A2A",
+          "#7DFFB6",
+          "#FFEEC4"
+        ],
+        "voice": "Professional and calm. Reassuring, never frantic. Speaks to corporate planners, nonprofit boards, and executive teams in the same measured tone."
+      },
+      "images": [
+        "https://kijacreative.com/wp-content/uploads/2026/02/LogoShot-1.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/06/EventWeis-Napkin-to-Flesh.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/LogoCardsShot-scaled.jpg",
+        "https://kijacreative.com/wp-content/uploads/2026/02/SOM_SHirt-Mockup-scaled.png",
+        "https://kijacreative.com/wp-content/uploads/2026/02/Banner.jpg"
+      ]
+    }
+  ],
+  "site_assets": [
+    "https://kijacreative.com/wp-content/uploads/2026/01/Kija-K-Dark-1.png",
+    "https://kijacreative.com/wp-content/uploads/2026/01/cropped-Kija-Stacked-Multicolored.png",
+    "https://kijacreative.com/wp-content/uploads/2026/01/cropped-Kija-Stacked-Multicolored-270x270.png",
+    "https://kijacreative.com/wp-content/uploads/2026/02/kija-rotating-logo-white.png",
+    "https://kijacreative.com/wp-content/uploads/2026/02/02182.mp4"
+  ]
+}

@@ -37,10 +37,12 @@ const honeypot = `<div class="k-hp"><label>Leave this field empty<input name="we
    PATH B — /the-kija-method (Brand Signal Test)
    b1 score free + gated write-up (default) · b2 email gate · b3 short ungated
    ========================================================================== */
+// Headline and lede from the live kijacreative.com Signal Test page; the
+// question count is each variant's real one (b3 is the live six-question form).
 const B_COPY = {
-  b1: { title: 'What is your<br>brand signal?', sub: 'Twelve questions, about four minutes. You get your score and the pillar breakdown immediately — no email required to see it.' },
-  b2: { title: 'What is your<br>brand signal?', sub: 'Twelve questions, about four minutes. Your full scored diagnosis lands in your inbox the moment you finish.' },
-  b3: { title: 'Six questions.<br>One honest score.', sub: 'The short version. No email, no gate, no follow-up unless you ask for one.' }
+  b1: { n: 'twelve', time: 'About four minutes', title: 'What is your brand<br>really saying?', sub: 'Answer twelve questions and find out where your brand is getting lost, losing trust, or missing the mark. Your score shows immediately, no email required.' },
+  b2: { n: 'twelve', time: 'About four minutes', title: 'What is your brand<br>really saying?', sub: 'Answer twelve questions and find out where your brand is getting lost, losing trust, or missing the mark. Your full diagnosis lands in your inbox the moment you finish.' },
+  b3: { n: 'six', time: 'About 90 seconds', title: 'What is your brand<br>really saying?', sub: 'Answer 6 quick questions and find out where your brand is getting lost, losing trust, or missing the mark.' }
 };
 
 export function signalTestPage(variant) {
@@ -48,17 +50,43 @@ export function signalTestPage(variant) {
   const copy = B_COPY[v];
   const body = `
 ${hero({
-    eyebrow: 'The Kija Method · Brand Signal Test',
+    eyebrow: 'The Kija Method · The Signal Test',
     title: copy.title,
-    lede: `<b>${esc(copy.sub)}</b> It scores four things: whether your position is clear, whether your identity is a system, whether your digital presence does any work, and whether anything happens automatically after a lead arrives.`,
-    glow: true
+    lede: `<b>${esc(copy.sub)}</b> Every click, scroll, email, ad, package, and first impression is either building trust or quietly losing it.`,
+    ctas: [{ label: 'Test your signal', href: '#signal-test', track: 'cta_signal_hero_start' }]
   })}
 
 <section class="k-section" style="padding-top:0">
+  <div class="k-wrap">
+    <p class="k-label k-label--dim">How it works</p>
+    <div class="k-steps-row">
+      ${[
+        [`Answer ${copy.n} questions`, `Quick, honest, no fluff. ${copy.time}${copy.n === 'six' ? ', no email required to see your result' : ''}.`],
+        ['Pinpoint the gap', 'We pinpoint the one gap doing the most damage: message, look, conversion, or consistency.'],
+        ['See the work that fixed it', 'Real case studies that closed the same gap, then book a call if it resonates.']
+      ].map(([t, d], i) => `<div class="k-steps-row__i"><span class="k-steps-row__n">0${i + 1}</span><h3>${esc(t)}</h3><p class="k-dim k-sm">${esc(d)}</p></div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="k-section" style="padding-top:0" id="signal-test">
   <div class="k-wrap" style="max-width:820px">
+    <h2 class="k-sr">The Signal Test</h2>
+    <p class="k-label" style="margin-bottom:6px">Time to get honest</p>
+    <p class="k-dim k-sm" style="margin-bottom:22px">Be honest in your answers. The read is only as sharp as you are.</p>
     <div class="k-widget" data-kija-widget="signal-test">
       <div class="k-widget__skel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       <noscript><p class="k-dim">The Signal Test needs JavaScript. <a class="k-link" href="/book">Book a call</a> and we will run it with you instead.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<section class="k-section k-section--line">
+  <div class="k-wrap">
+    ${head({ title: 'What closing the gap looks like' })}
+    <div class="k-proofstrip">
+      ${[['400%+', 'revenue growth', 'Oak Cliff Pilates', 'oak-cliff-pilates'], ['+78%', 'direct inquiries', 'Blue Plate Network', 'blue-plate-network'], ['+83%', 'direct bookings', 'Van Country', 'van-country'], ['9+', 'national brand partners', 'Beverage Display Design', 'beverage-displays']]
+        .map(([n, l, c, slug]) => `<a class="k-proofstrip__i" href="/work/${slug}" data-track="cta_signal_proof"><b data-ticker>${n}</b><span>${l}</span><span class="k-dim">${c}</span></a>`).join('')}
     </div>
   </div>
 </section>
@@ -76,8 +104,8 @@ ${hero({
 
 ${ctaBand({
     num: '03',
-    title: 'Rather just<br>talk it through?',
-    lede: 'The test is useful, but it is not a conversation. If you already know roughly what is wrong, skip it.',
+    title: 'Stop guessing<br>at the gap.',
+    lede: 'Get a senior set of eyes on your brand. Pick a time and we will tell you straight where the opportunity is. Prefer email? signal@kijacreative.com',
     primary: { label: 'Book a call', href: '/book', track: 'cta_signal_band_book' },
     secondary: { label: 'See the work', href: '/work', track: 'cta_signal_band_work' }
   })}`;
@@ -143,8 +171,9 @@ export function brandReviewPage(variant) {
 
   const body = `
 ${hero({
-    eyebrow: applyFraming ? 'Brand Review · limited slots' : 'Brand Review · free',
-    title: applyFraming ? 'Apply for a<br>brand review' : 'A free review<br>by an actual human',
+    // headline from the live kijacreative.com Brand Review page
+    eyebrow: applyFraming ? 'Free brand audit · limited slots' : 'Free brand audit',
+    title: 'Let us take a look<br>under the hood.',
     lede: applyFraming
       ? '<b>We run a handful of these a month, and we choose them.</b> A senior look at your positioning, identity, site and follow-up system, written up as findings you could hand to another agency and still use.'
       : '<b>A senior look at your positioning, identity, site and follow-up system</b> — written up as specific findings, not a scorecard. Free, because the work sells itself better than a pitch does.',
@@ -156,10 +185,10 @@ ${hero({
     <div>
       <h4>What you get back</h4>
       <ul class="k-list" style="margin-top:18px">
-        <li><b style="color:var(--k-cream)">A written diagnosis</b> — what is actually wrong, in priority order, with the reasoning attached.</li>
-        <li><b style="color:var(--k-cream)">The first three moves</b> — what we would do first, second and third, whether or not we are the ones doing it.</li>
-        <li><b style="color:var(--k-cream)">What to ignore</b> — the things you are worrying about that do not matter yet. Usually the most useful part.</li>
-        <li><b style="color:var(--k-cream)">An honest fit call</b> — including when the answer is that you do not need us.</li>
+        <li><b class="k-lead">A written diagnosis</b> — what is actually wrong, in priority order, with the reasoning attached.</li>
+        <li><b class="k-lead">The first three moves</b> — what we would do first, second and third, whether or not we are the ones doing it.</li>
+        <li><b class="k-lead">What to ignore</b> — the things you are worrying about that do not matter yet. Usually the most useful part.</li>
+        <li><b class="k-lead">An honest fit call</b> — including when the answer is that you do not need us.</li>
       </ul>
       <div class="k-callout" style="margin-top:30px">
         <h4 class="k-label--yellow">Turnaround</h4>
@@ -259,7 +288,7 @@ ${ctaBand({
 const calendarEmbed = `
 <div class="k-widget" style="padding:0;overflow:hidden;min-height:720px">
   <iframe src="${site.calendar}" title="Book a strategy call with Kija Creative"
-    style="width:100%;height:760px;border:0;display:block;background:var(--k-ink-2)"
+    style="width:100%;height:760px;border:0;display:block;background:var(--k-paper-2)"
     loading="lazy" scrolling="no"></iframe>
 </div>
 <p class="k-xs k-dim" style="margin-top:12px">Calendar not loading? Email <a class="k-link" href="mailto:${site.email}">${site.email}</a> and we will sort a time by hand.</p>`;
