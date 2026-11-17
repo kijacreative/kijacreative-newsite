@@ -149,6 +149,33 @@ export default function homeB() {
   </div>
 </section>
 
+<!-- ===== WE BUILD SYSTEMS — the positioning, said plainly, with proof ===== -->
+<section class="kb-systems" aria-labelledby="kb-systems-h">
+  <div class="k-wrap kb-systems__grid">
+    <div>
+      <p class="kb-systems__eyebrow">What Kija is</p>
+      <h2 class="kb-systems__h" id="kb-systems-h">We build<br><span>systems.</span></h2>
+      <p class="kb-systems__p">Brands, websites, sales tools and automation that keep working long after launch day. For Cliqbux, that meant a website evaluation system and a site generator that sell their product to restaurants, and a partnership on every order.</p>
+      <ul class="kb-systems__parts">
+        <li><a href="/services/brand-development" data-track="cta_home_systems_part">Brand systems</a></li>
+        <li><a href="/services/website-design" data-track="cta_home_systems_part">Website systems</a></li>
+        <li><a href="/services/marketing-automation" data-track="cta_home_systems_part">Sales &amp; automation systems</a></li>
+        <li><a href="/services/ongoing-marketing" data-track="cta_home_systems_part">Marketing systems</a></li>
+      </ul>
+      <div class="k-btns" style="margin-top:28px">
+        <a class="k-btn k-btn--primary k-btn--lg" href="/work/cliqbux" data-track="cta_home_systems_cliqbux">See the Cliqbux system</a>
+      </div>
+    </div>
+    ${hasMedia('studio/cliqbux/analyzer-orders.webp') ? `
+    <a class="kb-systems__proof" href="/work/cliqbux" data-bubble="Open" data-track="cta_home_systems_proof">
+      ${hasMedia('studio/cliqbux/cliqbux-logo-on-dark.svg') ? `<img class="kb-systems__logo" src="${mediaUrl('studio/cliqbux/cliqbux-logo-on-dark.svg')}" alt="Cliqbux">` : ''}
+      <span class="kb-systems__shot"><img src="${mediaUrl('studio/cliqbux/analyzer-orders.webp')}" alt="Cliqbux Restaurant Analyzer: where a restaurant’s online orders go today (sample data)" loading="lazy" decoding="async"></span>
+      <span class="kb-systems__fig"><b>6.5%</b> per order on Cliqbux, against 15–30% on delivery apps</span>
+      <span class="kb-systems__fig"><b>45%</b> Kija’s partner share of all orders</span>
+    </a>` : ''}
+  </div>
+</section>
+
 <!-- ===== WHAT WE DO — pinned, sideways; it is a real order ===== -->
 <section class="kb-seq" data-kb-seq aria-labelledby="kb-seq-h">
   <div class="kb-seq__pin">

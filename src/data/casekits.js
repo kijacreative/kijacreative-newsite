@@ -10,7 +10,7 @@
 export const caseKits = {
   cliqbux: {
     hero: ['studio/cliqbux/analyzer-report.webp'],
-    signature: { line: 'Partners on every order.', note: 'Cliqbux liked the evaluation tool enough to ask for more of the system, and then made Kija a 45% partner on all orders. We meet every week on their site, marketing, sales and strategy.' },
+    signature: { line: 'We build systems.', note: 'Not a logo, not a site: the tools that sell Cliqbux to restaurants. They liked the evaluation tool enough to ask for more of the system, then made Kija a 45% partner on all orders. We meet every week on their site, marketing, sales and strategy.' },
     modules: [
       { type: 'fees', title: 'Keep more<br>of every order', sub: 'The math the analyzer puts in front of every restaurant. Slide to a restaurant’s monthly online sales.',
         min: 5000, max: 150000, step: 5000, value: 60000, appsLow: 0.15, appsHigh: 0.30, cliqbux: 0.065,

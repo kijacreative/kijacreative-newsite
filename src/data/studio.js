@@ -150,4 +150,4 @@ const ORDER = ['root-pilates', 'society-sacred-honor', 'enzos', 'lisa-kalmin', '
   'whittle-watt', 'dr-stuart-lipton', 'packorial', 'rio-jiu-jitsu', 'darling-reclaimed', 'nonos', 'dimaco', 'ssr-apparel', 'palmers-lodge'];
 const rank = (p) => { const i = ORDER.indexOf(p.slug); return i < 0 ? 99 : i; };
 export const shownStudio = () => studio.filter((p) => p.show).sort((a, b) => rank(a) - rank(b));
-export const DISCIPLINES = [['brand', 'Brand'], ['web', 'Web'], ['campaign', 'Campaign'], ['product', 'Product']];
+export const DISCIPLINES = [['brand', 'Brand'], ['web', 'Web'], ['campaign', 'Campaign'], ['product', 'Systems']];

@@ -1500,6 +1500,27 @@ body{background:var(--k-cream);color:var(--k-ink)}
 .ck-shots__i.is-lead{grid-row:span 2}
 @media(max-width:760px){.ck-shots{grid-template-columns:1fr}.ck-shots__i.is-lead{grid-row:auto}}
 
+/* homepage: WE BUILD SYSTEMS */
+.kb-systems{background:var(--k-ink);color:var(--k-cream);padding:clamp(72px,11vw,150px) 0}
+.kb-systems__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.kb-systems__eyebrow{font-size:var(--k-t-sm);font-weight:700;color:var(--k-cream-68)}
+.kb-systems__h{font-family:var(--k-display);font-weight:400;text-transform:uppercase;line-height:.84;font-size:clamp(4.2rem,2rem + 9vw,11rem);margin-top:10px;color:var(--k-cream)}
+.kb-systems__h span{color:var(--k-cream);text-shadow:-.035em 0 var(--k-mag-85),.035em 0 var(--k-mint-75)}   /* the split, not mint fill: mint stays for actions */
+.kb-systems__p{margin-top:24px;max-width:52ch;font-size:var(--k-t-lede);color:var(--k-cream-68)}
+.kb-systems__parts{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.kb-systems__parts a{display:inline-block;color:var(--k-cream);text-decoration:none;border:1.5px solid var(--k-cream-24);border-radius:99px;padding:9px 16px;font-weight:700;font-size:var(--k-t-sm);
+  transition:border-color var(--k-fast) var(--k-ease),background var(--k-fast) var(--k-ease)}
+.kb-systems__parts a:hover{border-color:var(--k-cream);background:var(--k-cream-12)}
+.kb-systems__proof{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:var(--k-cream);background:var(--k-ink-2);border-radius:var(--k-r);padding:clamp(18px,2.4vw,28px);
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.7);rotate:1.2deg;transition:rotate var(--k-mid) var(--k-ease),translate var(--k-mid) var(--k-ease)}
+.kb-systems__proof:hover{rotate:0deg;translate:0 -4px}
+.kb-systems__logo{height:30px;width:auto;align-self:flex-start}
+.kb-systems__shot{display:block;border-radius:6px;overflow:hidden;background:var(--k-cream)}
+.kb-systems__shot img{width:100%;height:auto;display:block}
+.kb-systems__fig{font-size:var(--k-t-sm);color:var(--k-cream-68);border-top:1px solid var(--k-cream-12);padding-top:10px}
+.kb-systems__fig b{font-family:var(--k-display);font-weight:400;font-size:2.2rem;line-height:1;color:var(--k-yellow);margin-right:8px;vertical-align:-4px}
+@media(max-width:900px){.kb-systems__grid{grid-template-columns:1fr}.kb-systems__proof{rotate:0deg}}
+
 /* --- reveal on scroll ---------------------------------------------------
    Fail-safe by design: content is visible unless JS has proved it can
    reveal it again. `k-reveal` lands on <html> only after global.js confirms

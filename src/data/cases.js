@@ -19,7 +19,7 @@ export const cases = [
     url: null,
     tagline: null,
     services: ['creative-strategy', 'website-design', 'marketing-automation', 'ongoing-marketing'],
-    headline: 'The tools that turned a client into a partnership',
+    headline: 'We build systems. This one made us a partner.',
     summary: 'Cliqbux gives restaurants their own online ordering for about 6.5% an order, against the 15–30% delivery apps take. We built the system that proves it to a restaurant in one report.',
     thumb: { tone: 'yellow', word: 'Keep\nthe order' },
     logo: { light: 'studio/cliqbux/cliqbux-logo-on-light.svg', dark: 'studio/cliqbux/cliqbux-logo-on-dark.svg' },
