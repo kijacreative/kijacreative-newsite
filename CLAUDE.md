@@ -114,7 +114,11 @@ These are load-bearing. Changing one is a decision, not a tweak.
 11. **One homepage.** Option B is the homepage at /. Option A is archived
     (archive/option-a-home) and /b redirects to /. To test homepages again, restore
     A as a variant through the A/B redirect and measure booked calls, not time on page.
-12. **The footer vitals are a promise.** Update them from a real Lighthouse run
+12. **Studio work needs a yes.** /work's "More from the studio" (src/data/studio.js)
+    shows only `show: true` projects. Pitches and concepts for prospects stay
+    `show: false` until the client agrees; confidential strategy never ships.
+    Descriptions say what the work shows, never results.
+13. **The footer vitals are a promise.** Update them from a real Lighthouse run
    (`npm run vitals`), never by hand.
 
 ## Deploy

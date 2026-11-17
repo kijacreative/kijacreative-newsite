@@ -94,4 +94,19 @@
     btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-ck-lang')); track('case_module', { module: 'bilingual', lang: b.getAttribute('data-ck-lang') }); }); });
     root.classList.add('is-live'); set('en');
   });
+  /* studio grid: filter by discipline */
+  $$('[data-st-filters]').forEach(function (bar) {
+    var grid = document.querySelector('[data-st-grid]'); if (!grid) return;
+    var btns = $$('[data-st]', bar), cards = $$('.st-card', grid);
+    bar.hidden = false;
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var k = b.getAttribute('data-st');
+        btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        cards.forEach(function (c) { c.hidden = k !== 'all' && (' ' + c.getAttribute('data-disc') + ' ').indexOf(' ' + k + ' ') < 0; });
+        track('studio_filter', { discipline: k });
+      });
+    });
+    cards.forEach(function (c) { c.addEventListener('toggle', function () { if (c.open) track('studio_open', { project: c.querySelector('b').textContent }); }); });
+  });
 })();

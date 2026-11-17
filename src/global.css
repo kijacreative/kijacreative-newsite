@@ -1438,6 +1438,42 @@ body{background:var(--k-cream);color:var(--k-ink)}
 .k-paper .ck-gallery .is-logo img{aspect-ratio:4/3;object-fit:contain}
 .k-paper .ck-gallery figcaption{margin-top:8px;font-size:var(--k-t-micro);font-weight:700;color:var(--k-ink-dim)}
 
+/* ==========================================================================
+   MORE FROM THE STUDIO — cards that open in place (details/summary)
+   ========================================================================== */
+.st-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--k-s5)}
+.st-filters sup{font-size:.7em;opacity:.7;margin-left:2px}
+.st-grid{columns:3 300px;column-gap:var(--k-s4)}
+.st-card{break-inside:avoid;margin:0 0 var(--k-s4);background:var(--k-print);border-radius:var(--k-r);box-shadow:var(--k-shadow-soft);overflow:hidden;
+  transition:box-shadow var(--k-mid) var(--k-ease)}
+.st-card:hover,.st-card[open]{box-shadow:var(--k-shadow-lift)}
+.st-card[hidden]{display:none}
+.st-card__s{list-style:none;cursor:pointer;display:block}
+.st-card__s::-webkit-details-marker{display:none}
+.st-card__s:focus-visible{outline:2px solid var(--k-ink);outline-offset:-2px}
+.st-cover{position:relative;display:block;aspect-ratio:4/3;background:var(--k-paper-2);overflow:hidden}
+.st-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--k-ease-out)}
+.st-card:hover .st-cover img{transform:scale(1.04)}
+.st-type{display:flex;align-items:flex-end;padding:16px}
+.st-type span{font-family:var(--k-display);text-transform:uppercase;font-size:clamp(2.4rem,3.6vw,3.4rem);line-height:.85}
+.st-type--plum{background:var(--k-ink-3);color:var(--k-cream)}.st-type--ink{background:var(--k-ink);color:var(--k-cream)}
+.st-type--aqua{background:var(--k-aqua);color:var(--k-ink)}.st-type--yellow{background:var(--k-yellow);color:var(--k-ink)}
+.st-type--magenta{background:var(--k-magenta);color:var(--k-cream)}.st-type--cream{background:var(--k-paper-3);color:var(--k-ink)}
+.st-badge{position:absolute;top:12px;left:12px;font-style:normal;font-size:var(--k-t-micro);font-weight:700;border-radius:99px;padding:5px 10px;background:var(--k-print);color:var(--k-ink)}
+.st-badge--live{background:var(--k-mint);color:var(--k-ink)}
+.st-meta{display:flex;flex-direction:column;gap:2px;padding:14px 16px 16px;position:relative}
+.st-meta b{font-size:var(--k-t-lede);line-height:1.2}
+.st-meta small{font-size:var(--k-t-micro);font-weight:700;color:var(--k-ink-dim)}
+.st-meta::after{content:"+";position:absolute;right:16px;top:12px;font-size:1.5rem;font-weight:300;transition:transform var(--k-mid) var(--k-ease)}
+.st-card[open] .st-meta::after{transform:rotate(45deg)}
+.st-body{padding:0 16px 18px;border-top:1px solid var(--k-ink-line);padding-top:14px;animation:ck-in .35s var(--k-ease-out)}
+.st-sum{font-weight:700}
+.st-dl{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.st-dl li{font-size:var(--k-t-micro);font-weight:700;border:1px solid var(--k-ink-line-2);border-radius:99px;padding:4px 10px}
+.st-gal{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.st-gal figure{margin:0}.st-gal img{width:100%;height:auto;border-radius:var(--k-r-sm);display:block;background:var(--k-paper-2)}
+.st-gal figcaption{font-size:var(--k-t-micro);color:var(--k-ink-dim);margin-top:4px}
+
 /* --- reveal on scroll ---------------------------------------------------
    Fail-safe by design: content is visible unless JS has proved it can
    reveal it again. `k-reveal` lands on <html> only after global.js confirms

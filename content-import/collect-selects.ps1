@@ -47,6 +47,14 @@ Get-ChildItem -LiteralPath $src -Recurse -File | ForEach-Object {
   elseif ($ext -in '.mp4', '.mov') { $videos += ('{0,6} MB  {1}' -f [math]::Round($_.Length / 1MB, 1), $rel) }
   elseif ($ext -eq '.pdf') { $pdfs += ('{0,6} MB  {1}' -f [math]::Round($_.Length / 1MB, 1), $rel) }
 }
+# Marshman Design portfolio images (already web-sized .webp): Root Pilates, SGI, Camp Firewalker, Lisa Kalmin, Enzo's
+$mm = Get-ChildItem -LiteralPath 'H:\Shared drives\KIJA CREATIVE' -Directory -Recurse -Depth 6 -Filter 'marshman-design-built-site' -ErrorAction SilentlyContinue | Select-Object -First 1
+if ($mm -and (Test-Path (Join-Path $mm.FullName 'work'))) {
+  $dest = Join-Path $out '_marshman'; New-Item -ItemType Directory -Force -Path $dest | Out-Null
+  Get-ChildItem (Join-Path $mm.FullName 'work') -File -Filter *.webp | Copy-Item -Destination $dest
+  Write-Host "ok       Marshman images ($((Get-ChildItem $dest).Count))"
+} else { Write-Host "Marshman folder not found (skipped)" -ForegroundColor Yellow }
+
 # pack client folders into zips of at most ~25 MB each
 $folders = Get-ChildItem $out -Directory | Sort-Object Name
 $root = Get-ChildItem $out -File

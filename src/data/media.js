@@ -7,7 +7,9 @@ import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const uploads = join(dirname(fileURLToPath(import.meta.url)), '..', 'media', 'wp-uploads');
+const media = join(dirname(fileURLToPath(import.meta.url)), '..', 'media');
 export const LIVE_UPLOADS = 'https://kijacreative.com/wp-content/uploads/';
-export const hasMedia = (p) => !!p && existsSync(join(uploads, p));
-export const mediaUrl = (p) => '/assets/media/wp-uploads/' + p;
+// '2026/02/x.webp' → the live-site uploads; 'studio/…' and 'selects/…' → their own folders
+const rel = (p) => (/^(studio|selects)\//.test(p) ? p : 'wp-uploads/' + p);
+export const hasMedia = (p) => !!p && existsSync(join(media, rel(p)));
+export const mediaUrl = (p) => '/assets/media/' + rel(p).split('/').map(encodeURIComponent).join('/');

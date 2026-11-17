@@ -3,9 +3,50 @@ import { head, hero, caseCard, ctaBand, kpiCard, metaStrip } from '../templates/
 import { cases, bySlug, listed } from '../data/cases.js';
 import { explorerJSON } from '../data/explorer.js';
 import { wall } from '../data/wall.js';
-import { caseHeroBand, caseKitSections } from '../templates/casekit.js';
+import { caseHeroBand, caseKitSections, pick } from '../templates/casekit.js';
+import { shownStudio, DISCIPLINES } from '../data/studio.js';
 import { hasMedia, mediaUrl } from '../data/media.js';
 import { services, serviceBySlug } from '../data/services.js';
+
+
+/* ---------- More from the studio: work beyond the case studies ---------- */
+const STATUS = { live: 'Live', handoff: 'Design handoff', concept: 'Concept' };
+const asList = (x) => (Array.isArray(x) ? x : [x]);
+function studioCard(p) {
+  const cover = pick(p.cover);
+  const shots = (p.gallery || []).map(([src, cap]) => [pick(asList(src)), cap]).filter(([src]) => src);
+  const discs = DISCIPLINES.filter(([k]) => p.disc.includes(k)).map(([, v]) => v).join(' · ');
+  return `
+  <details class="st-card" data-disc="${p.disc.join(' ')}">
+    <summary class="st-card__s" data-bubble="Open">
+      <span class="st-cover${cover ? '' : ' st-type st-type--' + p.tone}">${cover ? `<img src="${mediaUrl(cover)}" alt="" loading="lazy" decoding="async">` : `<span>${esc(p.name)}</span>`}
+        ${p.status ? `<em class="st-badge st-badge--${p.status}">${STATUS[p.status]}</em>` : ''}</span>
+      <span class="st-meta"><b>${esc(p.name)}</b><small>${esc([p.where, discs].filter(Boolean).join(' · '))}</small></span>
+    </summary>
+    <div class="st-body">
+      <p class="st-sum">${esc(p.summary)}</p>
+      ${p.body ? `<p class="k-dim" style="margin-top:10px">${esc(p.body)}</p>` : ''}
+      ${p.deliverables?.length ? `<ul class="st-dl">${p.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>` : ''}
+      ${shots.length ? `<div class="st-gal">${shots.map(([src, cap]) => `<figure><img src="${mediaUrl(src)}" alt="${esc(p.name + ': ' + cap)}" loading="lazy" decoding="async"><figcaption>${esc(cap)}</figcaption></figure>`).join('')}</div>` : ''}
+      ${p.url ? `<p style="margin-top:16px"><a class="k-link" href="${esc(p.url)}" target="_blank" rel="noopener" data-track="cta_studio_visit">Visit ${esc(p.url.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a></p>` : ''}
+    </div>
+  </details>`;
+}
+export function studioSection() {
+  const items = shownStudio();
+  if (!items.length) return '';
+  return `
+<section class="k-section k-section--line" id="studio">
+  <div class="k-wrap">
+    ${head({ title: 'More from<br>the studio', sub: 'Brands, websites, campaigns and products beyond the case studies. Open any of them.' })}
+    <div class="st-filters" role="group" aria-label="Filter by discipline" data-st-filters hidden>
+      <button type="button" class="ck-tabs__b" data-st="all" aria-pressed="true">All <sup>${items.length}</sup></button>
+      ${DISCIPLINES.map(([k, v]) => { const n = items.filter((p) => p.disc.includes(k)).length; return n ? `<button type="button" class="ck-tabs__b" data-st="${k}" aria-pressed="false">${v} <sup>${n}</sup></button>` : ''; }).join('')}
+    </div>
+    <div class="st-grid" data-st-grid>${items.map(studioCard).join('')}</div>
+  </div>
+</section>`;
+}
 
 /* ---------- /work — filterable proof wall -------------------------------- */
 export function workIndex() {
@@ -36,6 +77,8 @@ ${hero({
 
 <script type="application/json" id="k-cases-data">${explorerJSON()}</script>
 
+${studioSection()}
+
 ${ctaBand({
     num: '02',
     title: 'Recognise<br>your situation?',
@@ -48,7 +91,7 @@ ${ctaBand({
     path: '/work',
     title: 'Work',
     description: `${listed().length} case studies across brand, website, automation and campaigns, with their results, filterable by capability.`,
-    scripts: ['/assets/widgets/work-explorer.js'],
+    scripts: ['/assets/widgets/work-explorer.js', '/assets/widgets/case-kit.js'],
     body
   };
 }
