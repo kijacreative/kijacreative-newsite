@@ -150,6 +150,11 @@
 
   /* ---------- GSAP, lazily ---------------------------------------------------- */
   var gsapPromise = null;
+  /* history calls can be refused (sandboxed or srcdoc frames); never let that break the wall */
+  function safeHistory(method, url) {
+    try { history[method](method === 'pushState' ? { kx: 1 } : null, '', url); return true; } catch (err) { return false; }
+  }
+
   function loadGsap() {
     if (window.gsap) return Promise.resolve(window.gsap);
     if (gsapPromise) return gsapPromise;
@@ -631,22 +636,25 @@
       zoom = 2; zoomTarget = null; inBall = false; openCi = -1; syncMode.last = null; syncMode(1);
       stage.classList.remove('is-ball', 'is-dim');
       gsap.set([crtEl, dotEl], { opacity: 0 });
-      if (!fromHash) { history.pushState({ kx: 1 }, '', '#explore'); pushedHash = true; }
+      if (!fromHash) pushedHash = safeHistory('pushState', '#explore');   // refused in some embeds; the wall still opens
       track('work_explore_open', { via: fromHash ? 'link' : 'button' });
       cancelAnimationFrame(rafId); rafId = requestAnimationFrame(frame);
       root.querySelector('[data-kx-close]').focus({ preventScroll: true });
       intro();
-    }).catch(function () {
-      // No GSAP (offline, blocked): the grid below is the same content.
+    }, function () {
+      // Only when GSAP could not load (offline, blocked): the grid on /work is the same content.
       phase = 'closed';
       document.documentElement.classList.remove('kx-loading');
-      var wall = document.getElementById('wall'); if (wall) wall.scrollIntoView(); else location.href = '/work';
+      var wall = document.getElementById('wall');
+      if (wall) wall.scrollIntoView();
+      else if (window.KIJA_NAV) window.KIJA_NAV('/work');
+      else location.href = '/work';
     });
   }
   function requestClose(fromPowerOff) {
     if (phase === 'closed' || phase === 'loading') return;
     if (pushedHash && location.hash === '#explore') { pushedHash = false; history.back(); return; }   // popstate closes
-    if (location.hash === '#explore') history.replaceState(null, '', location.pathname + location.search);
+    if (location.hash === '#explore') safeHistory('replaceState', location.pathname + location.search);
     close(fromPowerOff);
   }
   function close() {
