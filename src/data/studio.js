@@ -114,15 +114,35 @@ export const studio = [
     summary: 'Apparel marketing: a varsity poster, an ad, a 2026 brochure cover and flyers.', body: '', deliverables: ['Print and ads'],
     cover: [...sel('ssr-apparel', 'Monk Varsity Apparel')], gallery: [[sel('ssr-apparel', '2026 Brochure Cover'), 'Brochure cover'], [sel('ssr-apparel', 'flyer one'), 'Flyer']] },
 
-  /* ---- held: pitches, concepts and unclear relationships (not on the site) ---- */
-  { slug: 'lisa-kalmin', name: 'Lisa Kalmin', disc: ['brand', 'web'], status: 'concept', show: false, note: 'Concept; Marshman notes ask for client clearance.' },
-  { slug: 'enzos', name: 'Enzo’s Deli & Imports', disc: ['web', 'product'], status: 'concept', show: false, note: 'Concept only: not live, takes no orders.' },
-  { slug: 'sara-kolata', name: 'Sara Kolata', disc: ['brand', 'web'], status: 'concept', show: false, note: 'Pitch work for a prospect; confidential strategy never shown.' },
-  { slug: 'society-sacred-honor', name: 'The Society of Our Sacred Honor', disc: ['brand', 'web'], status: 'concept', show: false, note: 'Proposal and first look.' },
-  { slug: 'corner-wines', name: 'Corner Wines', disc: ['brand'], status: 'concept', show: false, note: 'Proposal.' },
-  { slug: 'myogen', name: 'MyoGen Bioscience', disc: ['brand'], status: null, show: false, note: 'Logo system; relationship unconfirmed.' },
-  { slug: 'cliqbux-analyzer', name: 'Cliqbux Restaurant Analyzer', disc: ['product'], status: null, show: false, note: 'Product prototype; confirm it can be shown.' },
-  { slug: 'palmers-lodge', name: 'Palmers Lodge', disc: ['web'], status: null, show: false, note: 'Website design PDF only; needs images.' }
+  { slug: 'society-sacred-honor', name: 'The Society of Our Sacred Honor', where: 'Founding chapter, Greensboro, NC', disc: ['web', 'brand'], status: 'concept', show: true, tone: 'ink',
+    summary: 'A non-partisan society bringing Americans of every background and opinion together for productive discussion: to remember what shaped this country, rethink where it is, and renew what comes next.',
+    body: 'A website built around the society’s three words: a next-meeting ticket on the front page, a plain-spoken FAQ (“Is it political? No. We don’t take sides. We set the table.”), the four commitments every member holds, a map of the founding and planned chapters, and a pledge.',
+    deliverables: ['Website design', 'Messaging and FAQ', 'Chapter map', 'Pledge and membership flow'],
+    cover: ['studio/society/society-hero.webp'],
+    gallery: [['studio/society/society-faq.webp', 'Who is this? Is it political?'], ['studio/society/society-pillars.webp', 'Remember, rethink, renew'], ['studio/society/society-chapters.webp', 'One name. Any city.']] },
+
+  { slug: 'lisa-kalmin', name: 'Lisa Kalmin', where: 'Money-mindset coach and speaker', disc: ['web', 'brand'], status: 'concept', show: true, tone: 'plum',
+    summary: 'A website concept and logo directions for a money-mindset coach and keynote speaker.',
+    body: 'The site’s idea is a threshold: a dark hallway of doors, a “Find your door” call to action, and sections for her course, coaching, speaking, books, podcasts and community, in deep green and cream with a rose accent. The logo directions pair an interlocking LK monogram with a bold wordmark and the line “Breakthrough Coach”.',
+    deliverables: ['Website concept', 'Logo directions'],
+    cover: [...mm('lisa-kalmin-website')],
+    gallery: [[mm('lisa-kalmin-logos'), 'Logo directions'], [mm('lisa-kalmin-brand'), 'LK monogram']] },
+
+  { slug: 'enzos', name: 'Enzo’s Deli & Imports', where: 'Plano, Texas', disc: ['web', 'product'], status: 'concept', show: true, tone: 'ink',
+    summary: 'An Italian deli and imports shop. This concept explores a scroll-driven menu site with an order drawer for pickup or delivery.',
+    body: 'It is a design concept only: it isn’t live, and it doesn’t take orders or payments.',
+    deliverables: ['Responsive menu site concept', 'Order flow: cart, pickup or delivery', 'Simpler landing-page alternative'],
+    cover: [...mm('enzos-concept')], gallery: [] },
+
+  { slug: 'palmers-lodge', name: 'Palmers Lodge', disc: ['web'], status: null, show: true, tone: 'cream',
+    summary: 'Website design for Palmers Lodge, desktop.', body: '', deliverables: ['Website design'],
+    cover: [...sel('palmers-lodge', 'Palmers_Lodge_-_Website_Design_Desktop')], gallery: [] },
+
+  /* ---- held: pitches and unclear relationships (not on the site) ---- */
+  { slug: 'sara-kolata', name: 'Sara Kolata', disc: ['brand', 'web'], status: 'concept', show: false, note: 'Still in pitch phase (owner, 2026-11-17). Confidential strategy never shown.' },
+  { slug: 'corner-wines', name: 'Corner Wines', disc: ['brand'], status: 'concept', show: false, note: 'Proposal page, not a website.' },
+  { slug: 'myogen', name: 'MyoGen Bioscience', disc: ['brand'], status: null, show: false, note: 'Logo system only; no website.' },
+  { slug: 'cliqbux-analyzer', name: 'Cliqbux Restaurant Analyzer', disc: ['product'], status: null, show: false, note: 'An app rather than a website; confirm before showing.' }
 ];
 
 export const shownStudio = () => studio.filter((p) => p.show);
