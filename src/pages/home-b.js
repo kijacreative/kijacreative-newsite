@@ -5,6 +5,8 @@ import { services } from '../data/services.js';
 import { cases, featured, listed } from '../data/cases.js';
 import { explorerPayload, explorerJSON } from '../data/explorer.js';
 import { hasMedia, mediaUrl, LIVE_UPLOADS } from '../data/media.js';
+import { shownStudio } from '../data/studio.js';
+const pickMedia = (list) => (list || []).find((x) => hasMedia(x)) || null;
 
 /* ==========================================================================
    HOMEPAGE — OPTION B v2  ("the workshop table")
@@ -77,6 +79,23 @@ const heroMedia = () => {
     </div>
     <span class="kb-media__wash"></span>
   </div>`;
+};
+
+/* More from the studio: the four strongest studio builds that have imagery */
+const studioStrip = () => {
+  const items = shownStudio().map((p) => ({ p, img: pickMedia(p.cover) })).filter((x) => x.img).slice(0, 4);
+  if (items.length < 2) return '';
+  return `
+    <div class="kb-studio">
+      <div class="kb-studio__head"><h3>More from the studio</h3><a class="k-link" href="/work#studio" data-track="cta_home_b_studio">See all ${shownStudio().length}</a></div>
+      <div class="kb-studio__row">
+        ${items.map(({ p, img }, i) => `
+        <a class="kb-studio__i" href="/work#studio" data-bubble="Open" data-track="cta_home_b_studio_card" style="--r:${[-1.2, 0.8, -0.6, 1.1][i]}deg">
+          <span class="kb-studio__img"><img src="${mediaUrl(img)}" alt="" loading="lazy" decoding="async">${p.status === 'live' ? '<em>Live</em>' : ''}</span>
+          <b>${esc(p.name)}</b><small>${esc((p.where ? p.where + ' · ' : '') + p.disc.map((d) => d[0].toUpperCase() + d.slice(1)).join(' · '))}</small>
+        </a>`).join('')}
+      </div>
+    </div>`;
 };
 
 export default function homeB() {
@@ -168,6 +187,7 @@ export default function homeB() {
       </a>
       <a class="k-btn k-btn--ghost kb-btn-ink k-btn--lg" href="/work" data-track="cta_home_b_portfolio">View full portfolio</a>
     </div>
+    ${studioStrip()}
   </div>
 </section>
 

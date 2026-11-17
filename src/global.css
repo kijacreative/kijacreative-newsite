@@ -1474,6 +1474,22 @@ body{background:var(--k-cream);color:var(--k-ink)}
 .st-gal figure{margin:0}.st-gal img{width:100%;height:auto;border-radius:var(--k-r-sm);display:block;background:var(--k-paper-2)}
 .st-gal figcaption{font-size:var(--k-t-micro);color:var(--k-ink-dim);margin-top:4px}
 
+/* homepage: More from the studio strip */
+.kb-studio{margin-top:clamp(56px,8vw,96px)}
+.kb-studio__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:2px solid var(--k-ink);padding-bottom:12px;margin-bottom:22px}
+.kb-studio__head h3{font-family:var(--k-display);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,1.4rem + 2vw,3rem);line-height:.9}
+.kb-studio__row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
+.kb-studio__i{display:block;text-decoration:none;color:var(--k-ink);background:var(--k-print);padding:8px 8px 14px;border-radius:var(--k-r-sm);box-shadow:var(--k-shadow-soft);rotate:var(--r);
+  transition:rotate var(--k-mid) var(--k-ease),box-shadow var(--k-mid) var(--k-ease),translate var(--k-mid) var(--k-ease)}
+.kb-studio__i:hover{rotate:0deg;translate:0 -4px;box-shadow:var(--k-shadow-lift)}
+.kb-studio__img{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;border-radius:3px;background:var(--k-paper-2)}
+.kb-studio__img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.kb-studio__img em{position:absolute;top:8px;left:8px;font-style:normal;font-size:var(--k-t-micro);font-weight:700;background:var(--k-mint);color:var(--k-ink);border-radius:99px;padding:3px 9px}
+.kb-studio__i b{display:block;margin-top:10px;font-size:var(--k-t-sm)}
+.kb-studio__i small{display:block;font-size:var(--k-t-micro);font-weight:700;color:var(--k-ink-dim);margin-top:2px}
+@media(max-width:900px){.kb-studio__row{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){.kb-studio__i{rotate:0deg}}
+
 /* --- reveal on scroll ---------------------------------------------------
    Fail-safe by design: content is visible unless JS has proved it can
    reveal it again. `k-reveal` lands on <html> only after global.js confirms

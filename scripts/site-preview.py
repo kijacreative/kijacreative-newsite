@@ -96,8 +96,11 @@ function build(p){
   h=h.replace('<head>','<head>'+PRE).replace('<\/body>',POST+'<\/body>');
   return h;
 }
-var f=document.getElementById('f'), pv=document.getElementById('pv');
+var f=document.getElementById('f'), pv=document.getElementById('pv'), pendingHash=null;
+f.addEventListener('load',function(){ if(!pendingHash) return; var h=pendingHash; pendingHash=null;
+  try{ var d=f.contentDocument, el=d&&d.getElementById(h); if(el) el.scrollIntoView(); }catch(e){} });
 function show(path, push){
+  pendingHash=(path.split('#')[1]||'').replace(/[^\w-]/g,'')||null;
   var p=path.split('#')[0].split('?')[0]; if(p.length>1)p=p.replace(/\/$/,'');
   if(!PAGES[p]) p=PAGES['/404']?'/404':'/';
   f.srcdoc=build(p); pv.textContent='Site preview · '+p;

@@ -27,7 +27,7 @@ export const studio = [
     summary: 'A volunteer-driven, donor-supported nonprofit that creates outdoor adventures to build teamwork, confidence and self-reliance. Its identity is a phoenix rising from a campfire above a lakeside sunset, with a CF monogram at its heart.',
     body: 'The system covers the full logo, a phoenix icon, the CF monogram, a flame mark and a stacked wordmark, in charcoal, tan, cream, olive and rust, with the line “Adventure. Community. Character.” The website brings the story, a photo and video gallery, volunteer and donor pages and a merchandise shop into one site, with the brand guidelines online.',
     deliverables: ['Logo, phoenix icon and monogram', 'Colour palette and online guidelines', 'Website and merchandise catalogue', 'Merchandise'],
-    cover: [...sel('camp-firewalker', '2026_10_07_CampFirewalker_Merch_WaterBottlePhoto_v01'), ...mm('camp-firewalker-brand')],
+    cover: [...sel('camp-firewalker', '2026_10_07_CampFirewalker_Merch_WaterBottlePhoto_v01'), ...mm('camp-firewalker-brand'), 'studio/camp-firewalker/cf-mark.webp'],
     gallery: [[sel('camp-firewalker', '2026_08_11_CampFirewalker_Brand_LogoBefore_v01'), 'Before'], [sel('camp-firewalker', '2026_08_07_CampFirewalker_Brand_LogoPrimaryPNG_v01'), 'After'],
       [sel('camp-firewalker', '2026_08_11_CampFirewalker_Brand_PhoenixCrest_v01'), 'Phoenix crest'], [mm('camp-firewalker-website'), 'Website'], [mm('camp-firewalker-merch'), 'Merch shop'],
       [mm('camp-firewalker-board'), 'Brand board'], [sel('camp-firewalker', '2026_08_11_CampFirewalker_Merch_Mockups_v02'), 'Merch range']] },
@@ -125,14 +125,15 @@ export const studio = [
     summary: 'A website concept and logo directions for a money-mindset coach and keynote speaker.',
     body: 'The site’s idea is a threshold: a dark hallway of doors, a “Find your door” call to action, and sections for her course, coaching, speaking, books, podcasts and community, in deep green and cream with a rose accent. The logo directions pair an interlocking LK monogram with a bold wordmark and the line “Breakthrough Coach”.',
     deliverables: ['Website concept', 'Logo directions'],
-    cover: [...mm('lisa-kalmin-website')],
-    gallery: [[mm('lisa-kalmin-logos'), 'Logo directions'], [mm('lisa-kalmin-brand'), 'LK monogram']] },
+    cover: ['studio/lisa-kalmin/lk-hero.webp', ...mm('lisa-kalmin-website')],
+    gallery: [['studio/lisa-kalmin/lk-doors.webp', 'Pick a door'], [mm('lisa-kalmin-logos'), 'Logo directions'], [mm('lisa-kalmin-brand'), 'LK monogram']] },
 
   { slug: 'enzos', name: 'Enzo’s Deli & Imports', where: 'Plano, Texas', disc: ['web', 'product'], status: 'concept', show: true, tone: 'ink',
     summary: 'An Italian deli and imports shop. This concept explores a scroll-driven menu site with an order drawer for pickup or delivery.',
     body: 'It is a design concept only: it isn’t live, and it doesn’t take orders or payments.',
     deliverables: ['Responsive menu site concept', 'Order flow: cart, pickup or delivery', 'Simpler landing-page alternative'],
-    cover: [...mm('enzos-concept')], gallery: [] },
+    cover: ['studio/enzos/enzos-hero.webp', ...mm('enzos-concept')],
+    gallery: [['studio/enzos/enzos-menu.webp', 'The menu as a book'], ['studio/enzos/enzos-hoagie.webp', 'Ordering a hoagie']] },
 
   { slug: 'palmers-lodge', name: 'Palmers Lodge', disc: ['web'], status: null, show: true, tone: 'cream',
     summary: 'Website design for Palmers Lodge, desktop.', body: '', deliverables: ['Website design'],
@@ -146,8 +147,8 @@ export const studio = [
 ];
 
 // display order: strongest visuals first
-const ORDER = ['root-pilates', 'society-sacred-honor', 'camp-firewalker', 'triton-studios', 'lisa-kalmin', 'taylormade-law', 'catawba-yaupon', 'sgi',
-  'whittle-watt', 'enzos', 'dr-stuart-lipton', 'packorial', 'rio-jiu-jitsu', 'darling-reclaimed', 'nonos', 'dimaco', 'ssr-apparel', 'palmers-lodge'];
+const ORDER = ['root-pilates', 'society-sacred-honor', 'enzos', 'lisa-kalmin', 'camp-firewalker', 'triton-studios', 'taylormade-law', 'catawba-yaupon', 'sgi',
+  'whittle-watt', 'dr-stuart-lipton', 'packorial', 'rio-jiu-jitsu', 'darling-reclaimed', 'nonos', 'dimaco', 'ssr-apparel', 'palmers-lodge'];
 const rank = (p) => { const i = ORDER.indexOf(p.slug); return i < 0 ? 99 : i; };
 export const shownStudio = () => studio.filter((p) => p.show).sort((a, b) => rank(a) - rank(b));
 export const DISCIPLINES = [['brand', 'Brand'], ['web', 'Web'], ['campaign', 'Campaign'], ['product', 'Product']];
