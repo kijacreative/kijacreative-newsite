@@ -3,6 +3,7 @@ import { head, hero, caseCard, ctaBand, kpiCard, metaStrip } from '../templates/
 import { cases, bySlug, listed } from '../data/cases.js';
 import { explorerJSON } from '../data/explorer.js';
 import { wall } from '../data/wall.js';
+import { caseHeroBand, caseKitSections } from '../templates/casekit.js';
 import { hasMedia, mediaUrl } from '../data/media.js';
 import { services, serviceBySlug } from '../data/services.js';
 
@@ -73,6 +74,8 @@ export function casePage(slug) {
   </div>
 </header>
 
+${caseHeroBand(c)}
+
 ${c.metrics.length ? `
 <section class="k-section">
   <div class="k-wrap">
@@ -82,6 +85,8 @@ ${c.metrics.length ? `
     <p class="k-label k-label--dim" style="margin-top:20px">Figures confirmed in writing by ${esc(c.client)}.</p>
   </div>
 </section>` : ''}
+
+${caseKitSections(c)}
 
 <section class="k-section k-section--line">
   <div class="k-wrap">
@@ -118,8 +123,8 @@ ${(() => {
     return shots.length ? `
 <section class="k-section k-section--line">
   <div class="k-wrap">
-    ${head({ title: 'The work' })}
-    <div class="k-gallery">
+    ${head({ title: 'The work', sub: shots.length + ' pieces from the project.' })}
+    <div class="k-gallery ck-gallery">
       ${shots.map((m) => `<figure${m.logo ? ' class="is-logo"' : ''}><img src="${mediaUrl(m.src)}" alt="${esc(m.alt)}" loading="lazy" decoding="async"><figcaption>${esc(m.caption)}</figcaption></figure>`).join('')}
     </div>
   </div>
@@ -171,6 +176,7 @@ ${ctaBand({
     title: `${c.client} — ${c.headline}`,
     description: c.summary,
     body,
+    scripts: ['/assets/widgets/case-kit.js'],
     stickySecondary: { label: 'Brand review', href: '/brand-review' },
     schema: {
       '@context': 'https://schema.org',
