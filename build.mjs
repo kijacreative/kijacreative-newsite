@@ -135,6 +135,36 @@ const manifest = pages.map((p) => ({
 }));
 await writeFile(join(dist, 'ghl', 'manifest.json'), JSON.stringify(manifest, null, 2));
 
+/* ---------- cache-busting -------------------------------------------------
+   Asset filenames never change (global.css, home-b.js …), so a browser that
+   cached an older deploy could pair new HTML with an old stylesheet. Every
+   CSS/JS link gets ?v=<hash of that file's contents>: change a file and its
+   URL changes with it. */
+{
+  const { createHash } = await import('node:crypto');
+  const { readFile } = await import('node:fs/promises');
+  const hashes = new Map();
+  const fingerprint = async (rel) => {
+    if (!hashes.has(rel)) {
+      try { hashes.set(rel, createHash('sha1').update(await readFile(join(dist, rel))).digest('hex').slice(0, 10)); }
+      catch { hashes.set(rel, null); }
+    }
+    return hashes.get(rel);
+  };
+  const walk = async (dir) => (await readdir(dir, { withFileTypes: true })).flatMap
+    ? (await Promise.all((await readdir(dir, { withFileTypes: true })).map((d) => d.isDirectory() ? walk(join(dir, d.name)) : [join(dir, d.name)]))).flat()
+    : [];
+  const htmlFiles = (await walk(dist)).filter((f) => f.endsWith('.html'));
+  const re = /(href|src)="\/(assets\/[^"?#]+\.(?:css|js))"/g;
+  for (const f of htmlFiles) {
+    const html = await readFile(f, 'utf8');
+    const refs = [...new Set([...html.matchAll(re)].map((m) => m[2]))];
+    if (!refs.length) continue;
+    const map = Object.fromEntries(await Promise.all(refs.map(async (r) => [r, await fingerprint(r)])));
+    await writeFile(f, html.replace(re, (m, attr, rel) => (map[rel] ? `${attr}="/${rel}?v=${map[rel]}"` : m)));
+  }
+}
+
 /* ---------- report -------------------------------------------------------- */
 console.log(`\n  Kija rebuild — build complete\n`);
 console.log(`  ${pages.length} pages  ·  ${indexable.length} indexable  ·  ${pages.length - indexable.length} noindex (variants + thank-you)`);
