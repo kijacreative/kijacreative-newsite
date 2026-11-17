@@ -9,25 +9,26 @@ import { site } from '../data/site.js';
    changes there it changes here, which is the entire point.
    ========================================================================== */
 const SWATCHES = [
-  ['--k-ink', '#1E0A1E', 'Aubergine', 'Page ground. Everything sits on this.'],
-  ['--k-ink-2', '#2C1230', 'Surface', 'Raised surfaces — cards, widgets, rows.'],
-  ['--k-ink-3', '#3A1A3E', 'Surface 2', 'Second-level raise inside a surface.'],
-  ['--k-mint', '#3DFFAE', 'Mint', 'Primary action. One per screen region.'],
+  ['--k-ink', '#1E0A1E', 'Aubergine', 'Type, the nav, the footer, and the dark islands: the services sequence and the proof wall.'],
+  ['--k-ink-2', '#2C1230', 'Surface', 'Raised surfaces inside the dark islands.'],
+  ['--k-ink-3', '#3A1A3E', 'Surface 2', 'Second-level raise inside a dark surface.'],
+  ['--k-mint', '#3DFFAE', 'Mint', 'Action only. Button fills, and the marker under links on paper.'],
   ['--k-magenta', '#C21E7A', 'Magenta', 'Emphasis and the left edge of the aberration.'],
-  ['--k-cream', '#F5F3EC', 'Cream', 'Primary text. Never pure white.'],
+  ['--k-cream', '#F5F3EC', 'Paper', 'The page ground. Cards and fields sit on it as warm white prints.'],
   ['--k-aqua', '#C6F5E8', 'Aqua', 'Code, tertiary accent, stripe segment.'],
   ['--k-yellow', '#F5E61A', 'Yellow', 'Attention. Used sparingly or it stops working.']
 ];
 
 const TYPE_SCALE = [
-  ['--k-t-mega', 'League Gothic', '56 → 160', 'Hero only. One per page.'],
-  ['--k-t-xxl', 'League Gothic', '42 → 100', 'h1 on interior pages.'],
-  ['--k-t-xl', 'League Gothic', '34 → 68', 'Section headings.'],
-  ['--k-t-lg', 'League Gothic', '25 → 38', 'Large card headings.'],
-  ['--k-t-md', 'League Gothic', '27', 'Standard h3.'],
-  ['--k-t-lede', 'Lato', '17 → 21', 'Lede paragraphs.'],
-  ['--k-t-base', 'Lato', '16.5', 'Body copy.'],
-  ['--k-t-label', 'JetBrains Mono', '11', 'Labels, eyebrows, buttons.']
+  ['--k-t-hero', 'League Gothic', '84 → 304', 'Reserved for a single homepage headline.'],
+  ['--k-t-mega', 'League Gothic', '60 → 168', 'Interior heroes and the closing band.'],
+  ['--k-t-xxl', 'League Gothic', '48 → 112', 'h1 on case studies.'],
+  ['--k-t-xl', 'League Gothic', '42 → 88', 'Section headings.'],
+  ['--k-t-lg', 'Lato Black', '25 → 38', 'Large card and offer headings.'],
+  ['--k-t-md', 'Lato Black', '19 → 23', 'Standard h3.'],
+  ['--k-t-lede', 'Lato', '18 → 22', 'Lede paragraphs.'],
+  ['--k-t-base', 'Lato', '17', 'Body copy.'],
+  ['--k-t-label', 'Lato Bold', '13', 'Labels and eyebrows, sentence case.']
 ];
 
 export function brandSystemPage() {
@@ -69,7 +70,7 @@ ${hero({
 
 <section class="k-section k-section--line">
   <div class="k-wrap">
-    ${head({ num: '02', title: 'Type', sub: 'League Gothic compressed for display, Lato for anything you have to read, JetBrains Mono for labels and data. Three families, no exceptions, no decorative fourth.' })}
+    ${head({ num: '02', title: 'Type', sub: 'League Gothic for anything that should shout: headlines, numbers, case thumbnails. Lato for everything you have to read, labels included. Two families, self-hosted, no decorative third.' })}
     <div class="k-scroll-x">
       <table class="k-tbl">
         <thead><tr><th style="width:22%">Token</th><th style="width:22%">Family</th><th style="width:16%">Size (px)</th><th>Use</th></tr></thead>
@@ -82,8 +83,8 @@ ${hero({
       <h4>Live specimen</h4>
       <p class="k-display" style="font-size:var(--k-t-xxl);margin-top:18px;line-height:.9">Systems, not visuals</p>
       <p class="k-lede" style="margin-top:18px">Lede text carries the argument. It is dimmed rather than sized down, so the hierarchy survives being read on a phone at arm's length.</p>
-      <p style="margin-top:14px">Body copy sits at 16.5px with a 1.65 line height. Long enough to read comfortably, short enough that a paragraph does not become an obligation.</p>
-      <p class="k-label" style="margin-top:18px">Labels are mono, uppercase, letter-spaced</p>
+      <p style="margin-top:14px">Body copy sits at 17px with a 1.6 line height. Long enough to read comfortably, short enough that a paragraph does not become an obligation.</p>
+      <p class="k-label" style="margin-top:18px">Labels are Lato Bold, in sentence case</p>
     </div>
   </div>
 </section>
@@ -93,16 +94,16 @@ ${hero({
     ${head({ num: '03', title: 'The signature', sub: 'Every system needs one thing that is unmistakably yours. Ours is chromatic aberration — a magenta and mint RGB split on display type, borrowed from a printing error and used deliberately.' })}
     <div class="k-card" style="text-align:center;padding:clamp(32px,6vw,64px)">
       <p class="k-display k-split-text" style="font-size:var(--k-t-xl)">Most brands are broken</p>
-      <p class="k-label k-label--dim" style="margin-top:24px">.k-split-text — magenta 3px left, mint 3px right</p>
+      <p class="k-label k-label--dim" style="margin-top:24px">.k-split-text: magenta .035em left, mint .035em right</p>
     </div>
     <div style="margin-top:20px">${cards([
       { label: 'Rule 01', title: 'Display type only', body: 'Never on body copy. It is a signature, not a texture, and it destroys legibility below about 32px.' },
-      { label: 'Rule 02', title: 'Offset stays proportional', body: '3px at hero scale, 2px below it. Fixed offsets look accidental at the wrong size.' },
+      { label: 'Rule 02', title: 'Offset stays proportional', body: 'Set in em, so the split scales with the type. Fixed pixel offsets look accidental at the wrong size.' },
       { label: 'Rule 03', title: 'One per viewport', body: 'Two split headlines in view at once and neither reads as deliberate.' }
     ])}</div>
     <div style="margin-top:34px">
       <h4>The structural accent</h4>
-      <p class="k-dim" style="margin-top:12px;max-width:60ch">The rainbow stripe brackets every page — top and bottom, six pixels, five fixed segments. It is the only ornamental element in the system, which is what lets it work.</p>
+      <p class="k-dim" style="margin-top:12px;max-width:60ch">The rainbow stripe brackets every page — top and bottom, four pixels, five fixed segments. It is the only ornamental element in the system, which is what lets it work.</p>
       <div class="k-stripe" style="margin-top:18px;border-radius:var(--k-r-pill)"></div>
     </div>
   </div>
@@ -147,10 +148,12 @@ ${hero({
       <div class="k-card">
         <h4>Motion</h4>
         <ul class="k-list" style="margin-top:18px">
-          <li><b style="color:var(--k-cream)">150ms</b> — hover and focus. Anything slower feels broken.</li>
-          <li><b style="color:var(--k-cream)">280ms</b> — state changes, drawers, accordions.</li>
-          <li><b style="color:var(--k-cream)">600ms</b> — scroll reveals and data animations only.</li>
-          <li><b style="color:var(--k-cream)">Always</b> — <code>prefers-reduced-motion</code> disables all of it. Non-negotiable.</li>
+          <li><b class="k-lead">150ms</b> — hover and focus. Anything slower feels broken.</li>
+          <li><b class="k-lead">280ms</b> — state changes, drawers, accordions.</li>
+          <li><b class="k-lead">600ms</b> — scroll reveals and data animations only.</li>
+          <li><b class="k-lead">Springs</b>: anything that follows the cursor runs on spring physics, not easing curves. Magnetic buttons, card tilt, the spotlight and the headline drift are ports of Motion Primitives (MIT), rewritten in plain JS.</li>
+          <li><b class="k-lead">Answer, don't perform</b>: motion responds to what you do. The only motion nobody asked for is the headline breaking once on load and the beam that circles the Signal Test once.</li>
+          <li><b class="k-lead">Always</b>: <code>prefers-reduced-motion</code> disables all of it. Non-negotiable.</li>
         </ul>
       </div>
     </div>
@@ -324,6 +327,7 @@ ${ctaBand({
   })}`;
 
   return {
+    noindex: true,   // hidden pending confirmation: the live case presents OCP's co-owners as the client
     path: '/oak-cliff-pilates-story',
     title: 'The Oak Cliff Pilates story',
     description: 'Kija Creative operates Oak Cliff Pilates. Every play we sell was run on our own business first — including the ones that failed.',

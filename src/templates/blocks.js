@@ -1,45 +1,60 @@
 import { esc } from './layout.js';
-import { bySlug } from '../data/cases.js';
+import { bySlug, listed } from '../data/cases.js';
 import { serviceBySlug } from '../data/services.js';
 
-/* ---------- section head -------------------------------------------------- */
-export const head = ({ num, title, sub, id }) => `
-<div class="k-head-block"${id ? ` id="${id}"` : ''}>
-  <div class="k-head">${num ? `<span class="k-num">${esc(num)}</span>` : ''}<h2>${title}</h2></div>
-  ${sub ? `<p class="k-lede" style="margin-top:16px">${sub}</p>` : ''}
+/* ---------- section head --------------------------------------------------
+   Heading left, lede right on wide screens. `num` is accepted for backwards
+   compatibility but no longer rendered — the sections are not a sequence. */
+export const head = ({ title, sub, id }) => `
+<div class="k-head-block${sub ? '' : ' k-head-block--solo'}"${id ? ` id="${id}"` : ''}>
+  <h2>${title}</h2>
+  ${sub ? `<p class="k-lede">${sub}</p>` : ''}
 </div>`;
 
-/* ---------- hero ---------------------------------------------------------- */
-export const hero = ({ eyebrow, title, lede, ctas = [], meta, glow = true }) => `
-<header class="k-section${glow ? ' k-glow' : ''}" style="padding-top:clamp(56px,8vw,104px)">
+/* ---------- hero ----------------------------------------------------------
+   `fault: true` sets the title in the fault-line treatment (homepage only):
+   each <br>-separated line is printed twice and the lower slice knocked out
+   of register. The first copy is the accessible one; the second is hidden. */
+const faultTitle = (title) => `<span class="k-fault">${title.split(/<br\s*\/?>/i).map((l) =>
+  `<span class="k-fault__l"><span class="k-fault__a">${l}</span><span class="k-fault__b" aria-hidden="true">${l}</span></span>`).join('')}</span>`;
+
+export const hero = ({ eyebrow, title, lede, ctas = [], meta, fault = false }) => `
+<header class="k-section" style="padding-top:${fault ? 'clamp(32px,4vw,56px)' : 'clamp(48px,7vw,104px)'}">
   <div class="k-wrap">
     ${eyebrow ? `<p class="k-eyebrow">${esc(eyebrow)}</p>` : ''}
-    <h1 class="k-split-text" style="margin-top:22px;font-size:var(--k-t-mega)">${title}</h1>
-    ${lede ? `<p class="k-lede" style="margin-top:28px;max-width:62ch">${lede}</p>` : ''}
-    ${ctas.length ? `<div class="k-btns" style="margin-top:34px">${ctas.map(cta).join('')}</div>` : ''}
+    <h1 class="${fault ? '' : 'k-split-text'}" style="margin-top:${fault ? '18px' : '22px'};${fault ? '' : 'font-size:var(--k-t-mega)'}">${fault ? faultTitle(title) : title}</h1>
+    ${lede ? `<p class="k-lede" style="margin-top:${fault ? '32px' : '28px'};max-width:58ch">${lede}</p>` : ''}
+    ${ctas.length ? `<div class="k-btns" style="margin-top:${fault ? '28px' : '36px'}">${ctas.map((c, i) => cta(fault && i === 0 ? { ...c, extra: 'data-fault-fix' } : c)).join('')}</div>` : ''}
     ${meta ? metaStrip(meta) : ''}
   </div>
 </header>`;
 
-export const cta = (c) =>
-  `<a class="k-btn ${c.style || 'k-btn--primary'} k-btn--lg" href="${c.href}"${c.track ? ` data-track="${c.track}"` : ''}>${esc(c.label)}${c.arrow === false ? '' : ' <span class="k-btn__arrow">&rarr;</span>'}</a>`;
+/* Primary CTAs are magnetic (motion.js). `extra` adds raw attributes, e.g.
+   data-fault-fix on the homepage hero CTA. */
+export const cta = (c) => {
+  const style = c.style || 'k-btn--primary';
+  const magnetic = style === 'k-btn--primary' ? ' data-magnetic' : '';
+  return `<a class="k-btn ${style} k-btn--lg" href="${c.href}"${c.track ? ` data-track="${c.track}"` : ''}${magnetic}${c.extra ? ' ' + c.extra : ''}>${esc(c.label)}</a>`;
+};
 
 export const metaStrip = (items) => `
-<dl class="k-meta" style="margin-top:44px">
+<dl class="k-meta" style="margin-top:clamp(48px,6vw,80px)">
   ${items.map((i) => `<div><dt>${esc(i.k)}</dt><dd>${esc(i.v)}</dd></div>`).join('')}
 </dl>`;
 
-/* ---------- case card ----------------------------------------------------- */
-export const caseCard = (c, { compact = false } = {}) => `
-<a class="k-card k-case" href="/work/${c.slug}" data-services="${c.services.join(' ')}" style="padding:0;overflow:hidden" data-track="cta_case_card">
-  <div class="k-case__thumb" style="background:linear-gradient(150deg,${c.thumb.from},${c.thumb.to})">
-    <span>${esc(c.thumb.word).replace(/\n/g, '<br>')}</span>
+/* ---------- case card -----------------------------------------------------
+   Typographic thumbnails by design (no stock photography). Metrics render as
+   numbers, not mint pills — mint is reserved for things you can click. */
+export const caseCard = (c, { compact = false, feature = false } = {}) => `
+<a class="k-card k-case${feature ? ' k-case--feature' : ''}" href="/work/${c.slug}" data-services="${c.services.join(' ')}" data-track="cta_case_card" data-bubble="View case" data-tilt="${feature ? 2.5 : 5}">
+  <div class="k-case__thumb k-case__thumb--${esc(c.thumb.tone || 'plum')}" aria-hidden="true">
+    <span data-tilt-depth="${feature ? 2 : 1.4}">${esc(c.thumb.word).replace(/\n/g, '<br>')}</span>
   </div>
   <div class="k-case__body">
-    <p class="k-label k-label--dim">${esc(c.client)} &middot; ${esc(c.industry)}</p>
+    <p class="k-label k-label--dim">${esc(c.client)}, ${esc(c.industry.toLowerCase())}</p>
     <h3>${esc(c.headline)}</h3>
     ${!compact ? `<p class="k-dim k-sm">${esc(c.summary)}</p>` : ''}
-    ${c.metrics.length ? `<div class="k-tags">${c.metrics.map((m) => `<span class="k-tag k-tag--mint">${esc(m.value)} ${esc(m.label)}</span>`).join('')}</div>`
+    ${c.metrics.length ? `<div class="k-metrics">${c.metrics.map((m) => `<p class="k-metric"><b data-ticker>${esc(m.value)}</b><span>${esc(m.label)}</span></p>`).join('')}</div>`
       : `<div class="k-tags">${c.services.slice(0, 2).map((s) => `<span class="k-tag k-tag--out">${esc(serviceBySlug(s)?.name || s)}</span>`).join('')}</div>`}
   </div>
 </a>`;
@@ -52,7 +67,7 @@ export const matchedProof = (slugs, title = 'Matched proof') => `
     <div class="k-grid k-g2">
       ${slugs.map((s) => caseCard(bySlug(s))).join('')}
     </div>
-    <p style="margin-top:26px"><a class="k-link" href="/work" data-track="cta_all_work">See all nine projects</a></p>
+    <p style="margin-top:26px"><a class="k-link" href="/work" data-track="cta_all_work">See all ${listed().length} projects</a></p>
   </div>
 </section>`;
 
@@ -61,11 +76,11 @@ export const steps = (items) => `
 <div class="k-steps">
   ${items.map((s, i) => `
   <div class="k-step">
-    <div class="k-step__n">Step ${String(i + 1).padStart(2, '0')}</div>
+    <div class="k-step__n">Step ${i + 1}</div>
     <div class="k-step__b">
       <h3>${esc(s.t)}</h3>
       <p class="k-dim">${esc(s.d)}</p>
-      ${s.out ? `<p class="k-label k-label--dim">Deliverable — <span class="k-mint">${esc(s.out)}</span></p>` : ''}
+      ${s.out ? `<p class="k-label k-label--dim">Deliverable: <b style="color:var(--k-aqua)">${esc(s.out)}</b></p>` : ''}
     </div>
   </div>`).join('')}
 </div>`;
@@ -85,13 +100,14 @@ export const objections = (items, title = 'The objections you were about to rais
   </div>
 </section>`;
 
-/* ---------- closing CTA band ---------------------------------------------- */
-export const ctaBand = ({ title, lede, primary, secondary, num = '08' }) => `
-<section class="k-section k-section--line k-glow k-glow--mint">
+/* ---------- closing CTA band ----------------------------------------------
+   The one full-colour block on a page: magenta ground, mint button. */
+export const ctaBand = ({ title, lede, primary, secondary }) => `
+<section class="k-section k-band">
   <div class="k-wrap">
-    <div class="k-head"><span class="k-num">${esc(num)}</span><h2 class="k-split-text k-split-text--sm">${title}</h2></div>
-    ${lede ? `<p class="k-lede" style="margin-top:18px;max-width:56ch">${lede}</p>` : ''}
-    <div class="k-btns" style="margin-top:32px">
+    <h2>${title}</h2>
+    ${lede ? `<p class="k-lede" style="margin-top:24px;max-width:56ch">${lede}</p>` : ''}
+    <div class="k-btns" style="margin-top:36px">
       ${cta({ ...primary, style: 'k-btn--primary' })}
       ${secondary ? cta({ ...secondary, style: 'k-btn--ghost' }) : ''}
     </div>
@@ -119,7 +135,7 @@ export const marquee = (items) => {
 /* ---------- kpi card ------------------------------------------------------ */
 export const kpiCard = (m, sub) => `
 <div class="k-card k-card--mag">
-  <div class="k-kpi k-kpi--mag">${esc(m.value)}</div>
+  <div class="k-kpi k-kpi--mag" data-ticker>${esc(m.value)}</div>
   <div class="k-kpi__l">${esc(m.label)}</div>
   ${sub ? `<p class="k-dim k-sm" style="margin-top:14px">${esc(sub)}</p>` : ''}
 </div>`;

@@ -19,7 +19,7 @@ const add = (f, m) => problems.push(`${f.replace('dist/', '/').replace('/index.h
 
 for (const f of files) {
   const h = await readFile(f, 'utf8');
-  const main = (h.match(/<main id="main">([\s\S]*?)<\/main>/) || [])[1] || '';
+  const main = (h.match(/<main id="main"[^>]*>([\s\S]*?)<\/main>/) || [])[1] || '';
 
   if (!/<title>.+<\/title>/.test(h)) add(f, 'missing title');
   if (!/name="description" content=".+"/.test(h)) add(f, 'missing meta description');

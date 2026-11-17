@@ -14,26 +14,28 @@ import { fileURLToPath } from 'node:url';
 import { page, fragment } from './src/templates/layout.js';
 import { site } from './src/data/site.js';
 
-import home from './src/pages/home.js';
+import homeB from './src/pages/home-b.js';
 import { workIndex, casePages } from './src/pages/work.js';
 import { servicesIndex, servicePages } from './src/pages/services.js';
 import { packagesIndex, offerPages } from './src/pages/packages.js';
 import { capturePages } from './src/pages/capture.js';
 import { brandSystemPage, nowPage, ocpStoryPage } from './src/pages/proof.js';
-import { aboutPage, insightsPage, privacyPage, termsPage, notFoundPage } from './src/pages/misc.js';
+import { aboutPage, privacyPage, termsPage, notFoundPage } from './src/pages/misc.js';
+import { insightsIndex, articlePages } from './src/pages/insights.js';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
 
 /* ---------- page manifest ------------------------------------------------- */
 const pages = [
-  home(),
+  homeB(),
   workIndex(), ...casePages(),
   servicesIndex(), ...servicePages(),
   packagesIndex(), ...offerPages(),
   ...capturePages(),
   brandSystemPage(), nowPage(), ocpStoryPage(),
-  aboutPage(), insightsPage(),
+  aboutPage(), insightsIndex(),
+  ...articlePages(),
   privacyPage(), termsPage(), notFoundPage()
 ];
 
@@ -90,10 +92,15 @@ await mkdir(join(dist, 'ghl'), { recursive: true });
 
 // assets: global css/js + widgets
 await mkdir(join(dist, 'assets', 'widgets'), { recursive: true });
-for (const f of ['tokens.css', 'global.css', 'global.js']) {
+for (const f of ['fonts.css', 'tokens.css', 'global.css', 'global.js', 'motion.js']) {
   await copyFile(join(root, 'src', f), join(dist, 'assets', f));
 }
 await copyDir(join(root, 'src', 'widgets'), join(dist, 'assets', 'widgets'));
+await copyDir(join(root, 'src', 'fonts'), join(dist, 'assets', 'fonts'));
+await copyDir(join(root, 'src', 'vendor'), join(dist, 'assets', 'vendor'));
+// Live-site media (src/media/wp-uploads, filled by content-import/download-assets.sh).
+// Optional: pages only reference files that exist, so an empty folder is fine.
+try { await copyDir(join(root, 'src', 'media'), join(dist, 'assets', 'media')); } catch (e) { /* no media yet */ }
 
 // pages
 for (const p of pages) {

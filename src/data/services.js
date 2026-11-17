@@ -31,7 +31,7 @@ export const services = [
       cta: { label: 'Take the test', href: '/the-kija-method' },
       embed: 'signal-test'
     },
-    proof: ['oak-cliff-pilates', 'blue-plate-network'],
+    proof: ['oak-cliff-pilates', 'latino-arts'],
     objections: [
       { q: 'We already know who we are', a: 'Possibly. The test is whether five people on your team describe it the same way without checking with each other. If they do, you don’t need this and we’ll say so on the call.' },
       { q: 'How long does this take?', a: 'Strategy work is measured in weeks, not months, and the deliverable is a document short enough that people actually read it. We’ll scope the specific timeline once we know how many stakeholders have a veto.' },
@@ -64,7 +64,7 @@ export const services = [
       d: 'Every token, type step, motion rule and voice principle behind this site is public at /brand-system. Not a case study of a system — the actual system this page is rendered from. If we could not do it for ourselves, you should not let us do it for you.',
       cta: { label: 'Open our brand system', href: '/brand-system' }
     },
-    proof: ['piehole-project', 'blue-plate-network'],
+    proof: ['blue-plate-network', 'latino-arts'],
     objections: [
       { q: 'We just need a refresh, not a rebuild', a: 'Often true. The difference is whether the current system has rules worth keeping. We will tell you which one you are looking at before we quote it, and a refresh is a smaller number.' },
       { q: 'Our industry is conservative', a: 'Restraint is a design decision, not an absence of one. Altacrest Capital is in the room precisely because the work is disciplined. Conservative does not mean generic.' },
@@ -97,7 +97,7 @@ export const services = [
       d: 'Scroll to the bottom of any page on this site. The Core Web Vitals and page weight are published there and updated at every deploy. Anyone can verify them in thirty seconds. Most agencies selling website performance will not show you theirs.',
       cta: { label: 'See the numbers', href: '#footer' }
     },
-    proof: ['van-country', 'altacrest-capital'],
+    proof: ['van-country', 'event-weis'],
     objections: [
       { q: 'We just rebuilt two years ago', a: 'Then the question is not the design, it is the conversion rate. If you know it and it is fine, you do not need us. If you do not know it, that is the actual finding.' },
       { q: 'What does a site cost?', a: 'It depends on page count and how much of it is interactive. We show a starting number on the productized packages and quote custom builds after a call, because quoting before scope is how projects go wrong.' },
@@ -130,7 +130,7 @@ export const services = [
       d: 'Every form on this site triggers an instant, specific, personalised response — not a generic auto-reply, and not a "we’ll be in touch". Fill one in and watch what happens. That experience is the pitch; there is nothing else to show you.',
       cta: { label: 'Try the Fit Finder', href: '/fit-finder' }
     },
-    proof: ['altacrest-capital', 'ges'],
+    proof: ['honeycomb', 'event-weis'],
     objections: [
       { q: 'We already have a CRM', a: 'Most people do. The question is whether the stages match how your deals actually move and whether anything happens automatically. Half-used CRMs are the norm, not the exception.' },
       { q: 'Automated messages feel impersonal', a: 'Bad ones do. The fix is specificity — referencing what someone actually told you — not sending less. A generic email written by a human is still generic.' },

@@ -74,7 +74,7 @@ export const offers = [
       { t: 'Performance review', d: 'What is being read, what is converting, what to stop making.' }
     ],
     services: ['ongoing-marketing', 'creative-strategy'],
-    proof: ['ges', 'blue-plate-network'],
+    proof: ['mammogram-poster-girls', 'blue-plate-network'],
     notFor: 'Volume for its own sake. If the goal is posting frequency rather than pipeline, we are the wrong shop.'
   },
   {
@@ -95,7 +95,7 @@ export const offers = [
       { t: 'Capture path', d: 'One page and one form, so attention has somewhere to convert.' }
     ],
     services: ['creative-strategy', 'brand-development'],
-    proof: ['oak-cliff-pilates', 'piehole-project'],
+    proof: ['event-weis', 'oak-cliff-pilates'],
     notFor: 'A company rebuild wearing a founder costume. If the business is the thing that is broken, Launch Kit is the honest answer.'
   },
   {
@@ -117,7 +117,7 @@ export const offers = [
       { t: 'Quarterly reset', d: 'A harder look at whether the strategy still matches the market.' }
     ],
     services: ['creative-strategy', 'ongoing-marketing'],
-    proof: ['seismic', 'altacrest-capital'],
+    proof: ['oak-cliff-pilates', 'honeycomb'],
     notFor: 'Production capacity. This is not a cheaper way to buy delivery, and treating it that way wastes both sides’ time.'
   }
 ];

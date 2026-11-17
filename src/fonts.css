@@ -1,0 +1,17 @@
+/* ==========================================================================
+   KIJA CREATIVE — SELF-HOSTED FONTS
+   Served from /assets/fonts on the standalone site, so no third-party request
+   sits on the critical path (CLAUDE.md, "Self-host the three font families").
+   On GHL, paste this above tokens.css and swap the url() paths for the
+   absolute Vercel URLs, e.g. https://kijacreative-newsite.vercel.app/assets/fonts/…
+   ========================================================================== */
+@font-face{font-family:'League Gothic';font-style:normal;font-weight:400;font-display:swap;
+  src:url(/assets/fonts/league-gothic-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Lato';font-style:normal;font-weight:400;font-display:swap;
+  src:url(/assets/fonts/lato-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Lato';font-style:italic;font-weight:400;font-display:swap;
+  src:url(/assets/fonts/lato-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Lato';font-style:normal;font-weight:700;font-display:swap;
+  src:url(/assets/fonts/lato-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Lato';font-style:normal;font-weight:900;font-display:swap;
+  src:url(/assets/fonts/lato-latin-900-normal.woff2) format('woff2')}
