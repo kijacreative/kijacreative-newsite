@@ -143,7 +143,6 @@ export const studio = [
   { slug: 'sara-kolata', name: 'Sara Kolata', disc: ['brand', 'web'], status: 'concept', show: false, note: 'Still in pitch phase (owner, 2026-11-17). Confidential strategy never shown.' },
   { slug: 'corner-wines', name: 'Corner Wines', disc: ['brand'], status: 'concept', show: false, note: 'Proposal page, not a website.' },
   { slug: 'myogen', name: 'MyoGen Bioscience', disc: ['brand'], status: null, show: false, note: 'Logo system only; no website.' },
-  { slug: 'cliqbux-analyzer', name: 'Cliqbux Restaurant Analyzer', disc: ['product'], status: null, show: false, note: 'An app rather than a website; confirm before showing.' }
 ];
 
 // display order: strongest visuals first

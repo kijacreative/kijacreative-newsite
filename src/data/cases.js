@@ -7,6 +7,39 @@
    ========================================================================== */
 
 export const cases = [
+  {
+    slug: 'cliqbux',
+    tier: 1,
+    flagship: true,
+    featured: 0.5,                  // leads every list: the newest and largest engagement
+    client: 'Cliqbux',
+    industry: 'Restaurant ordering technology',
+    year: '2026',
+    location: null,
+    url: null,
+    tagline: null,
+    services: ['creative-strategy', 'website-design', 'marketing-automation', 'ongoing-marketing'],
+    headline: 'The tools that turned a client into a partnership',
+    summary: 'Cliqbux gives restaurants their own online ordering for about 6.5% an order, against the 15–30% delivery apps take. We built the system that proves it to a restaurant in one report.',
+    thumb: { tone: 'yellow', word: 'Keep\nthe order' },
+    logo: { light: 'studio/cliqbux/cliqbux-logo-on-light.svg', dark: 'studio/cliqbux/cliqbux-logo-on-dark.svg' },
+    metricsNote: 'Order costs are Cliqbux’s pricing model, as the analyzer shows it to restaurants. The partnership share is Kija’s own.',
+    metrics: [
+      { value: '6.5%', label: 'Order cost on Cliqbux, against 15–30% on delivery apps' },
+      { value: '45%', label: 'Kija’s partner share of all orders' },
+      { value: 'Weekly', label: 'Site, marketing, sales and strategy sessions' }
+    ],
+    quote: null,
+    situation: ['Cliqbux lets a restaurant take online orders on its own website for about 6.5% an order, card processing included. Through delivery apps like DoorDash and Uber Eats, the same order costs 15–30%. The product made the case on paper; restaurants needed to see it in their own numbers.'],
+    diagnosis: ['A pitch about fees is abstract. A report about one restaurant, with its own orders, its own search results and its own competitors, is not. Every conversation had to start with an honest evaluation of the restaurant’s current website.'],
+    system: [
+      { t: 'Website evaluation system', d: 'The Restaurant Analyzer gives any restaurant an Order Readiness Score, shows where its online orders go today and what they cost, how it compares with competitors nearby, what people search for, what AI assistants say about it, and a full checklist.' },
+      { t: 'Website generation tool', d: 'Produces the restaurant’s own ordering website, so the fix arrives alongside the diagnosis.' },
+      { t: 'A sales kit inside every report', d: 'A link to send, call openers, a first email, a 60-second video script, a follow-up text and answers to the likely objections.' },
+      { t: 'Weekly partnership', d: 'Ongoing sessions on Cliqbux’s site, marketing, sales and strategy.' }
+    ],
+    result: 'Cliqbux was impressed enough by the evaluation tool to have us build more of the system around it, and then to make Kija a partner on 45% of all orders. We didn’t brand Cliqbux or design their site; we build the tools that sell it, and meet every week on the site, marketing, sales and strategy.'
+  },
   /* ---- From kijacreative.com (pulled 2026-11-17). Live copy is the source;
      `featured` is the live site's portfolio order. Figures as published on
      the live site at the owner's direction. Held back pending confirmation:

@@ -168,6 +168,29 @@ const M = {
     </div>`;
   },
 
+  fees(m) {
+    const v = m.value, lo = v * m.appsLow, hi = v * m.appsHigh, cq = v * m.cliqbux;
+    return `
+    <div class="ck-calc" data-ck="fees" data-cfg='${esc(JSON.stringify({ lo: m.appsLow, hi: m.appsHigh, cq: m.cliqbux }))}'>
+      <label class="ck-range ck-range--wide">
+        <span class="ck-calc__q"><b data-ck-out="sales">${money(v)}</b> a month in online orders</span>
+        <input type="range" min="${m.min}" max="${m.max}" step="${m.step}" value="${v}" data-ck-in aria-label="Monthly online order sales">
+      </label>
+      <div class="ck-calc__cols">
+        <div class="ck-calc__col"><p class="k-label k-label--dim">Delivery apps · 15–30%</p><p class="ck-calc__v" data-ck-out="apps">${money(lo)}–${money(hi)}</p><p class="k-dim k-sm">a month in fees</p></div>
+        <div class="ck-calc__col is-after"><p class="k-label">Cliqbux · about 6.5%</p><p class="ck-calc__v" data-ck-out="cq">${money(cq)}</p><p class="k-dim k-sm">a month, card processing included</p></div>
+        <div class="ck-calc__col is-delta"><p class="k-label">The restaurant keeps</p><p class="ck-calc__v" data-ck-out="keep">+${money(lo - cq)}–${money(hi - cq)}</p><p class="k-dim k-sm" data-ck-out="year">${money((lo - cq) * 12)}–${money((hi - cq) * 12)} a year</p></div>
+      </div>
+      <p class="ck-note">${esc(m.note)}</p>
+    </div>`;
+  },
+
+  shots(m) {
+    const items = m.items.filter(([src]) => hasMedia(src));
+    return `<div class="ck-shots">${items.map(([src, cap], i) => `
+      <figure class="ck-shots__i${i === 0 ? ' is-lead' : ''}" data-reveal><img src="${mediaUrl(src)}" alt="Cliqbux Restaurant Analyzer: ${esc(cap)} (sample data)" loading="lazy" decoding="async"><figcaption>${esc(cap)}</figcaption></figure>`).join('')}</div>`;
+  },
+
   brands(m) {
     return `<ul class="ck-brands">${m.items.map(([n, t]) => `<li><b>${esc(n)}</b><span>${esc(t)}</span></li>`).join('')}</ul>`;
   },

@@ -1490,6 +1490,16 @@ body{background:var(--k-cream);color:var(--k-ink)}
 @media(max-width:900px){.kb-studio__row{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){.kb-studio__i{rotate:0deg}}
 
+/* Cliqbux: client logo in the case header, analyzer screens */
+.ck-logo{display:block;height:clamp(30px,3.4vw,44px);width:auto;margin-bottom:22px}
+.ck-shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--k-s4);align-items:start}
+.ck-shots__i{margin:0;background:var(--k-print);border-radius:var(--k-r);box-shadow:var(--k-shadow-soft);padding:10px 10px 14px;transition:box-shadow var(--k-mid) var(--k-ease),transform var(--k-mid) var(--k-ease)}
+.ck-shots__i:hover{box-shadow:var(--k-shadow-lift);transform:translateY(-3px)}
+.ck-shots__i img{width:100%;height:auto;display:block;border-radius:4px}
+.ck-shots__i figcaption{margin-top:10px;font-size:var(--k-t-micro);font-weight:700;color:var(--k-ink-dim)}
+.ck-shots__i.is-lead{grid-row:span 2}
+@media(max-width:760px){.ck-shots{grid-template-columns:1fr}.ck-shots__i.is-lead{grid-row:auto}}
+
 /* --- reveal on scroll ---------------------------------------------------
    Fail-safe by design: content is visible unless JS has proved it can
    reveal it again. `k-reveal` lands on <html> only after global.js confirms

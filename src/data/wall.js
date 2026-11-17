@@ -9,6 +9,20 @@
    the wall and the case page only once the file is in src/media/wp-uploads.
    ========================================================================== */
 export const wall = {
+  cliqbux: {
+    pieces: [
+      { kind: 'voice', label: 'The pitch, in one report', text: 'Online orders are going through DoorDash and Uber Eats because your own site can’t take them.', note: 'The line every analyzer report opens with.' },
+      { kind: 'palette', label: 'Cliqbux brand (theirs, not ours)', colors: [['Orange', '#F89B0F'], ['Amber', '#FABA35'], ['Charcoal', '#2E2D2D']] },
+      { kind: 'list', label: 'Inside every report', items: ['Order Readiness Score', 'Where orders go today', 'What it’s costing you', 'How you compare', 'What people search for', 'What AI says', 'Full checklist', 'Sales kit'] }
+    ],
+    media: [
+      { src: 'studio/cliqbux/cliqbux-logo-on-light.svg', alt: 'Cliqbux logo', caption: 'Client mark', logo: true },
+      { src: 'studio/cliqbux/analyzer-report.webp', alt: 'Cliqbux Restaurant Analyzer report, sample data', caption: 'Order Readiness report' },
+      { src: 'studio/cliqbux/analyzer-orders.webp', alt: 'Where online orders go today, delivery apps against direct', caption: '6.5% against 15–30%' },
+      { src: 'studio/cliqbux/analyzer-search.webp', alt: 'What people search for, sample data', caption: 'Search demand' },
+      { src: 'studio/cliqbux/analyzer-ai.webp', alt: 'What AI assistants say, sample data', caption: 'What AI says' }
+    ]
+  },
   'oak-cliff-pilates': {
     pieces: [
       { kind: 'tagline', text: 'Pilates Reimagined, Energy Elevated.' },

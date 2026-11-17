@@ -42,7 +42,7 @@ const PRINTS = [   // two loose columns on the sticker side, clear of the headli
   ['beverage-displays', '2026/02/Veuve-Deer-Head-scaled.webp', 91, 22, 2.5],
   ['latino-arts', '2026/02/09042022-12.webp', 77, 61, 1.5],
   ['mammogram-poster-girls', '2026/02/Busted-Poster-scaled.webp', 92, 57, -2],
-  ['event-weis', '2026/02/LogoCardsShot-scaled.webp', 85, 88, 1]
+  ['cliqbux', 'studio/cliqbux/analyzer-report.webp', 85, 88, 1]
 ];
 const print = ([slug, img, x, t, r]) => {
   const c = cases.find((k) => k.slug === slug);
