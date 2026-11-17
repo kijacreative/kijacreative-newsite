@@ -145,5 +145,9 @@ export const studio = [
   { slug: 'cliqbux-analyzer', name: 'Cliqbux Restaurant Analyzer', disc: ['product'], status: null, show: false, note: 'An app rather than a website; confirm before showing.' }
 ];
 
-export const shownStudio = () => studio.filter((p) => p.show);
+// display order: strongest visuals first
+const ORDER = ['root-pilates', 'society-sacred-honor', 'camp-firewalker', 'triton-studios', 'lisa-kalmin', 'taylormade-law', 'catawba-yaupon', 'sgi',
+  'whittle-watt', 'enzos', 'dr-stuart-lipton', 'packorial', 'rio-jiu-jitsu', 'darling-reclaimed', 'nonos', 'dimaco', 'ssr-apparel', 'palmers-lodge'];
+const rank = (p) => { const i = ORDER.indexOf(p.slug); return i < 0 ? 99 : i; };
+export const shownStudio = () => studio.filter((p) => p.show).sort((a, b) => rank(a) - rank(b));
 export const DISCIPLINES = [['brand', 'Brand'], ['web', 'Web'], ['campaign', 'Campaign'], ['product', 'Product']];
