@@ -22,6 +22,7 @@ import { capturePages } from './src/pages/capture.js';
 import { brandSystemPage, nowPage, ocpStoryPage } from './src/pages/proof.js';
 import { aboutPage, privacyPage, termsPage, notFoundPage } from './src/pages/misc.js';
 import { insightsIndex, articlePages } from './src/pages/insights.js';
+import { signaturePage } from './src/pages/signature.js';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
@@ -36,7 +37,8 @@ const pages = [
   brandSystemPage(), nowPage(), ocpStoryPage(),
   aboutPage(), insightsIndex(),
   ...articlePages(),
-  privacyPage(), termsPage(), notFoundPage()
+  privacyPage(), termsPage(), notFoundPage(),
+  signaturePage()
 ];
 
 /* ---------- validation ---------------------------------------------------
