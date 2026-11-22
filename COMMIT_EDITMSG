@@ -1,0 +1,5 @@
+Proof wall: survive refused history calls
+
+Opening the wall pushes #explore; in sandboxed/srcdoc frames (the preview)
+that throws, which fell into the GSAP-failure fallback and navigated away.
+History calls are now guarded, and the fallback only runs when GSAP fails.
