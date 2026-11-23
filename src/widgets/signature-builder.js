@@ -289,7 +289,7 @@
 
   var UPLOAD_ERRORS = {
     not_configured: 'Photo storage is not set up on this deploy yet. Paste a hosted image URL instead.',
-    storage_missing: 'Photo storage is not connected on this deploy yet. Paste a hosted image URL instead.',
+    storage_missing: 'The upload library is missing from this deploy. Paste a hosted image URL for now.',
     bad_key: 'That upload key was not accepted. Check it and try again.',
     too_large: 'That image is too big. Try one under 2MB.',
     unsupported_type: 'Use a JPEG, PNG or WebP.',
@@ -321,7 +321,10 @@
     }).then(function (result) {
       if (!result.ok || !result.data || !result.data.url) {
         var reason = result.data && result.data.reason;
-        say(UPLOAD_ERRORS[reason] || 'Upload failed. Try again, or paste a hosted image URL.', 'warn');
+        var detail = result.data && result.data.detail;
+        // Show what the server actually said. A generic "upload failed" on an
+        // internal tool just means somebody has to go and read the logs.
+        say(UPLOAD_ERRORS[reason] || ('Upload failed. ' + (detail || 'Try again, or paste a hosted image URL.')), 'warn');
         return;
       }
       state.photoUrl = result.data.url;

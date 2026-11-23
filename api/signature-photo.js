@@ -136,11 +136,13 @@ export default async function handler(req, res) {
     return res.status(503).json({ ok: false, reason: 'storage_missing' });
   }
 
-  if (!env('BLOB_READ_WRITE_TOKEN')) {
-    console.error('[signature-photo] no Blob store connected to this project');
-    return res.status(503).json({ ok: false, reason: 'storage_missing' });
-  }
-
+  // No credential check here on purpose. A Blob store connected to this
+  // project authenticates with OIDC: the SDK reads VERCEL_OIDC_TOKEN and
+  // BLOB_STORE_ID, both injected into the deployment, and BLOB_READ_WRITE_TOKEN
+  // is only the fallback for code running outside Vercel. An earlier version of
+  // this function required that fallback and so refused every upload on a
+  // correctly connected store. Let the SDK resolve its own credentials and
+  // report what it says if it cannot.
   try {
     const blob = await put(`signature-photos/photo.${extension}`, bytes, {
       access: 'public',
@@ -151,7 +153,11 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ ok: true, url: blob.url });
   } catch (error) {
-    console.error('[signature-photo] upload failed', error?.message || error);
-    return res.status(502).json({ ok: false, reason: 'upload_failed' });
+    const detail = String(error?.message || error).slice(0, 200);
+    console.error('[signature-photo] upload failed', detail);
+    // detail is echoed because this is an internal tool and the alternative is
+    // guessing from a generic failure. SDK errors describe configuration, not
+    // credentials; nothing here prints a token.
+    return res.status(502).json({ ok: false, reason: 'upload_failed', detail });
   }
 }
