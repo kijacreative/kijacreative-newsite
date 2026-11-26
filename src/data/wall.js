@@ -18,13 +18,73 @@ export const wall = {
       { kind: 'place', name: 'Lower Greenville', label: 'Expansion 02 · est. 2024', line: 'Slow morning, strong week.' },
       { kind: 'voice', label: 'Brand promise', text: 'A studio that feels like the neighborhood you live in.' }
     ],
+    /* The flagship. Ten years of work, grouped by discipline so the gallery
+       reads in order: brand, then the studios themselves, then the website and
+       app, then what fills the classes (email, digital, promos, print), then
+       merch and the room. Paths with no prefix are live-site wp-uploads;
+       `selects/` comes from the Portfolio Selects folder via
+       content-import/collect-selects.sh. */
     media: [
+      // Brand
       { src: '2026/06/OCP-Logo-Gold_cirlce.png', alt: 'Oak Cliff Pilates logo', caption: 'Mark', logo: true },
+      { src: 'selects/oak-cliff-pilates/2024_12_01_OCP_Brand_LogoUptown_v01.webp', alt: 'Oak Cliff Pilates Uptown location logo', caption: 'Uptown lockup', logo: true },
+      { src: 'selects/oak-cliff-pilates/2025_08_28_OCP_Brand_LogoLowerGreenville_v01.webp', alt: 'Oak Cliff Pilates Lower Greenville location logo', caption: 'Lower Greenville lockup', logo: true },
+      { src: 'selects/oak-cliff-pilates/book-club-1color-gold.webp', alt: 'Oak Cliff Pilates Book Club mark in one colour gold', caption: 'Book Club mark', logo: true },
       { src: '2026/02/OCP-Case-Study-Wallpaper-scaled.webp', alt: 'Oak Cliff Pilates brand wallpaper', caption: 'Brand world' },
-      { src: '2026/02/OCP-Grand-Opening-308-scaled.webp', alt: 'Oak Cliff Pilates grand opening', caption: 'Launch energy' },
+
+      // The studios
+      { src: 'selects/oak-cliff-pilates/OCP Bishop Team.webp', alt: 'The Oak Cliff Pilates team outside the Bishop Arts storefront', caption: 'Bishop Arts, the team' },
+      { src: 'selects/oak-cliff-pilates/OCP Bishop Interior.webp', alt: 'Inside the Bishop Arts studio', caption: 'Bishop Arts, inside' },
       { src: '2026/06/OCP-Uptown-scaled.webp', alt: 'Oak Cliff Pilates Uptown studio signage', caption: 'Uptown' },
       { src: '2026/06/LowerGreenville-scaled.webp', alt: 'Oak Cliff Pilates Lower Greenville studio', caption: 'Lower Greenville' },
-      { src: '2026/02/CharliesOCPCard-Not-So-AI.webp', alt: 'Oak Cliff Pilates business cards', caption: 'Identity detail' }
+      { src: 'selects/oak-cliff-pilates/OCP Uptown Sign.webp', alt: 'Uptown window graphic in place', caption: 'Uptown window' },
+      { src: 'selects/oak-cliff-pilates/OCP Lower Greenville - Sign.webp', alt: 'Lower Greenville storefront signage', caption: 'Lower Greenville sign' },
+      { src: 'selects/oak-cliff-pilates/2025_05_13_OCP_Uptown_WindowGraphics_v01.webp', alt: 'Uptown window graphics artwork', caption: 'Window graphics' },
+      { src: 'selects/oak-cliff-pilates/2025_09_29_OCP_LowerGreenville_AFrame_v01.webp', alt: 'Lower Greenville A-frame pavement sign', caption: 'A-frame' },
+
+      // Website and app
+      { src: 'selects/oak-cliff-pilates/2026_10_06_OCP_Website_LocationsScreenshot_v01.webp', alt: 'The locations page on the Oak Cliff Pilates website', caption: 'Website, locations' },
+      { src: 'selects/oak-cliff-pilates/2025_10_15_OCP_App_LoginBackground_v01.webp', alt: 'Oak Cliff Pilates app login screen background', caption: 'App login' },
+
+      // Email and digital
+      { src: 'selects/oak-cliff-pilates/Email Banner.webp', alt: 'Oak Cliff Pilates email banner', caption: 'Email banner' },
+      { src: 'selects/oak-cliff-pilates/OCP 1200x1200.webp', alt: 'Square digital ad with the neon OCP sign and reformer straps', caption: 'Digital ad' },
+      { src: 'selects/oak-cliff-pilates/Uptown 1200x1200.webp', alt: 'Square digital ad for the Uptown studio', caption: 'Digital ad, Uptown' },
+      { src: 'selects/oak-cliff-pilates/Lower Greenville 1200x1200.webp', alt: 'Square digital ad for the Lower Greenville studio', caption: 'Digital ad, Lower Greenville' },
+      { src: 'selects/oak-cliff-pilates/Bishop 1200x1200.webp', alt: 'Black and white community digital ad for the Bishop Arts studio', caption: 'Digital ad, Bishop Arts' },
+      { src: 'selects/oak-cliff-pilates/OCP-BestOfDallas-300x600.webp', alt: 'Dallas Observer Best Of vote banner', caption: 'Best Of banner' },
+
+      // Offers
+      { src: 'selects/oak-cliff-pilates/2026_03_25_OCP_Promos_GuestPass_v01.webp', alt: 'Guest pass promotion', caption: 'Guest pass' },
+      { src: 'selects/oak-cliff-pilates/2026_03_25_OCP_Promos_ComeBackOffer_v01.webp', alt: 'Come back offer promotion', caption: 'Come back offer' },
+      { src: 'selects/oak-cliff-pilates/2026_03_25_OCP_Promos_Unlimited20Offer_v01.webp', alt: 'Unlimited twenty offer promotion', caption: 'Unlimited 20' },
+
+      // Print
+      { src: 'selects/oak-cliff-pilates/2026_08_25_OCP_PrintAds_BestStudioAd_v01.webp', alt: 'Best Pilates Studio print advertisement', caption: 'Best Studio, print' },
+      { src: 'selects/oak-cliff-pilates/2026_08_21_OCP_PrintAds_MStreetsAd_v02.webp', alt: 'M Streets print advertisement', caption: 'M Streets, print' },
+      { src: 'selects/oak-cliff-pilates/OCP-BestOfDallas-Print-1-8page-300dpi.webp', alt: 'Dallas Observer Best Of eighth-page print advertisement', caption: 'Best Of, print' },
+      { src: 'selects/oak-cliff-pilates/2025_08_26_OCP_DirectMail_Postcards_v01-p1.webp', alt: 'Direct mail postcard, front', caption: 'Postcard, front' },
+      { src: 'selects/oak-cliff-pilates/2025_08_26_OCP_DirectMail_Postcards_v01-p2.webp', alt: 'Direct mail postcard, back', caption: 'Postcard, back' },
+      { src: 'selects/oak-cliff-pilates/2025_08_21_OCP_Events_TradeshowBackdrop_v01.webp', alt: 'Trade show backdrop', caption: 'Trade show backdrop' },
+
+      // Merch
+      { src: 'selects/oak-cliff-pilates/2026_10_07_OCP_Merch_HoodieMockup_v01.webp', alt: 'Oak Cliff Pilates hoodie', caption: 'Hoodie' },
+      { src: 'selects/oak-cliff-pilates/2026_10_07_OCP_Merch_PulloverMockup_v01.webp', alt: 'Oak Cliff Pilates pullover', caption: 'Pullover' },
+      { src: 'selects/oak-cliff-pilates/2026_10_07_OCP_Merch_HatMockup_v01.webp', alt: 'Oak Cliff Pilates cap', caption: 'Cap' },
+      { src: 'selects/oak-cliff-pilates/2026_10_07_OCP_Merch_BagMockup_v01.webp', alt: 'Oak Cliff Pilates tote bag', caption: 'Tote' },
+      { src: '2026/02/CharliesOCPCard-Not-So-AI.webp', alt: 'Oak Cliff Pilates business cards', caption: 'Identity detail' },
+
+      // Events and community
+      { src: '2026/02/OCP-Grand-Opening-308-scaled.webp', alt: 'Oak Cliff Pilates grand opening', caption: 'Launch energy' },
+      { src: 'selects/oak-cliff-pilates/Private Parties - SMU.webp', alt: 'A private party at the studio', caption: 'Private parties' },
+      { src: 'selects/oak-cliff-pilates/Halperin Park 1.webp', alt: 'A class in Halperin Park', caption: 'Pilates in the park' },
+      { src: 'selects/oak-cliff-pilates/12.webp', alt: 'Cold Club ice bath event', caption: 'Cold Club' },
+      { src: 'selects/oak-cliff-pilates/21.webp', alt: 'Cold Club event', caption: 'Cold Club' }
+    ],
+    videos: [
+      { src: 'selects/oak-cliff-pilates/2025_12_03_OCP_Website_ScrollThroughVideo_v01.mp4', poster: 'selects/oak-cliff-pilates/2025_12_03_OCP_Website_ScrollThroughVideo_v01-poster.webp', caption: 'Website walkthrough' },
+      { src: 'selects/oak-cliff-pilates/2026_10_06_OCP_Website_MenuScreenRecord_v01.mp4', poster: 'selects/oak-cliff-pilates/2026_10_06_OCP_Website_MenuScreenRecord_v01-poster.webp', caption: 'Menu in motion' },
+      { src: 'selects/oak-cliff-pilates/2026_10_07_OCP_Merch_Hoodie3DMockupVideo_v01.mp4', poster: 'selects/oak-cliff-pilates/2026_10_07_OCP_Merch_Hoodie3DMockupVideo_v01-poster.webp', caption: 'Hoodie, turned' }
     ]
   },
   honeycomb: {
