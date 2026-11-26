@@ -7,7 +7,7 @@
                       matching GHL custom code block
    Run: node build.mjs
    ========================================================================== */
-import { mkdir, writeFile, copyFile, readdir, rm } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, copyFile, readdir, rm } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -25,6 +25,28 @@ import { insightsIndex, articlePages } from './src/pages/insights.js';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
+
+/* ---------- ProofMail ----------------------------------------------------
+   The Kija x DIMACO direct-mail program. These two pages are complete HTML
+   documents rather than page modules: ProofMail is a co-branded sub-brand
+   with its own palette (src/proofmail/proofmail.css), so it does not go
+   through layout.js and never inherits the Kija nav, footer or tokens. The
+   build copies them verbatim, substituting the handful of values that must
+   stay in sync with src/data/site.js.
+
+   They still load /assets/global.js, so attribution, event names and the
+   /api/lead endpoint are shared with the rest of the site.
+   -------------------------------------------------------------------------- */
+const proofmail = [
+  { src: 'index.html', out: 'proofmail/index.html', path: '/proofmail', noindex: false },
+  { src: 'toolkit.html', out: 'proofmail/toolkit/index.html', path: '/proofmail/toolkit', noindex: true }
+];
+const proofmailSubs = {
+  __SITE_URL__: site.url,
+  __KIJA_ENDPOINT__: site.leadEndpoint,
+  __KIJA_LINKS__: JSON.stringify(site.calendly),
+  __CALENDLY_CONSULT__: site.calendly.consultation
+};
 
 /* ---------- page manifest ------------------------------------------------- */
 const pages = [
@@ -102,6 +124,23 @@ await copyDir(join(root, 'src', 'vendor'), join(dist, 'assets', 'vendor'));
 // Optional: pages only reference files that exist, so an empty folder is fine.
 try { await copyDir(join(root, 'src', 'media'), join(dist, 'assets', 'media')); } catch (e) { /* no media yet */ }
 
+// ProofMail: sub-brand assets, then the two standalone documents
+await copyDir(join(root, 'src', 'proofmail'), join(dist, 'assets', 'proofmail'));
+for (const f of proofmail) {
+  // The HTML lives beside its css/js in src; only the css/js belong in /assets.
+  await rm(join(dist, 'assets', 'proofmail', f.src), { force: true });
+  let html = await readFile(join(root, 'src', 'proofmail', f.src), 'utf8');
+  for (const [token, value] of Object.entries(proofmailSubs)) html = html.split(token).join(value);
+  const leftover = html.match(/__[A-Z_]+__/g);
+  if (leftover) {
+    console.error(`\nBuild failed — ${f.path} has unsubstituted tokens: ${[...new Set(leftover)].join(', ')}\n`);
+    process.exit(1);
+  }
+  const file = join(dist, f.out);
+  await mkdir(dirname(file), { recursive: true });
+  await writeFile(file, html);
+}
+
 // pages
 for (const p of pages) {
   const file = join(dist, outFileFor(p));
@@ -114,15 +153,17 @@ for (const p of pages) {
 await copyFile(join(dist, '404', 'index.html'), join(dist, '404.html'));
 
 /* ---------- sitemap + robots ---------------------------------------------- */
-const indexable = pages.filter((p) => !p.noindex);
+const indexable = [...pages, ...proofmail].filter((p) => !p.noindex);
 await writeFile(join(dist, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexable.map((p) => `  <url><loc>${site.url}${p.path === '/' ? '/' : p.path}</loc><changefreq>${p.path === '/now' ? 'monthly' : 'yearly'}</changefreq></url>`).join('\n')}
 </urlset>\n`);
 
+// The toolkit is internal. noindex keeps it out of results; this keeps
+// well-behaved crawlers from spending time on it at all.
 await writeFile(join(dist, 'robots.txt'),
-  `User-agent: *\nAllow: /\nDisallow: /thanks/\nSitemap: ${site.url}/sitemap.xml\n`);
+  `User-agent: *\nAllow: /\nDisallow: /thanks/\nDisallow: /proofmail/toolkit\nSitemap: ${site.url}/sitemap.xml\n`);
 
 /* ---------- GHL paste manifest -------------------------------------------- */
 const manifest = pages.map((p) => ({
@@ -137,7 +178,8 @@ await writeFile(join(dist, 'ghl', 'manifest.json'), JSON.stringify(manifest, nul
 
 /* ---------- report -------------------------------------------------------- */
 console.log(`\n  Kija rebuild — build complete\n`);
-console.log(`  ${pages.length} pages  ·  ${indexable.length} indexable  ·  ${pages.length - indexable.length} noindex (variants + thank-you)`);
+console.log(`  ${pages.length + proofmail.length} pages  ·  ${indexable.length} indexable  ·  ${pages.length + proofmail.length - indexable.length} noindex (variants + thank-you + toolkit)`);
+console.log(`  ProofMail      → ${proofmail.map((p) => p.path).join('  ')}`);
 console.log(`  ${manifest.filter((m) => m.variant).length} A/B variant pages`);
 console.log(`  Standalone site → dist/`);
 console.log(`  GHL fragments   → dist/ghl/  (manifest.json maps URL → file)\n`);

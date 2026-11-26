@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProofMail — direct mail that reports back | Kija Creative x DIMACO</title>
+<meta name="description" content="Trackable direct mail for Dallas businesses. Every printed piece carries a QR code to a landing page built to match it, so you see deliveries, scans, leads and cost per lead in one dashboard. Design and digital by Kija Creative, print and mail by DIMACO.">
+<link rel="canonical" href="__SITE_URL__/proofmail">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ProofMail — direct mail that reports back">
+<meta property="og:description" content="Every piece carries a QR code to a landing page built to match it. You see who got it, who scanned and who booked, in one dashboard.">
+<meta property="og:url" content="__SITE_URL__/proofmail">
+<meta property="og:site_name" content="Kija Creative">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#170F1B">
+<link rel="icon" type="image/png" href="/assets/media/wp-uploads/2026/01/cropped-Kija-Stacked-Multicolored-270x270.png">
+<link rel="apple-touch-icon" href="/assets/media/wp-uploads/2026/01/cropped-Kija-Stacked-Multicolored.png">
+<link rel="preload" href="/assets/fonts/league-gothic-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/lato-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/proofmail/proofmail.css">
+<script>window.KIJA_ENDPOINT="__KIJA_ENDPOINT__";window.KIJA_LINKS=__KIJA_LINKS__</script>
+<style>
+/* ==========================================================================
+   PROOFMAIL — CLIENT SITE
+   Alternating ink and paper bands, like the Kija x DIMACO flyer. The story
+   runs print piece -> phone -> dashboard, which is the whole pitch in one
+   image. Colours come from proofmail.css; no hex is declared here.
+   ========================================================================== */
+body{font-size:16px;line-height:1.55}
+.wrap{max-width:1160px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px))}
+h2{font-size:clamp(44px,6vw,76px)}
+h3{font-size:30px}
+.hl-mint{color:var(--pm-mint)} .hl-mag{color:var(--pm-magenta)} .hl-yel{color:var(--pm-yellow)}
+section{padding-block:88px}
+.paper{background:var(--pm-paper);color:var(--pm-on-paper)}
+.paper .eyebrow{color:var(--pm-magenta-ink)}
+.paper .muted{color:var(--pm-muted-paper)}
+.muted{color:var(--pm-muted-ink)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--pm-ink) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--pm-ink-3)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.logo b{font-family:var(--pm-display);font-weight:400;font-size:34px;letter-spacing:.02em;
+  text-shadow:-2px 0 var(--pm-magenta),2px 0 var(--pm-aqua)}
+.logo span{font-size:12px;color:var(--pm-muted-ink);letter-spacing:.08em;text-transform:uppercase}
+.nav nav{display:flex;gap:22px;align-items:center;font-size:14px;font-weight:700}
+.nav nav a{text-decoration:none;color:var(--pm-muted-ink)}
+.nav nav a:hover{color:var(--pm-on-ink)}
+@media (max-width:820px){.nav nav a.hide-sm{display:none}.logo span{display:none}}
+
+/* hero */
+.hero{padding-block:64px 80px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(64px,10vw,132px)}
+.hero p.lede{font-size:20px;max-width:34ch;margin-top:22px;color:var(--pm-muted-ink)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.partners{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:34px;font-size:13px;color:var(--pm-muted-ink)}
+.partners strong{color:var(--pm-on-ink);letter-spacing:.06em}
+.story{position:relative;height:440px;min-width:0}
+.card-post{position:absolute;left:0;top:48px;width:min(330px,70%);aspect-ratio:6/4;background:var(--pm-paper);
+  color:var(--pm-ink);border-radius:6px;padding:20px;transform:rotate(-6deg);box-shadow:var(--pm-shadow);
+  display:flex;flex-direction:column;justify-content:space-between}
+.card-post .big{font-family:var(--pm-display);font-size:44px;line-height:.9;text-transform:uppercase}
+.card-post .row{display:flex;justify-content:space-between;align-items:flex-end;font-size:12px}
+.qr{width:64px;height:64px;background:
+ conic-gradient(from 90deg at 30% 30%,var(--pm-ink) 25%,transparent 0) 0 0/16px 16px,
+ linear-gradient(var(--pm-ink),var(--pm-ink)) 0 0/20px 20px no-repeat,
+ linear-gradient(var(--pm-ink),var(--pm-ink)) 100% 0/20px 20px no-repeat,
+ linear-gradient(var(--pm-ink),var(--pm-ink)) 0 100%/20px 20px no-repeat;
+ border:4px solid var(--pm-paper);outline:2px solid var(--pm-ink)}
+/* min-height, not height: the screen's headline wraps to four lines on a
+   narrow viewport and a fixed frame pushed the CTA out through the bottom. */
+.phone{position:absolute;right:6%;top:0;width:200px;min-height:400px;border-radius:30px;background:var(--pm-ink-2);
+  border:3px solid var(--pm-ink-3);padding:14px;box-shadow:var(--pm-shadow-lift)}
+.phone .screen{min-height:100%;border-radius:20px;background:var(--pm-paper);color:var(--pm-ink);padding:16px;
+  display:flex;flex-direction:column;gap:10px}
+.phone .screen .t{font-family:var(--pm-display);font-size:34px;line-height:.9;text-transform:uppercase}
+.phone .field{height:30px;border-radius:6px;background:var(--pm-paper-2);font-size:11px;padding:7px 10px;color:var(--pm-muted-paper)}
+.phone .go{margin-top:auto;background:var(--pm-magenta-deep);color:var(--pm-white);font-weight:900;text-align:center;
+  border-radius:8px;padding:10px;font-size:12px;letter-spacing:.06em}
+.arrow{position:absolute;left:38%;top:70px;width:120px;height:80px}
+.arrow path{stroke:var(--pm-mint)}
+.stats{position:absolute;left:8%;bottom:0;display:flex;gap:10px;background:var(--pm-ink-2);
+  border:1px solid var(--pm-ink-3);border-radius:14px;padding:14px 16px}
+.stats div{min-width:66px}
+.stats b{display:block;font-family:var(--pm-display);font-size:34px;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
+.stats small{font-size:11px;color:var(--pm-muted-ink);text-transform:uppercase;letter-spacing:.08em}
+.sample-tag{position:absolute;right:0;bottom:-26px;font-family:var(--pm-mono);font-size:11px;color:var(--pm-muted-ink)}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.story{height:420px;max-width:520px}}
+@media (max-width:440px){
+  .story{height:500px}
+  .phone{width:170px;min-height:330px;right:0}
+  .card-post{width:78%}
+  .stats{left:0}
+}
+
+/* problem */
+.problem p.big{font-size:22px;max-width:48ch;margin-top:24px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.step{border-top:3px solid var(--pm-ink);padding-top:16px;min-width:0}
+.step .n{font-family:var(--pm-display);font-size:56px;line-height:1;color:var(--pm-magenta-ink)}
+.step h3{margin:6px 0 10px}
+.step .who{display:inline-block;margin-top:12px;font-family:var(--pm-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;padding:4px 8px;border-radius:4px;background:var(--pm-ink);color:var(--pm-paper)}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* variable data */
+.vd{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+.vd-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 18px}
+.vd-tabs button{font:700 14px var(--pm-body);padding:10px 16px;border-radius:999px;border:1.5px solid var(--pm-ink-3);
+  background:transparent;color:var(--pm-muted-ink);cursor:pointer}
+.vd-tabs button[aria-selected="true"]{background:var(--pm-mint);color:var(--pm-ink);border-color:var(--pm-mint)}
+.vd-piece{background:var(--pm-paper);color:var(--pm-ink);border-radius:8px;aspect-ratio:9/6;padding:28px;
+  display:grid;grid-template-columns:1.3fr 1fr;gap:20px;box-shadow:var(--pm-shadow-card);max-width:100%}
+.vd-piece .head{font-family:var(--pm-display);font-size:clamp(34px,4.6vw,58px);line-height:.88;text-transform:uppercase}
+.vd-piece .eyebrow{color:var(--pm-magenta-ink)}
+.vd-piece .offer{margin-top:12px;font-weight:900;font-size:15px}
+.vd-piece .side{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;text-align:right;font-size:12px}
+.vd-piece .swatch{width:100%;flex:1;border-radius:6px;margin-bottom:12px;background:var(--pm-magenta)}
+.vd-piece .url{font-family:var(--pm-mono);font-size:11px;color:var(--pm-muted-paper)}
+@media (max-width:900px){.vd{grid-template-columns:1fr}}
+
+/* campaigns */
+.camp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.camp{background:var(--pm-white);border-radius:10px;padding:22px;min-width:0;border:1px solid var(--pm-paper-2)}
+.camp .tag{font-family:var(--pm-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pm-magenta-ink)}
+.camp h3{font-size:32px;margin:8px 0}
+.camp p{color:var(--pm-muted-paper);font-size:15px}
+@media (max-width:900px){.camp-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.camp-grid{grid-template-columns:1fr}}
+
+/* dashboard preview */
+.dash{background:var(--pm-ink-2);border:1px solid var(--pm-ink-3);border-radius:16px;padding:24px;margin-top:40px}
+.dash-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:20px}
+.pill{font-family:var(--pm-mono);font-size:11px;padding:4px 10px;border-radius:999px;background:var(--pm-mint-14);
+  color:var(--pm-mint);letter-spacing:.06em}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.kpi{background:var(--pm-ink);border-radius:10px;padding:14px;min-width:0}
+.kpi small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--pm-muted-ink)}
+.kpi b{font-family:var(--pm-display);font-weight:400;font-size:42px;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;color:var(--pm-mint)}
+.funnel{display:grid;gap:8px;margin-top:20px}
+.funnel .bar{display:grid;grid-template-columns:120px 1fr 70px;gap:12px;align-items:center;font-size:13px}
+.funnel .track{height:14px;background:var(--pm-ink);border-radius:999px;overflow:hidden}
+.funnel .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--pm-magenta),var(--pm-yellow))}
+.funnel .num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--pm-mono);font-size:12px}
+.dash-note{margin-top:14px;font-family:var(--pm-mono);font-size:11px;color:var(--pm-muted-ink)}
+@media (max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}.funnel .bar{grid-template-columns:90px 1fr 60px}}
+
+/* quiz */
+.quiz-card{background:var(--pm-white);border-radius:16px;padding:32px;margin-top:36px;max-width:760px;border:1px solid var(--pm-paper-2)}
+.progress{height:6px;background:var(--pm-paper-2);border-radius:999px;overflow:hidden;margin-bottom:24px}
+.progress i{display:block;height:100%;background:var(--pm-magenta-deep);transition:width .25s}
+.q-title{font-family:var(--pm-display);font-size:40px;line-height:.95;text-transform:uppercase;margin-bottom:20px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts button{text-align:left;font:700 15px var(--pm-body);padding:16px;border-radius:10px;
+  border:1.5px solid var(--pm-paper-2);background:var(--pm-paper);color:var(--pm-ink);cursor:pointer}
+.opts button:hover{border-color:var(--pm-ink)}
+@media (max-width:560px){.opts{grid-template-columns:1fr}}
+.quiz-card .eyebrow{color:var(--pm-magenta-ink)}
+.result h3{font-size:46px;margin:8px 0 10px}
+.result ul{margin:14px 0 22px;padding-left:20px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form .full{grid-column:1/-1}
+.ink-form input,.ink-form select,.ink-form textarea{background:var(--pm-ink);border-color:var(--pm-ink-3);color:var(--pm-on-ink)}
+@media (max-width:560px){.form{grid-template-columns:1fr}}
+.ok{display:flex;gap:12px;align-items:flex-start;padding:18px;border-radius:10px;background:var(--pm-mint-14);margin-top:14px}
+.paper .ok{background:var(--pm-ok-paper)}
+.ok a{font-weight:700}
+.fineprint{font-family:var(--pm-mono);font-size:11px;margin-top:10px;color:var(--pm-muted-paper)}
+.ink-form .fineprint{color:var(--pm-muted-ink)}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.plan{border:1px solid var(--pm-ink-3);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.plan.feature{border-color:var(--pm-mint);box-shadow:inset 0 0 0 1px var(--pm-mint)}
+.plan .price{font-family:var(--pm-display);font-size:52px;line-height:1}
+/* Its own line: inline inside a 52px display number, the qualifier broke
+   mid-phrase and inherited the headline's line-height. */
+.plan .price small{display:block;font-family:var(--pm-body);font-size:13px;line-height:1.4;
+  margin-top:6px;color:var(--pm-muted-ink)}
+.plan ul{margin:0;padding-left:18px;font-size:14px;color:var(--pm-muted-ink);display:grid;gap:6px}
+.plan .best{font-size:13px;color:var(--pm-mint);font-weight:700}
+.plan .btn{margin-top:auto;justify-content:center}
+.price-note{margin-top:18px;font-size:14px;max-width:70ch}
+@media (max-width:980px){.price-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.price-grid{grid-template-columns:1fr}}
+
+/* who */
+.who{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+.who > div{background:var(--pm-white);border-radius:14px;padding:26px;min-width:0;border:1px solid var(--pm-paper-2)}
+.who h3{font-size:40px}
+.who .eyebrow{color:var(--pm-magenta-ink)}
+.who ul{padding-left:18px;margin:12px 0 0;color:var(--pm-muted-paper)}
+@media (max-width:760px){.who{grid-template-columns:1fr}}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px}
+.seg{display:inline-flex;background:var(--pm-ink-2);border-radius:999px;padding:4px;margin-bottom:18px;flex-wrap:wrap}
+.seg button{font:700 14px var(--pm-body);border:0;background:transparent;color:var(--pm-muted-ink);padding:10px 16px;
+  border-radius:999px;cursor:pointer}
+.seg button[aria-selected="true"]{background:var(--pm-magenta-deep);color:var(--pm-white)}
+.copy-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.copy-row a{font-weight:700}
+.copy-row button{font:700 12px var(--pm-body);border:1px solid var(--pm-ink-3);background:transparent;
+  color:var(--pm-muted-ink);border-radius:6px;padding:4px 8px;cursor:pointer}
+.calendly-note{margin-top:12px;font-size:14px;color:var(--pm-muted-ink)}
+
+footer{padding-block:40px;border-top:1px solid var(--pm-ink-3);font-size:14px;color:var(--pm-muted-ink)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+footer a{font-weight:700}
+</style>
+</head>
+<body>
+<a class="pm-skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/proofmail"><b>PROOFMAIL</b><span>Kija x DIMACO</span></a>
+    <nav aria-label="Primary">
+      <a class="hide-sm" href="#how">How it works</a>
+      <a class="hide-sm" href="#campaigns">Campaigns</a>
+      <a class="hide-sm" href="#pricing">Pricing</a>
+      <a class="btn btn-mint" href="#quiz" style="padding:10px 16px" data-track="cta_nav_mail_plan">Free mail plan</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Direct mail for Dallas businesses</p>
+      <h1 style="margin-top:14px">Direct mail that <span class="hl-mint">reports back.</span></h1>
+      <p class="lede">Every piece carries a QR code to a landing page built to match it. You see who got it, who scanned and who booked, in one dashboard.</p>
+      <div class="ctas">
+        <a class="btn btn-mint" href="#quiz" data-track="cta_hero_mail_plan">Get my free mail plan</a>
+        <a class="btn btn-ghost" href="#contact" data-track="cta_hero_call">Book a 15-minute call</a>
+      </div>
+      <p class="partners"><span>Strategy, design and digital by <strong>KIJA</strong></span><span>Print, data and mail by <strong>DIMACO</strong></span></p>
+    </div>
+    <div class="story" aria-label="A postcard with a QR code leads to a matching landing page and a results dashboard">
+      <div class="card-post">
+        <div class="big">Now open<br>in Bishop Arts</div>
+        <div class="row"><div><b>Free pastry</b><br>with any coffee this week</div><div class="qr" aria-hidden="true"></div></div>
+      </div>
+      <svg class="arrow" viewBox="0 0 120 80" aria-hidden="true"><path d="M4 60 C40 70 70 50 108 14" fill="none" stroke-width="5" stroke-linecap="round"/><path d="M92 10 L112 10 L108 30" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="phone"><div class="screen">
+        <div class="eyebrow" style="color:var(--pm-magenta-ink)">You're invited</div>
+        <div class="t">Claim your free pastry</div>
+        <div class="field">First name</div>
+        <div class="field">Email</div>
+        <div class="field">Visit date</div>
+        <div class="go">CLAIM IT</div>
+      </div></div>
+      <div class="stats">
+        <div><b>4,800</b><small>Delivered</small></div>
+        <div><b class="hl-mint">312</b><small>Scans</small></div>
+        <div><b class="hl-yel">96</b><small>Leads</small></div>
+      </div>
+      <p class="sample-tag">Sample campaign for illustration</p>
+    </div>
+  </div>
+</section>
+<div class="stripe"></div>
+
+<section class="paper problem">
+  <div class="wrap">
+    <h2>Print gets attention. <span style="color:var(--pm-magenta-ink)">Nobody tells you what it did.</span></h2>
+    <p class="big muted">Most mailers go out and disappear. ProofMail ties every piece to a page, a form and a number, so you know your cost per lead and which neighborhoods are worth mailing again.</p>
+  </div>
+</section>
+
+<section class="paper" id="how" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2 style="margin-top:10px">Four steps, one team</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Target</h3><p class="muted">We map the streets and households most likely to buy from you, or pull a list by age, income, homeownership, new movers or business type.</p><span class="who">Kija + DIMACO data</span></div>
+      <div class="step"><div class="n">2</div><h3>Design</h3><p class="muted">Postcards, letters or door hangers, with a landing page built to match. Variable data sends different messages to different groups in one run.</p><span class="who">Kija creative</span></div>
+      <div class="step"><div class="n">3</div><h3>Print and mail</h3><p class="muted">Printed, sorted and mailed in Dallas by DIMACO, a printing and mailing company for nearly 40 years.</p><span class="who">DIMACO production</span></div>
+      <div class="step"><div class="n">4</div><h3>Track and follow up</h3><p class="muted">Watch deliveries, scans and leads come in. Add email, Meta and Google ads to reach the same neighborhoods again.</p><span class="who">Kija digital</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap vd">
+    <div>
+      <p class="eyebrow">Variable data printing</p>
+      <h2 style="margin-top:10px">One print run. <span class="hl-mint">Three messages.</span></h2>
+      <p class="muted" style="margin-top:18px;font-size:18px;max-width:42ch">Send a welcome offer to new neighbors, a comeback offer to lapsed customers and a VIP invite to your best ones. Each version gets its own image, headline, QR code and results.</p>
+      <div class="vd-tabs" role="tablist" aria-label="Postcard version">
+        <button type="button" role="tab" id="vd-0" aria-selected="true" aria-controls="vdPiece" data-v="0">New neighbors</button>
+        <button type="button" role="tab" id="vd-1" aria-selected="false" aria-controls="vdPiece" data-v="1">Past customers</button>
+        <button type="button" role="tab" id="vd-2" aria-selected="false" aria-controls="vdPiece" data-v="2">VIP regulars</button>
+      </div>
+      <p class="muted" style="font-size:14px">Tap a group to see its version.</p>
+    </div>
+    <div class="vd-piece" id="vdPiece" role="tabpanel" aria-labelledby="vd-0" aria-live="polite">
+      <div><p class="eyebrow" id="vdEye">Welcome to the neighborhood</p><div class="head" id="vdHead">Your first class is on us</div><div class="offer" id="vdOffer">Free intro class, this month only</div></div>
+      <div class="side"><div class="swatch" id="vdSwatch"></div><div class="qr" aria-hidden="true"></div><div class="url" id="vdUrl">scan.proofmail.co/hello</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="paper" id="campaigns">
+  <div class="wrap">
+    <p class="eyebrow">Campaigns we run</p>
+    <h2 style="margin-top:10px">Built for the moments that move customers</h2>
+    <div class="camp-grid">
+      <div class="camp"><div class="tag">Grand opening</div><h3>New location</h3><p>Announce a new spot to every home within a few miles, with an RSVP or opening-week offer.</p></div>
+      <div class="camp"><div class="tag">Promotion</div><h3>Special offer</h3><p>A trackable coupon or intro deal, with a page that captures the lead before they walk in.</p></div>
+      <div class="camp"><div class="tag">RSVP</div><h3>Event</h3><p>Tastings, workshops, open houses. The card invites, the page collects the RSVPs.</p></div>
+      <div class="camp"><div class="tag">Reputation</div><h3>Review drive</h3><p>Ask happy customers for a Google review with a card that goes straight to your review link.</p></div>
+      <div class="camp"><div class="tag">Win-back</div><h3>Reactivation</h3><p>Mail customers who have not been back in 90 days, with an offer only they can see.</p></div>
+      <div class="camp"><div class="tag">Calendar</div><h3>Seasonal</h3><p>Holidays, back to school, summer slowdowns. Plan the year and mail on schedule.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Your results dashboard</p>
+    <h2 style="margin-top:10px">See every piece <span class="hl-yel">pay off.</span></h2>
+    <div class="dash">
+      <div class="dash-top"><div><b>Grand Opening, Drop 1</b> <span class="muted">· 3 versions · 5,000 pieces</span></div><span class="pill">Delivered</span></div>
+      <div class="kpis">
+        <div class="kpi"><small>Delivered</small><b>4,812</b><div class="d">96% of mailed</div></div>
+        <div class="kpi"><small>QR scans</small><b>318</b><div class="d">6.6% of delivered</div></div>
+        <div class="kpi"><small>Leads</small><b>97</b><div class="d">31% of scans</div></div>
+        <div class="kpi"><small>Booked</small><b>41</b><div class="d">42% of leads</div></div>
+        <div class="kpi"><small>Cost per lead</small><b>$38</b><div class="d">all-in</div></div>
+      </div>
+      <div class="funnel" id="funnel"></div>
+      <p class="dash-note">Sample numbers for illustration, not a client result. Your dashboard shows your own campaign.</p>
+    </div>
+  </div>
+</section>
+
+<section class="paper" id="quiz">
+  <div class="wrap">
+    <p class="eyebrow">2-minute quiz</p>
+    <h2 style="margin-top:10px">Which campaign fits your business?</h2>
+    <p class="muted" style="margin-top:14px;font-size:18px">Answer five questions and get a free mail plan with routes, piece counts and an estimate.</p>
+    <div class="quiz-card" id="quizCard">
+      <div class="progress" aria-hidden="true"><i id="qbar" style="width:0%"></i></div>
+      <div id="quizBody"></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2 style="margin-top:10px">Start small. <span class="hl-mint">Scale what works.</span></h2>
+    <div class="price-grid">
+      <div class="plan"><div class="best">Every new client</div><h3>Free mail plan</h3><div class="price">$0</div><ul><li>Area analysis and top routes</li><li>Recommended list or neighborhoods</li><li>Piece count and all-in estimate</li></ul><a class="btn btn-ghost" href="#quiz" data-track="cta_plan_free">Get mine</a></div>
+      <div class="plan"><div class="best">First test</div><h3>Neighborhood drop</h3><div class="price">From $750 <small>+ print and postage</small></div><ul><li>Up to 5,000 homes on mail routes</li><li>1 design and matching landing page</li><li>Lead capture and 60-day dashboard</li></ul><a class="btn btn-ghost" href="#contact" data-quote="Neighborhood drop" data-track="cta_plan_neighborhood">Request a quote</a></div>
+      <div class="plan feature"><div class="best">Most popular</div><h3>Targeted campaign</h3><div class="price">From $1,500 <small>+ print, list, postage</small></div><ul><li>Purchased or customer list</li><li>Up to 2 variable-data versions</li><li>Page per version and follow-up email</li><li>90-day dashboard</li></ul><a class="btn btn-mint" href="#contact" data-quote="Targeted campaign" data-track="cta_plan_targeted">Request a quote</a></div>
+      <div class="plan"><div class="best">Openings and events</div><h3>Launch campaign</h3><div class="price">From $3,500 <small>+ print, postage, ads</small></div><ul><li>3 drops over 6 weeks</li><li>Meta and Google ads to the same area</li><li>RSVP or offer page and review drive</li></ul><a class="btn btn-ghost" href="#contact" data-quote="Launch campaign" data-track="cta_plan_launch">Request a quote</a></div>
+    </div>
+    <p class="price-note muted">Always-on monthly mail starts at $500 a month plus print. Every figure above is a starting point for the Kija side of the work: print, list and postage are quoted by DIMACO for your job and shown in full before anything is ordered. Postage for neighborhood mail starts at $0.26 per piece at <a href="https://www.usps.com/business/every-door-direct-mail.htm" rel="noopener" target="_blank">USPS EDDM rates</a>.</p>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <p class="eyebrow">Who you work with</p>
+    <h2 style="margin-top:10px">A Dallas agency and a Dallas printer</h2>
+    <div class="who">
+      <div><p class="eyebrow">Strategy, design, digital</p><h3 style="margin-top:8px">Kija Creative</h3><p class="muted" style="margin-top:10px">A Dallas creative and marketing agency with 22+ years of digital marketing experience, from national brands to neighborhood businesses. <a href="/">See our work</a>.</p><ul><li>Campaign strategy and offers</li><li>Print design and landing pages</li><li>Ads, email and the results dashboard</li></ul></div>
+      <div><p class="eyebrow">Print, data, mail</p><h3 style="margin-top:8px">DIMACO</h3><p class="muted" style="margin-top:10px">Your print partner, and a printing and mailing company for nearly 40 years.</p><ul><li>Targeted lists and data</li><li>Commercial and variable data printing</li><li>Mailing services, start to finish</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow">Talk to us</p>
+      <h2 style="margin-top:10px">Request a quote or <span class="hl-mag">book a call.</span></h2>
+      <p class="muted" style="margin-top:16px;font-size:18px;max-width:38ch">Tell us what you want to promote and where. You hear back within one business day.</p>
+      <div style="margin-top:28px;display:grid;gap:14px">
+        <div><p class="eyebrow">Kija Creative</p><div class="copy-row"><a href="mailto:kiel@kijacreative.com" data-track="cta_contact_email">kiel@kijacreative.com</a><button type="button" data-copy="kiel@kijacreative.com">Copy</button></div></div>
+        <div><p class="eyebrow">DIMACO · Mark Davis</p><div class="copy-row"><a href="tel:+19722422427" data-track="cta_contact_phone">972.242.2427</a><button type="button" data-copy="972.242.2427">Copy</button></div></div>
+      </div>
+    </div>
+    <div class="ink-form">
+      <div class="seg" role="tablist" aria-label="Request type">
+        <button type="button" role="tab" id="tab-quote" aria-selected="true" aria-controls="contactForm" data-tab="quote">Request a quote</button>
+        <button type="button" role="tab" id="tab-call" aria-selected="false" aria-controls="contactForm" data-tab="call">Book a call</button>
+      </div>
+      <form id="contactForm" class="form" novalidate role="tabpanel" aria-labelledby="tab-quote">
+        <div><label for="c-name">Your name</label><input id="c-name" required autocomplete="name"></div>
+        <div><label for="c-biz">Business</label><input id="c-biz" required autocomplete="organization"></div>
+        <div><label for="c-email">Email</label><input id="c-email" type="email" required autocomplete="email"></div>
+        <div><label for="c-phone">Phone</label><input id="c-phone" type="tel" autocomplete="tel"></div>
+        <div class="full quote-only"><label for="c-pkg">Interested in</label><select id="c-pkg"><option>Not sure yet</option><option>Neighborhood drop</option><option>Targeted campaign</option><option>Launch campaign</option><option>Always-on monthly mail</option><option>Flyers, door hangers or other print</option></select></div>
+        <div class="quote-only"><label for="c-qty">Rough quantity</label><select id="c-qty"><option>Under 1,000</option><option selected>1,000 to 5,000</option><option>5,000 to 10,000</option><option>10,000+</option></select></div>
+        <div class="quote-only"><label for="c-when">Mail by</label><input id="c-when" type="date"></div>
+        <div class="full"><label for="c-msg">What are you promoting?</label><textarea id="c-msg" rows="3" placeholder="New location in Lakewood opening in March"></textarea></div>
+        <div class="pm-hp" aria-hidden="true"><label for="c-website">Leave this empty</label><input id="c-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="full">
+          <button class="btn btn-mag" type="submit" id="c-submit">Send my request</button>
+          <p class="fineprint">We reply within one business day. No list sharing, no spam.</p>
+        </div>
+      </form>
+      <div id="contactOk" class="ok" hidden></div>
+      <p class="calendly-note call-only" hidden>Prefer to pick a time yourself? <a href="__CALENDLY_CONSULT__" rel="noopener" target="_blank" data-track="cta_contact_calendly">Open the calendar</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span><b style="font-family:var(--pm-display);font-size:22px;font-weight:400;color:var(--pm-on-ink)">PROOFMAIL</b> &nbsp;by <a href="/">Kija Creative</a> x DIMACO · Dallas, TX</span><span>Creative and digital by KIJA · Print, data and mail by DIMACO</span></div></footer>
+
+<script src="/assets/global.js" defer></script>
+<script src="/assets/proofmail/site.js" defer></script>
+</body>
+</html>

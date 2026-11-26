@@ -67,7 +67,12 @@ src/
                         keeps hand-written fallbacks if it fails to load.
   motion.js             Motion layer: vanilla ports of Motion Primitives (magnetic, spotlight,
                         tilt, number ticker, mouse parallax). Optional; the site works without it.
-  fonts.css + fonts/    Self-hosted League Gothic + Lato.
+  fonts.css + fonts/    Self-hosted League Gothic + Lato. JetBrains Mono lives beside them
+                        in fonts/ but is declared in proofmail/proofmail.css, so only
+                        ProofMail downloads it.
+  proofmail/            The Kija x DIMACO direct-mail program: /proofmail (public) and
+                        /proofmail/toolkit (internal, noindex). Two complete HTML
+                        documents, not page modules — see "ProofMail" below.
   data/                 Content. Edit here, never in a template.
     site.js             Nav, footer, GHL ids, published vitals.
     cases.js            9 case studies. PROOF RULE enforced in comments.
@@ -132,6 +137,61 @@ These are load-bearing. Changing one is a decision, not a tweak.
     in the data.
 13. **The footer vitals are a promise.** Update them from a real Lighthouse run
    (`npm run vitals`), never by hand.
+
+## ProofMail
+
+`/proofmail` and `/proofmail/toolkit` are the Kija x DIMACO direct-mail
+program, built from the program plan. They are the one part of this site that
+does **not** go through `layout.js`: `src/proofmail/{index,toolkit}.html` are
+complete HTML documents that `build.mjs` copies verbatim, substituting
+`__SITE_URL__`, `__KIJA_ENDPOINT__`, `__KIJA_LINKS__` and
+`__CALENDLY_CONSULT__` from `src/data/site.js` (the build fails on any
+unsubstituted token). They carry no Kija nav or footer.
+
+**It is a sub-brand, and non-negotiables 1, 2 and 10 do not reach it.**
+ProofMail has its own palette — brighter mint, hot magenta, aqua, yellow —
+and uses mint as a headline highlight, which "mint is the action colour"
+reserves for clickable things. Two rules cannot both hold on one page, so
+ProofMail keeps `src/proofmail/proofmail.css` as its own single source of
+truth and Kija's `tokens.css` stays untouched. The rule still applies in its
+own terms: **no raw hex anywhere under `src/proofmail/` except that file.**
+`toolkit.js` reads the tokens back off the custom properties (`tok()`) rather
+than writing literals for SVG.
+
+Three magenta tokens, because one does not pass contrast everywhere:
+`--pm-magenta` for display type and fills on ink, `--pm-magenta-deep` for
+surfaces carrying white text, `--pm-magenta-ink` for small text on paper.
+
+What is shared: `/assets/global.js` (so attribution, event names and
+`/api/lead` are the site's, not a second capture stack), the self-hosted
+fonts, and the favicon.
+
+Capture paths, all through `KIJA.submitLead`:
+
+| Path | `capture_path` | Where it lands |
+| --- | --- | --- |
+| Quiz → free mail plan | `proofmail_mail_plan` | Nurture, with the five answers in `context` and the recommended package in `recommended_offer` |
+| Contact → quote | `proofmail_quote` | Nurture, package in `recommended_offer`, quantity and mail-by date in `context` |
+| Contact → call | `proofmail_call` | Nurture, then the visitor is handed the Calendly link |
+
+Booking is Calendly, as everywhere else. The prototype's fake time-slot
+picker was removed; the call path captures the lead and links out.
+
+**Open items before this is a finished sales page:**
+
+- Prices read "From $750 / $1,500 / $3,500" because the plan marks them draft
+  and DIMACO's per-piece print cost is still unknown. Once it lands, either
+  publish all-in "starting at" numbers or keep the Kija-fee framing — but say
+  which. The copy currently promises print, list and postage are "shown in
+  full before anything is ordered", which must stay true.
+- Every figure in the hero, the dashboard and the toolkit is sample data and
+  is labelled as such. Non-negotiable 3 holds: when the case study lands, real
+  numbers replace them only with written client approval.
+- ProofMail is a working name pending a trademark and domain check. Nothing is
+  printed with it until that clears.
+- The toolkit is `noindex,nofollow` and disallowed in robots.txt, but that is
+  not access control. It holds no client data today; it needs a real gate
+  before it reads live Google Places or client dashboards.
 
 ## Deploy
 
