@@ -9,6 +9,13 @@
   'use strict';
   var K = window.KIJA;
 
+  /* Calendly target. window.KIJA_LINKS is injected by the page shell from
+     src/data/site.js; the fallback keeps the widget working if a page is
+     pasted somewhere the shell did not run. */
+  function bookLink() {
+    return (window.KIJA_LINKS && window.KIJA_LINKS.brandReview) || 'https://calendly.com/kiel-kijacreative/free-brand-review';
+  }
+
   /* --- question set ------------------------------------------------------
      Four pillars x 3 questions. Each answer carries a 0-4 weight.
      b3 uses one question per pillar plus two cross-cutting ones.
@@ -204,7 +211,7 @@
                   }).join('') +
                 '</ol></div>') +
           '<div class="k-btns" style="margin-top:32px">' +
-            '<a class="k-btn k-btn--primary k-btn--lg" href="/book" data-track="cta_book_from_signal_test">' +
+            '<a class="k-btn k-btn--primary k-btn--lg" href="' + bookLink() + '" target="_blank" rel="noopener" data-track="cta_book_from_signal_test">' +
               'Walk me through it on a call <span class="k-btn__arrow">&rarr;</span></a>' +
             '<a class="k-btn k-btn--ghost k-btn--lg" href="/work" data-track="cta_work_from_signal_test">See what fixing it looks like</a>' +
           '</div>' +
@@ -256,6 +263,8 @@
         signal_score: r.score,
         signal_band: band(r.score).label,
         weak_areas: r.weakest.map(function (p) { return p.name; }).join(', '),
+        // The written diagnosis the gate promises. The server emails this back.
+        weak_fixes: r.weakest.map(function (p) { return p.name + ' (' + p.pct + '%): ' + p.fix; }).join('\n'),
         pillar_scores: r.pillars.map(function (p) { return p.name + ':' + p.pct; }).join('|'),
         tags: ['source:signal-test', 'variant:' + variant, 'band:' + band(r.score).label.toLowerCase().replace(/\s+/g, '-')]
       });

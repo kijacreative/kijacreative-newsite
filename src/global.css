@@ -1460,7 +1460,9 @@ body{background:var(--k-cream);color:var(--k-ink)}
 .st-type--aqua{background:var(--k-aqua);color:var(--k-ink)}.st-type--yellow{background:var(--k-yellow);color:var(--k-ink)}
 .st-type--magenta{background:var(--k-magenta);color:var(--k-cream)}.st-type--cream{background:var(--k-paper-3);color:var(--k-ink)}
 .st-badge{position:absolute;top:12px;left:12px;font-style:normal;font-size:var(--k-t-micro);font-weight:700;border-radius:99px;padding:5px 10px;background:var(--k-print);color:var(--k-ink)}
-.st-badge--live{background:var(--k-mint);color:var(--k-ink)}
+/* Aqua, not mint: this badge is a status, not an affordance, and /work now
+   carries 14 of them. Mint stays the action colour. See CLAUDE.md §2. */
+.st-badge--live{background:var(--k-aqua);color:var(--k-ink)}
 .st-meta{display:flex;flex-direction:column;gap:2px;padding:14px 16px 16px;position:relative}
 .st-meta b{font-size:var(--k-t-lede);line-height:1.2}
 .st-meta small{font-size:var(--k-t-micro);font-weight:700;color:var(--k-ink-dim)}

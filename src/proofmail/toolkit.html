@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProofMail Toolkit: internal tools | Kija Creative x DIMACO</title>
+<meta name="description" content="Internal working tools for the ProofMail program: prospect finder, area analyzer and client dashboard. Sample data throughout. Not a public page.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#170F1B">
+<link rel="icon" type="image/png" href="/assets/media/wp-uploads/2026/01/cropped-Kija-Stacked-Multicolored-270x270.png">
+<link rel="preload" href="/assets/fonts/league-gothic-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/lato-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/proofmail/proofmail.css">
+<style>
+/* ==========================================================================
+   PROOFMAIL TOOLKIT — INTERNAL
+   An app shell with three tools in tabs: Prospect Finder (table + detail),
+   Area Analyzer (route map + totals), Client Dashboard (KPIs, funnel, trend,
+   versions, leads, reorder). Same sub-brand as the client site, denser.
+   Colours come from proofmail.css; no hex is declared here.
+   ========================================================================== */
+body{font-size:15px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:20px 60px}
+h1{font-size:44px;text-shadow:-2px 0 var(--pm-magenta),2px 0 var(--pm-aqua)}
+h2{font-size:30px}
+h3{font-size:22px}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.sub{color:var(--pm-muted-ink);font-size:13px}
+
+/* The one thing someone landing here by accident needs to know. */
+.internal{display:flex;gap:10px;align-items:flex-start;background:var(--pm-yellow-12);
+  border:1px solid var(--pm-ink-3);border-left:4px solid var(--pm-yellow);border-radius:8px;
+  padding:12px 14px;margin-bottom:20px;font-size:13px;color:var(--pm-on-ink)}
+.internal b{color:var(--pm-yellow)}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--pm-ink-3);margin-bottom:20px}
+.tabs button{font:900 13px var(--pm-body);letter-spacing:.08em;text-transform:uppercase;background:none;
+  border:0;color:var(--pm-muted-ink);padding:12px 14px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--pm-on-ink);border-color:var(--pm-mint)}
+.panel{background:var(--pm-panel);border:1px solid var(--pm-ink-3);border-radius:12px;padding:16px;min-width:0}
+.toolkit-btn{display:inline-flex;align-items:center;gap:6px;font:900 12px var(--pm-body);letter-spacing:.06em;
+  text-transform:uppercase;padding:10px 14px;border-radius:999px;border:1.5px solid var(--pm-ink-3);
+  background:transparent;color:var(--pm-on-ink);cursor:pointer;text-decoration:none}
+.toolkit-btn:hover{border-color:var(--pm-muted-ink)}
+.toolkit-btn.mint{background:var(--pm-mint);border-color:var(--pm-mint);color:var(--pm-ink)}
+.toolkit-btn.mag{background:var(--pm-magenta-deep);border-color:var(--pm-magenta-deep);color:var(--pm-white)}
+label{color:var(--pm-muted-ink);font-size:11px;letter-spacing:.08em;margin-bottom:5px}
+input,select{font-size:14px;padding:9px 11px;border-radius:8px;border:1px solid var(--pm-ink-3);
+  background:var(--pm-ink);color:var(--pm-on-ink)}
+input[type=range]{padding:0;accent-color:var(--pm-mint)}
+input[type=checkbox]{width:auto;accent-color:var(--pm-mint)}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;align-items:end}
+.checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--pm-muted-ink)}
+.checks label{display:flex;gap:6px;align-items:center;text-transform:none;letter-spacing:0;font-weight:400;font-size:13px;margin:0}
+@media (max-width:860px){.filters{grid-template-columns:1fr 1fr}}
+.split{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:16px}
+@media (max-width:980px){.split{grid-template-columns:1fr}}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pm-dim);
+  font-weight:700;padding:8px;border-bottom:1px solid var(--pm-ink-3);white-space:nowrap;cursor:default}
+th[data-sort]{cursor:pointer} th[data-sort]:hover{color:var(--pm-on-ink)}
+td{padding:9px 8px;border-bottom:1px solid var(--pm-ink-3);vertical-align:middle}
+tr.row{cursor:pointer} tr.row:hover td{background:var(--pm-panel-2)} tr.row.sel td{background:var(--pm-mint-08)}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--pm-mono);font-size:12px}
+.score{display:inline-flex;align-items:center;justify-content:center;min-width:38px;padding:3px 8px;
+  border-radius:999px;font:700 12px var(--pm-mono)}
+.s-hi{background:var(--pm-mint-14);color:var(--pm-mint)}
+.s-mid{background:var(--pm-yellow-12);color:var(--pm-yellow)}
+.s-lo{background:var(--pm-muted-12);color:var(--pm-muted-ink)}
+.chip{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;margin:1px 3px 1px 0;
+  background:var(--pm-panel-2);color:var(--pm-muted-ink);white-space:nowrap}
+.chip.c{background:var(--pm-crit-14);color:var(--pm-crit)}
+.chip.w{background:var(--pm-yellow-12);color:var(--pm-yellow)}
+.chip.g{background:var(--pm-mint-14);color:var(--pm-mint)}
+.detail h2{margin:6px 0 4px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13px;margin:12px 0}
+.kv dt{color:var(--pm-dim)} .kv dd{margin:0}
+.why{margin:12px 0;padding-left:18px;font-size:13px;color:var(--pm-muted-ink);display:grid;gap:4px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.audit{margin-top:12px;background:var(--pm-ink);border-radius:10px;padding:14px;font-size:13px}
+.audit li{margin:4px 0}
+.outbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.count-badge{font:700 13px var(--pm-mono);color:var(--pm-mint)}
+
+/* area */
+.area-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
+@media (max-width:980px){.area-grid{grid-template-columns:1fr}}
+.map-wrap{position:relative}
+svg text{font-family:var(--pm-body)}
+.hex{cursor:pointer;transition:opacity .15s}
+.hex:hover{opacity:.85}
+.legend{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--pm-muted-ink);margin-top:8px;flex-wrap:wrap}
+.legend .ramp{width:140px;height:10px;border-radius:999px;
+  background:linear-gradient(90deg,var(--pm-ink-3),var(--pm-magenta-ink),var(--pm-magenta),var(--pm-yellow))}
+.totals{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.tot{background:var(--pm-ink);border-radius:10px;padding:12px}
+.tot small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pm-dim)}
+.tot b{font-family:var(--pm-display);font-weight:400;font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
+.ctrl-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+@media (max-width:640px){.ctrl-row{grid-template-columns:1fr}}
+
+/* dashboard */
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.kpi{background:var(--pm-panel);border:1px solid var(--pm-ink-3);border-radius:12px;padding:14px;min-width:0}
+.kpi small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pm-dim)}
+.kpi b{font-family:var(--pm-display);font-weight:400;font-size:40px;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;color:var(--pm-muted-ink)}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.dgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}
+@media (max-width:980px){.dgrid{grid-template-columns:1fr}}
+.fbar{display:grid;grid-template-columns:110px 1fr 64px 52px;gap:10px;align-items:center;font-size:13px;margin:8px 0}
+.track{height:12px;border-radius:999px;background:var(--pm-ink);overflow:hidden}
+.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--pm-magenta),var(--pm-yellow))}
+.drops{display:grid;gap:10px;margin-top:8px}
+.drop{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;font-size:13px}
+.dot{width:12px;height:12px;border-radius:50%}
+.status{font:700 11px var(--pm-mono);padding:3px 8px;border-radius:999px;letter-spacing:.04em}
+.st-done{background:var(--pm-mint-14);color:var(--pm-mint)}
+.st-transit{background:var(--pm-aqua-14);color:var(--pm-aqua)}
+.st-sched{background:var(--pm-muted-12);color:var(--pm-muted-ink)}
+.orders{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.order{background:var(--pm-ink);border:1px solid var(--pm-ink-3);border-radius:10px;padding:12px;
+  display:flex;flex-direction:column;gap:6px;min-width:0}
+.order b{font-size:14px} .order span{font-size:12px;color:var(--pm-muted-ink)}
+@media (max-width:520px){.orders{grid-template-columns:1fr}}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  background:var(--pm-mint);color:var(--pm-ink);font-weight:900;padding:12px 18px;border-radius:999px;
+  box-shadow:var(--pm-shadow-toast);z-index:50}
+</style>
+</head>
+<body>
+<a class="pm-skip" href="#main">Skip to content</a>
+<main id="main" class="wrap">
+  <div class="top">
+    <div><h1>ProofMail Toolkit</h1><div class="sub">Kija x DIMACO · prospecting, route planning and client reporting</div></div>
+    <a class="toolkit-btn" href="/proofmail">Open the client site</a>
+  </div>
+
+  <p class="internal"><span aria-hidden="true">●</span><span><b>Internal working tool.</b> Every business, route, score and result below is sample data, generated to show how the tool behaves. Nothing here is a client record or a real campaign. The live versions read Google Places, USPS EDDM routes, Census household data and the campaign dashboards.</span></p>
+
+  <div class="tabs" role="tablist" aria-label="Tools">
+    <button type="button" role="tab" id="t-find" aria-selected="true" aria-controls="p-find" data-p="find">Prospect finder</button>
+    <button type="button" role="tab" id="t-area" aria-selected="false" aria-controls="p-area" data-p="area">Area analyzer</button>
+    <button type="button" role="tab" id="t-dash" aria-selected="false" aria-controls="p-dash" data-p="dash">Client dashboard</button>
+  </div>
+
+  <!-- PROSPECT FINDER -->
+  <section id="p-find" role="tabpanel" aria-labelledby="t-find">
+    <div class="panel">
+      <div class="filters">
+        <div><label for="f-q">Search businesses</label><input id="f-q" placeholder="Name or category, e.g. pilates"></div>
+        <div><label for="f-cat">Category</label><select id="f-cat"><option value="">All categories</option></select></div>
+        <div><label for="f-area">Area</label><select id="f-area"><option value="">All areas</option></select></div>
+        <div><label for="f-min">Min mail fit: <span id="f-minv">50</span></label><input id="f-min" type="range" min="0" max="100" step="5" value="50"></div>
+      </div>
+      <div class="checks">
+        <label><input type="checkbox" id="f-noweb"> No or outdated website</label>
+        <label><input type="checkbox" id="f-new"> New or opening soon</label>
+        <label><input type="checkbox" id="f-few"> Under 50 reviews</label>
+        <label><input type="checkbox" id="f-mark"> Mark's routes only</label>
+      </div>
+    </div>
+    <div class="split">
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap"><h3><span id="resCount">0</span> businesses</h3><span class="sub">Click a row for details · sort by any column</span></div>
+        <div class="tbl-wrap"><table id="bizTbl"><thead><tr>
+          <th data-sort="name">Business</th><th data-sort="area">Area</th><th data-sort="rating" class="num">Rating</th><th data-sort="reviews" class="num">Reviews</th><th>Signals</th><th data-sort="score" class="num">Mail fit</th>
+        </tr></thead><tbody></tbody></table></div>
+        <div class="outbar"><span class="count-badge" id="outCount">0 in outreach list</span><div class="actions" style="margin:0"><button type="button" class="toolkit-btn" id="addTop">Add top 10 shown</button><button type="button" class="toolkit-btn mint" id="copyCsv">Copy list as CSV</button></div></div>
+        <p class="note">Live version: Google Places search by category and area, plus website and review checks. Scores use the formula in the detail panel.</p>
+      </div>
+      <div class="panel detail" id="detail"></div>
+    </div>
+  </section>
+
+  <!-- AREA ANALYZER -->
+  <section id="p-area" role="tabpanel" aria-labelledby="t-area" hidden>
+    <div class="panel">
+      <div class="ctrl-row">
+        <div><label for="a-biz">Business type</label><select id="a-biz"><option value="family">Fitness or kids activities</option><option value="dining">Restaurant or cafe</option><option value="home">Home services</option><option value="premium">Med spa or premium retail</option></select></div>
+        <div><label for="a-loc">Location</label><select id="a-loc"><option>Bishop Arts, 75208</option><option>Lakewood, 75214</option><option>Lower Greenville, 75206</option><option>Plano, 75024</option></select></div>
+        <div><label for="a-rad">Drive radius: <span id="a-radv">3</span> mi</label><input id="a-rad" type="range" min="1" max="5" step="1" value="3"></div>
+      </div>
+      <div class="area-grid">
+        <div class="map-wrap">
+          <svg id="map" viewBox="0 0 560 470" role="img" aria-label="Mail routes around the business, shaded by fit score" style="width:100%;height:auto;display:block"></svg>
+          <div class="legend"><span>Lower fit</span><span class="ramp"></span><span>Higher fit</span><span style="margin-left:10px">Outlined = selected · center pin = your business</span></div>
+        </div>
+        <div>
+          <p class="eyebrow">Selected routes</p>
+          <div class="totals">
+            <div class="tot"><small>Routes</small><b id="tRoutes">0</b></div>
+            <div class="tot"><small>Households</small><b id="tHH">0</b></div>
+            <div class="tot"><small>Postage at $0.26</small><b id="tPost">$0</b></div>
+            <div class="tot"><small>Avg fit</small><b id="tFit">0</b></div>
+          </div>
+          <div class="actions" style="margin-top:0"><button type="button" class="toolkit-btn mint" id="bestRoutes">Pick best routes to 5,000 homes</button><button type="button" class="toolkit-btn" id="clearRoutes">Clear</button></div>
+          <div class="tbl-wrap" style="margin-top:14px;max-height:270px;overflow-y:auto"><table id="routeTbl"><thead><tr><th>Route</th><th class="num">Homes</th><th class="num">Home value</th><th class="num">Owners</th><th class="num">Fit</th></tr></thead><tbody></tbody></table></div>
+          <div class="actions"><button type="button" class="toolkit-btn mag" id="toPlan">Send to mail plan</button></div>
+          <p class="note">Illustrative data. Live version reads USPS EDDM carrier routes and Census ACS household data. Print is quoted by DIMACO.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT DASHBOARD -->
+  <section id="p-dash" role="tabpanel" aria-labelledby="t-dash" hidden>
+    <div class="top" style="margin-bottom:14px">
+      <div><p class="eyebrow">Client view · sample client</p><h2 id="dTitle" style="margin-top:4px">Sunrise Bakehouse · Grand opening</h2></div>
+      <div style="min-width:220px"><label for="dSel">Campaign</label><select id="dSel"><option value="open">Grand opening (3 versions)</option><option value="rev">Review drive (customer list)</option></select></div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="dgrid">
+      <div class="panel"><p class="eyebrow">Scans per day</p><svg id="trend" viewBox="0 0 640 220" role="img" aria-label="QR scans per day since the first drop" style="width:100%;height:auto;display:block;margin-top:8px"></svg></div>
+      <div class="panel"><p class="eyebrow">Mailed to booked</p><div id="funnel"></div></div>
+    </div>
+    <div class="dgrid">
+      <div class="panel"><p class="eyebrow">Results by version</p><div class="tbl-wrap"><table id="verTbl"></table></div>
+        <p class="eyebrow" style="margin-top:20px">Latest leads</p><div class="tbl-wrap"><table id="leadTbl"></table></div></div>
+      <div class="panel"><p class="eyebrow">Drops and delivery</p><div class="drops" id="drops"></div>
+        <p class="eyebrow" style="margin-top:22px">Order more</p>
+        <div class="orders">
+          <div class="order"><b>Repeat this drop</b><span>Same routes, best version</span><button type="button" class="toolkit-btn mint" data-order="Repeat drop">Request</button></div>
+          <div class="order"><b>Retarget scanners</b><span>Meta and Google ads to the same area</span><button type="button" class="toolkit-btn" data-order="Digital retargeting">Add</button></div>
+          <div class="order"><b>Review cards</b><span>Ask new customers for a review</span><button type="button" class="toolkit-btn" data-order="Review cards">Add</button></div>
+          <div class="order"><b>Website upgrade</b><span>Kija plans from $100/mo</span><button type="button" class="toolkit-btn" data-order="Website plan">Ask</button></div>
+        </div>
+        <p class="note" id="orderLog">No new requests yet.</p>
+      </div>
+    </div>
+    <p class="note">Sample client and numbers for demonstration. Live version pulls drop dates and delivery from DIMACO, scans and leads from the landing pages, bookings from the client's CRM or POS.</p>
+  </section>
+</main>
+<div class="toast" id="toast" hidden></div>
+<script src="/assets/proofmail/toolkit.js" defer></script>
+</body>
+</html>

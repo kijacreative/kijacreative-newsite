@@ -22,7 +22,19 @@ export const site = {
     instagram: 'https://www.instagram.com/kijacreative/',
     linkedin: 'https://www.linkedin.com/company/kijacreative/'
   },
-  calendar: 'https://brand.kijacreative.com/widget/booking/IvRyDWXB23MJfz0G6ddg',
+  // Calendly is the only booking system. The GHL booking widget was removed
+  // 2026-11-18; `ghl.calendarId` below is kept only as a record of the id.
+  // These are injected into every page as window.KIJA_LINKS, because the
+  // widgets are copied to dist verbatim rather than templated and so cannot
+  // import from src/data.
+  calendly: {
+    consultation: 'https://calendly.com/kiel-kijacreative/free-consultation',
+    brandReview: 'https://calendly.com/kiel-kijacreative/free-brand-review'
+  },
+
+  // Where every capture path is emailed. Separate from `email`, which is the
+  // public address published in the footer.
+  notifyEmail: 'kiel@kijacreative.com',
 
   // Where every capture path posts. Relative works on Vercel, where the
   // function ships with the site. Change to the absolute URL when the pages

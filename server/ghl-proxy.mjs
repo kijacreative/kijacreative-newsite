@@ -131,6 +131,7 @@ export async function handleLead(payload, { origin } = {}) {
     locationId: CONFIG.locationId,
     email: clean(payload.email, 200).toLowerCase(),
     firstName: clean(payload.first_name, 80) || undefined,
+    phone: clean(payload.phone, 40) || undefined,
     companyName: clean(payload.company, 120) || undefined,
     website: clean(payload.url, 200) || undefined,
     source: clean(payload.capture_path || 'website', 80),

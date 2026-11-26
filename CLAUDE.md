@@ -45,8 +45,15 @@ src/
   data/explorer.js      What the wall receives: live projects only (cases with listed !== false).
   data/media.js         hasMedia()/mediaUrl(): pages reference live-site photos and the hero
                         reel only if the files exist in src/media/wp-uploads.
-  media/                Live-site photos and video. Empty until download-assets.sh is run
-                        there (see media/README.md). Copied to /assets/media at build.
+  media/wp-uploads/     Live-site photos and video. Empty until download-assets.sh is
+                        run there (see media/README.md).
+  media/selects/<slug>/ The portfolio work itself, from the shared drive's
+                        "Portfolio Selects 2026-11" folder. Populated by
+                        content-import/collect-selects.sh (macOS) and read by
+                        sel(slug, base) in data/studio.js. All WebP: the same
+                        198 files as PNG/JPEG came to 137 MB, as WebP they are
+                        20 MB. Video stays MP4 with a WebP poster.
+                        Both folders are copied to /assets/media at build.
   widgets/home-b.js     Option B behaviour: pinned sideways sequence, fling, wobble,
                         fan, push, cursor label, scribble exit. Plain JS, no deps.
   widgets/work-explorer.js
@@ -60,7 +67,12 @@ src/
                         keeps hand-written fallbacks if it fails to load.
   motion.js             Motion layer: vanilla ports of Motion Primitives (magnetic, spotlight,
                         tilt, number ticker, mouse parallax). Optional; the site works without it.
-  fonts.css + fonts/    Self-hosted League Gothic + Lato.
+  fonts.css + fonts/    Self-hosted League Gothic + Lato. JetBrains Mono lives beside them
+                        in fonts/ but is declared in proofmail/proofmail.css, so only
+                        ProofMail downloads it.
+  proofmail/            The Kija x DIMACO direct-mail program: /proofmail (public) and
+                        /proofmail/toolkit (internal, noindex). Two complete HTML
+                        documents, not page modules — see "ProofMail" below.
   data/                 Content. Edit here, never in a template.
     site.js             Nav, footer, GHL ids, published vitals.
     cases.js            9 case studies. PROOF RULE enforced in comments.
@@ -117,9 +129,69 @@ These are load-bearing. Changing one is a decision, not a tweak.
 12. **Studio work needs a yes.** /work's "More from the studio" (src/data/studio.js)
     shows only `show: true` projects. Pitches and concepts for prospects stay
     `show: false` until the client agrees; confidential strategy never ships.
-    Descriptions say what the work shows, never results.
+    Descriptions say what the work shows, never results. A project also needs a
+    reachable site before it gets a `url`: Darling Reclaimed is finished work
+    whose store answers 409, so it ships with assets and no link. Kink is the
+    one entry carrying material the portfolio index tags as mature content; the
+    owner cleared it for display on 2026-11-24 and it is marked `mature: true`
+    in the data.
 13. **The footer vitals are a promise.** Update them from a real Lighthouse run
    (`npm run vitals`), never by hand.
+
+## ProofMail
+
+`/proofmail` and `/proofmail/toolkit` are the Kija x DIMACO direct-mail
+program, built from the program plan. They are the one part of this site that
+does **not** go through `layout.js`: `src/proofmail/{index,toolkit}.html` are
+complete HTML documents that `build.mjs` copies verbatim, substituting
+`__SITE_URL__`, `__KIJA_ENDPOINT__`, `__KIJA_LINKS__` and
+`__CALENDLY_CONSULT__` from `src/data/site.js` (the build fails on any
+unsubstituted token). They carry no Kija nav or footer.
+
+**It is a sub-brand, and non-negotiables 1, 2 and 10 do not reach it.**
+ProofMail has its own palette — brighter mint, hot magenta, aqua, yellow —
+and uses mint as a headline highlight, which "mint is the action colour"
+reserves for clickable things. Two rules cannot both hold on one page, so
+ProofMail keeps `src/proofmail/proofmail.css` as its own single source of
+truth and Kija's `tokens.css` stays untouched. The rule still applies in its
+own terms: **no raw hex anywhere under `src/proofmail/` except that file.**
+`toolkit.js` reads the tokens back off the custom properties (`tok()`) rather
+than writing literals for SVG.
+
+Three magenta tokens, because one does not pass contrast everywhere:
+`--pm-magenta` for display type and fills on ink, `--pm-magenta-deep` for
+surfaces carrying white text, `--pm-magenta-ink` for small text on paper.
+
+What is shared: `/assets/global.js` (so attribution, event names and
+`/api/lead` are the site's, not a second capture stack), the self-hosted
+fonts, and the favicon.
+
+Capture paths, all through `KIJA.submitLead`:
+
+| Path | `capture_path` | Where it lands |
+| --- | --- | --- |
+| Quiz → free mail plan | `proofmail_mail_plan` | Nurture, with the five answers in `context` and the recommended package in `recommended_offer` |
+| Contact → quote | `proofmail_quote` | Nurture, package in `recommended_offer`, quantity and mail-by date in `context` |
+| Contact → call | `proofmail_call` | Nurture, then the visitor is handed the Calendly link |
+
+Booking is Calendly, as everywhere else. The prototype's fake time-slot
+picker was removed; the call path captures the lead and links out.
+
+**Open items before this is a finished sales page:**
+
+- Prices read "From $750 / $1,500 / $3,500" because the plan marks them draft
+  and DIMACO's per-piece print cost is still unknown. Once it lands, either
+  publish all-in "starting at" numbers or keep the Kija-fee framing — but say
+  which. The copy currently promises print, list and postage are "shown in
+  full before anything is ordered", which must stay true.
+- Every figure in the hero, the dashboard and the toolkit is sample data and
+  is labelled as such. Non-negotiable 3 holds: when the case study lands, real
+  numbers replace them only with written client approval.
+- ProofMail is a working name pending a trademark and domain check. Nothing is
+  printed with it until that clears.
+- The toolkit is `noindex,nofollow` and disallowed in robots.txt, but that is
+  not access control. It holds no client data today; it needs a real gate
+  before it reads live Google Places or client dashboards.
 
 ## Deploy
 
@@ -130,8 +202,8 @@ default and will fail the build without it, even though the build itself
 succeeded. `trailingSlash: false` matches the canonical URLs the build emits.
 
 Nothing else is needed: `npm run build` is the build command, `dist/404.html`
-is picked up automatically, and `api/lead.js` deploys alongside as an edge
-function.
+is picked up automatically, and `api/lead.js` deploys alongside as a Node
+serverless function (it sends mail over SMTP, which edge cannot do).
 
 ### GoHighLevel
 
@@ -168,12 +240,30 @@ two mechanisms do not fight.
 
 ### 3. The lead proxy
 
-`server/ghl-proxy.mjs` is a fetch-standard handler (Request in, Response out),
-so it runs unchanged on Vercel, Netlify or Cloudflare Workers.
+`api/lead.js` is the endpoint. It runs on the **Node runtime, not edge**,
+because mail goes out over Google Workspace SMTP and SMTP needs a TCP socket.
 
-On **Vercel** it is already wired: `api/lead.js` mounts it as an edge function
-at `/api/lead`, and `site.leadEndpoint` points every form there. Nothing to
-configure beyond the environment variables below.
+It does three independent things and reports each one separately:
+
+| Step | When | Fails how |
+| --- | --- | --- |
+| Email `site.notifyEmail` | every capture path | logged, request still returns |
+| Email the visitor their result | signal test + fit finder only | logged, request still returns |
+| Upsert into GoHighLevel | only if the GHL vars are set | logged, request still returns |
+
+They do not depend on each other. GHL has been blocked on a token since Phase 0,
+and a lead still has to reach a human. The request returns `ok` if **either**
+mail or GHL succeeded, and logs `NOTHING PERSISTED` with the full payload if
+neither did.
+
+`server/ghl-proxy.mjs` stays a fetch-standard handler (Request in, Response out)
+and still exports `handleLead(payload)`, so the GHL half runs unchanged on
+Netlify or Cloudflare. `server/mailer.mjs` does not: nodemailer is Node-only.
+Moving to Workers means swapping it for an HTTP mail API.
+
+On **Vercel** it is already wired: `api/lead.js` deploys as a Node serverless
+function at `/api/lead`, and `site.leadEndpoint` points every form there.
+Nothing to configure beyond the environment variables below.
 
 On **GHL** the pages live on a different origin, so change
 `site.leadEndpoint` in `src/data/site.js` to the absolute URL of the deployed
@@ -200,6 +290,12 @@ Required environment variables:
 | `GHL_PIPELINE_ID` | `1jAQxcIIIG1G1cx8c1nG` | known |
 | `GHL_STAGE_BOOKED` | "Strategy Call Booked" stage id | **BLOCKED — Phase 0** |
 | `GHL_STAGE_NURTURE` | "Nurture" stage id | **BLOCKED — Phase 0** |
+| `SMTP_USER` | Workspace mailbox that sends. Usually `kiel@kijacreative.com` | **required for mail** |
+| `SMTP_PASS` | Google **App Password**, 16 characters, not the account password. Needs 2FA on the account first | **required for mail** |
+| `SMTP_HOST` | Defaults to `smtp.gmail.com` | optional |
+| `SMTP_PORT` | Defaults to `465` (implicit TLS). Use `587` for STARTTLS | optional |
+| `MAIL_FROM` | Defaults to `Kija Creative <SMTP_USER>` | optional |
+| `NOTIFY_EMAIL` | Where leads land. Defaults to `site.notifyEmail` | optional |
 | `SLACK_WEBHOOK_URL` | Internal ping to Kiel + Abby | optional |
 | `ALLOWED_ORIGINS` | Comma-separated. Defaults to the two production origins. | set on deploy |
 | `GHL_FIELD_*` | One per custom field — see `FIELD_MAP` in the proxy | **BLOCKED — Phase 0** |
@@ -227,6 +323,66 @@ variant id recorded.
 /the-kija-method  (b1, b2, b3)   /brand-review  (c1, c2)
 /fit-finder       (d1, d2)       /book          (a1, a2)
 ```
+
+## The portfolio assets
+
+`src/media/selects/` holds the work itself. It comes from the shared drive:
+
+    01_INTERNAL/Media/Portfolio Selects 2026-11/
+
+with `_INDEX - Portfolio Selects.csv` carrying the owner's own per-file tier
+(HERO / Support) and caption. Those captions are the source for the gallery
+text in `studio.js` and `wall.js`.
+
+```bash
+bash content-import/collect-selects.sh     # macOS, writes src/media/selects
+```
+
+The script maps each Drive client folder to the slug `sel()` expects, because
+the folders are display names ("Dr. Stuart Lipton", "Nono's (Cliqbux)") and
+`sel()` wants `dr-stuart-lipton` and `nonos`. `collect-selects.ps1` keeps the
+display name instead, which is why its output never matched and the galleries
+rendered as typographic tiles for so long.
+
+What it does, per file type:
+
+| Type | Output |
+| --- | --- |
+| PNG / JPEG | longest edge 1800px, WebP q80. cwebp keeps alpha itself, so there is no transparency check to get wrong |
+| PDF, 1 page | `<base>.webp` |
+| PDF, many pages | `<base>-p1.webp`, `-p2.webp`, … so a design document shows page by page. Capped at 16 |
+| MP4 / MOV | H.264 1280px CRF 28 plus a `<base>-poster.webp` still |
+| SVG | copied as-is |
+
+It is idempotent: delete a slug folder to rebuild just that project.
+SSR Apparel is deliberately unmapped, so its folder is skipped.
+
+Needs `brew install webp poppler ffmpeg`. Everything is WebP because weight is
+the whole constraint here: a portfolio that nobody can clone is not a
+portfolio. Video is the one exception, and /work loads it `preload="none"`.
+
+## Booking
+
+**Calendly is the only booking system.** The GoHighLevel booking widget was
+removed on 2026-11-18, along with `site.calendar` and a dead `CONFIG.calendar`
+in `global.js`. `ghl.calendarId` is kept only as a record of the id.
+
+Both URLs live in `site.calendly` and are injected into every page as
+`window.KIJA_LINKS`, because the widgets are copied to `dist` verbatim rather
+than templated and so cannot import from `src/data`. Each widget has a
+hard-coded fallback for the case where a fragment is pasted somewhere the page
+shell did not run.
+
+| Where | Calendly event |
+| --- | --- |
+| `/book` (a1), `/book/a2`, Fit Finder | `free-consultation` |
+| Brand Signal Test | `free-brand-review` |
+
+We link out rather than embed. An embed puts a third-party script on the
+critical path, and the fonts are self-hosted specifically to keep it clean.
+
+The `book` A/B test is intact: a1 and a2 now differ only by qualification
+placement, which is the dimension it was built to measure.
 
 ## A/B tests running at launch
 

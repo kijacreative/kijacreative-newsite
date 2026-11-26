@@ -28,7 +28,7 @@ ${hasMedia(site.logo.iconSmall) ? `<link rel="icon" type="image/png" href="${med
 <link rel="apple-touch-icon" href="${mediaUrl(site.logo.icon)}">` : ''}
 <link rel="stylesheet" href="/assets/tokens.css">
 <link rel="stylesheet" href="/assets/global.css">
-<script>window.KIJA_ENDPOINT=${JSON.stringify(site.leadEndpoint)}</script>
+<script>window.KIJA_ENDPOINT=${JSON.stringify(site.leadEndpoint)};window.KIJA_LINKS=${JSON.stringify(site.calendly)}</script>
 ${p.schema ? `<script type="application/ld+json">${JSON.stringify(p.schema)}</script>` : ''}
 ${p.headInline ? `<script>${p.headInline}</script>` : ''}`;
 }
@@ -159,7 +159,7 @@ export function fragment(p) {
   return `<!-- ${site.name} — ${p.path} ${p.variant ? `(variant ${p.variant})` : ''}
      Paste into the GHL page's custom code block.
      Requires funnel-level global.css + global.js. -->
-<script>window.KIJA_ENDPOINT=window.KIJA_ENDPOINT||${JSON.stringify(site.leadEndpoint)};${p.variant ? `document.documentElement.setAttribute('data-variant','${p.variant}');` : ''}</script>
+<script>window.KIJA_ENDPOINT=window.KIJA_ENDPOINT||${JSON.stringify(site.leadEndpoint)};window.KIJA_LINKS=window.KIJA_LINKS||${JSON.stringify(site.calendly)};${p.variant ? `document.documentElement.setAttribute('data-variant','${p.variant}');` : ''}</script>
 ${p.body}
 ${(p.scripts || []).map((s) => `<script src="${s}" defer></script>`).join('\n')}
 ${p.inline ? `<script>${p.inline}</script>` : ''}`;

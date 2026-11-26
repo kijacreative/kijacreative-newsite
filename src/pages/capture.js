@@ -285,11 +285,19 @@ ${ctaBand({
    PATH A — /book
    a1 calendar first · a2 three questions, then calendar
    ========================================================================== */
-const calendarEmbed = `
-<div class="k-widget" style="padding:0;overflow:hidden;min-height:720px">
-  <iframe src="${site.calendar}" title="Book a strategy call with Kija Creative"
-    style="width:100%;height:760px;border:0;display:block;background:var(--k-paper-2)"
-    loading="lazy" scrolling="no"></iframe>
+/* Booking goes to Calendly. We link out rather than embed: an embed means a
+   third-party script on the critical path, and we self-host the fonts
+   specifically to keep that path clean. */
+const calendarCta = `
+<div class="k-widget">
+  <h4>Strategy call</h4>
+  <h3 class="k-h3-lg" style="margin-top:12px;max-width:22ch">Thirty minutes, no charge, no deck</h3>
+  <p class="k-dim k-sm" style="margin-top:12px;max-width:52ch">The calendar opens in a new tab. Pick any slot that works. You will get a confirmation straight away.</p>
+  <div class="k-btns" style="margin-top:28px">
+    <a class="k-btn k-btn--primary k-btn--lg" href="${site.calendly.consultation}" target="_blank" rel="noopener" data-track="cta_book_calendly">
+      Open the calendar <span class="k-btn__arrow">&rarr;</span>
+    </a>
+  </div>
 </div>
 <p class="k-xs k-dim" style="margin-top:12px">Calendar not loading? Email <a class="k-link" href="mailto:${site.email}">${site.email}</a> and we will sort a time by hand.</p>`;
 
@@ -298,10 +306,10 @@ export function bookPage(variant) {
   const qualifyFirst = v === 'a2';
 
   const qualifier = `
-<form class="k-widget" data-kija-form="book_qualified" data-thanks="#calendar" novalidate id="qualify">
+<form class="k-widget" data-kija-form="book_qualified" data-thanks="${site.calendly.consultation}" novalidate id="qualify">
   <h4>Three questions first</h4>
   <h3 class="k-h3-lg" style="margin-top:12px;max-width:24ch">So the call starts at the useful part</h3>
-  <p class="k-dim k-sm" style="margin-top:12px;max-width:52ch">Answer these and the calendar opens underneath. It takes about thirty seconds and it means we arrive having already thought about your situation.</p>
+  <p class="k-dim k-sm" style="margin-top:12px;max-width:52ch">Answer these and the calendar opens next. It takes about thirty seconds and it means we arrive having already thought about your situation.</p>
   <div class="k-stack-lg" style="margin-top:28px">
     ${radioGroup({
       name: 'current_state', legend: 'Where does the brand stand today?', required: true,
@@ -337,13 +345,16 @@ ${hero({
     eyebrow: 'Strategy call · 30 minutes · no charge',
     title: qualifyFirst ? 'Book a<br>strategy call' : 'Pick a time.<br>That is it.',
     lede: qualifyFirst
-      ? '<b>Three questions, then the calendar.</b> We ask because a call that starts with "so tell us about your business" wastes the first ten minutes of a thirty-minute conversation.'
+      ? '<b>Three questions, then the calendar.</b> We ask because a call that starts with "so tell us about your business" wastes the first ten minutes of a thirty-minute conversation. Answer them and the booking page opens.'
       : '<b>No qualifying gauntlet, no discovery form.</b> Pick a slot and we will work out the rest live. Thirty minutes, and you leave with the first thing we would do — regardless of whether we do it.'
   })}
 
 <section class="k-section" style="padding-top:0">
   <div class="k-wrap" style="max-width:900px">
-    ${qualifyFirst ? qualifier + `<div id="calendar" style="margin-top:40px">${calendarEmbed}</div>` : calendarEmbed}
+    ${qualifyFirst
+      ? qualifier + `
+    <p class="k-xs k-dim" style="margin-top:14px">Would rather skip the questions? <a class="k-link" href="${site.calendly.consultation}" target="_blank" rel="noopener" data-track="cta_book_a2_calendly_direct">Go straight to the calendar</a>.</p>`
+      : calendarCta}
   </div>
 </section>
 

@@ -1,0 +1,127 @@
+/* ==========================================================================
+   PROOFMAIL — SUB-BRAND TOKENS + SHARED BASE
+   Kija Creative x DIMACO. A co-branded program, not a Kija service page:
+   it carries its own palette (the flyer's hot magenta and aqua) and its own
+   single source of truth. CLAUDE.md non-negotiable 1 ("no raw hex outside
+   tokens.css") holds here as "no raw hex outside THIS file" — nothing under
+   src/proofmail/ may declare a colour of its own.
+
+   Why not Kija's tokens: ProofMail uses mint as a headline highlight, which
+   non-negotiable 2 reserves for clickable things. Two rules cannot both be
+   true on one page, so the sub-brand keeps its own set and Kija's stays
+   untouched. The two palettes are deliberately near-neighbours.
+
+   Contrast: every colour pairing below is measured. The bright magenta
+   (--pm-magenta) only ever carries LARGE display type or sits as a fill.
+   Small magenta text takes --pm-magenta-ink on paper, --pm-magenta on ink;
+   magenta surfaces under white text take --pm-magenta-deep.
+
+   One exception, the same one layout.js makes: <meta name="theme-color"> is
+   parsed before any stylesheet and cannot take a custom property, so each
+   page repeats --pm-ink there as a literal. Change one, change all three.
+   ========================================================================== */
+
+/* JetBrains Mono, self-hosted alongside League Gothic and Lato so no
+   third-party request sits on the critical path. Scoped to ProofMail: the
+   Kija pages use the system mono stack and never download this. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(/assets/fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
+  src:url(/assets/fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2')}
+
+:root{
+  /* --- ground ------------------------------------------------------------ */
+  --pm-ink:        #170F1B;   /* page ground */
+  --pm-ink-2:      #231927;   /* raised surface */
+  --pm-ink-3:      #33263A;   /* borders on raised surfaces */
+  --pm-panel:      #211825;   /* toolkit panel */
+  --pm-panel-2:    #2B2030;   /* toolkit panel, hover */
+  --pm-paper:      #F3EEE6;   /* the paper band */
+  --pm-paper-2:    #E8E1D6;   /* a step down: fields, wells */
+  --pm-white:      #FFFFFF;   /* cards on paper */
+
+  /* --- accents ----------------------------------------------------------- */
+  --pm-mint:       #3DFFB5;   /* 13.3:1 on ink — highlight and primary action */
+  --pm-magenta:    #FF2E93;   /*  5.0:1 on ink — display accent and fills */
+  --pm-magenta-deep: #D4157A; /*  5.1:1 under white — magenta that carries text */
+  --pm-magenta-ink:  #B01264; /*  5.9:1 on paper, 6.8:1 on white — small text */
+  --pm-aqua:       #2BD9FE;   /* 10.3:1 on ink — focus ring, tertiary */
+  --pm-yellow:     #FFE14D;   /* attention, peaks, warm emphasis */
+  --pm-violet:     #7B5CFF;   /* stripe only */
+  --pm-crit:       #FF5A6E;   /* 5.8:1 on panel — missing, at risk */
+
+  /* --- text -------------------------------------------------------------- */
+  --pm-on-ink:     #F3EEE6;
+  --pm-muted-ink:  #B9ADBD;   /*  7.9:1 on ink */
+  --pm-dim:        #948899;   /*  5.2:1 on panel — labels, axis text */
+  --pm-on-paper:   #170F1B;
+  --pm-muted-paper:#5B4F5E;   /*  6.7:1 on paper */
+
+  /* --- derived ----------------------------------------------------------- */
+  --pm-mint-14:    rgba(61,255,181,.14);
+  --pm-mint-08:    rgba(61,255,181,.08);
+  --pm-aqua-14:    rgba(43,217,254,.14);
+  --pm-yellow-12:  rgba(255,225,77,.12);
+  --pm-crit-14:    rgba(255,90,110,.14);
+  --pm-muted-12:   rgba(181,169,185,.12);
+  --pm-ok-paper:   #DFF9EE;
+  --pm-shadow:     0 30px 60px rgba(0,0,0,.45);
+  --pm-shadow-lift:0 30px 60px rgba(0,0,0,.5);
+  --pm-shadow-card:0 24px 50px rgba(0,0,0,.4);
+  --pm-shadow-toast:0 10px 30px rgba(0,0,0,.4);
+
+  /* --- type -------------------------------------------------------------- */
+  --pm-display:"League Gothic","Haettenschweiler","Arial Narrow",Impact,sans-serif;
+  --pm-body:"Lato","Helvetica Neue",Arial,sans-serif;
+  --pm-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  color-scheme:dark;
+}
+
+/* --- base ---------------------------------------------------------------- */
+*{box-sizing:border-box}
+/* The forms here are display:grid, which outranks the UA's [hidden]{display:none}
+   and leaves a "hidden" form sitting above its own confirmation. */
+[hidden]{display:none!important}
+body{background:var(--pm-ink);color:var(--pm-on-ink);font-family:var(--pm-body);margin:0}
+h1,h2,h3{font-family:var(--pm-display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.92;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font-family:var(--pm-body)}
+
+/* One focus ring everywhere, on the one accent that is never a fill. */
+:focus-visible{outline:3px solid var(--pm-aqua);outline-offset:2px}
+
+.pm-skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--pm-mint);color:var(--pm-ink);
+  font-weight:900;padding:12px 18px;border-radius:0 0 8px 0}
+.pm-skip:focus{left:0}
+
+/* The five-colour band that separates ink from paper. Decorative. */
+.stripe{height:6px;background:linear-gradient(90deg,
+  var(--pm-magenta) 0 20%,var(--pm-yellow) 20% 40%,var(--pm-mint) 40% 60%,
+  var(--pm-aqua) 60% 80%,var(--pm-violet) 80%)}
+
+.eyebrow{font-family:var(--pm-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pm-mint)}
+.note{font-family:var(--pm-mono);font-size:11px;color:var(--pm-dim);margin-top:10px}
+
+/* --- buttons ------------------------------------------------------------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--pm-body);font-weight:900;
+  font-size:15px;letter-spacing:.04em;text-transform:uppercase;padding:14px 22px;border-radius:999px;
+  border:2px solid transparent;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-mint{background:var(--pm-mint);color:var(--pm-ink)}
+.btn-ghost{border-color:currentColor;background:transparent;color:inherit}
+.btn-mag{background:var(--pm-magenta-deep);color:var(--pm-white)}
+.btn[aria-disabled="true"]{opacity:.6;pointer-events:none}
+
+/* --- forms --------------------------------------------------------------- */
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+input,select,textarea{width:100%;font:16px var(--pm-body);padding:12px 14px;border-radius:8px;
+  border:1.5px solid var(--pm-paper-2);background:var(--pm-paper);color:var(--pm-on-paper)}
+textarea{resize:vertical}
+/* A field the visitor fails validation on. Set by the page's own JS. */
+[data-invalid="true"]{border-color:var(--pm-magenta-deep)}
+/* Honeypot: off-screen rather than display:none, which some bots skip. */
+.pm-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

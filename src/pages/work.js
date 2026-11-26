@@ -15,6 +15,12 @@ const asList = (x) => (Array.isArray(x) ? x : [x]);
 function studioCard(p) {
   const cover = pick(p.cover);
   const shots = (p.gallery || []).map(([src, cap]) => [pick(asList(src)), cap]).filter(([src]) => src);
+  // preload="none" keeps every byte of video off first paint. The footer
+  // vitals are a published promise, so /work must not carry film it has not
+  // been asked for.
+  const films = (p.videos || [])
+    .map(([v, cap]) => [v, pick(asList(v.poster)), cap])
+    .filter(([v]) => hasMedia(v.src));
   const discs = DISCIPLINES.filter(([k]) => p.disc.includes(k)).map(([, v]) => v).join(' · ');
   return `
   <details class="st-card" data-disc="${p.disc.join(' ')}">
@@ -28,6 +34,7 @@ function studioCard(p) {
       ${p.body ? `<p class="k-dim" style="margin-top:10px">${esc(p.body)}</p>` : ''}
       ${p.deliverables?.length ? `<ul class="st-dl">${p.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>` : ''}
       ${shots.length ? `<div class="st-gal">${shots.map(([src, cap]) => `<figure><img src="${mediaUrl(src)}" alt="${esc(p.name + ': ' + cap)}" loading="lazy" decoding="async"><figcaption>${esc(cap)}</figcaption></figure>`).join('')}</div>` : ''}
+      ${films.length ? `<div class="st-gal">${films.map(([v, poster, cap]) => `<figure><video controls preload="none" playsinline${poster ? ` poster="${mediaUrl(poster)}"` : ''} aria-label="${esc(p.name + ': ' + cap)}"><source src="${mediaUrl(v.src)}" type="video/mp4"></video><figcaption>${esc(cap)}</figcaption></figure>`).join('')}</div>` : ''}
       ${p.url ? `<p style="margin-top:16px"><a class="k-link" href="${esc(p.url)}" target="_blank" rel="noopener" data-track="cta_studio_visit">Visit ${esc(p.url.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a></p>` : ''}
     </div>
   </details>`;
@@ -171,6 +178,15 @@ ${(() => {
     <div class="k-gallery ck-gallery">
       ${shots.map((m) => `<figure${m.logo ? ' class="is-logo"' : ''}><img src="${mediaUrl(m.src)}" alt="${esc(m.alt)}" loading="lazy" decoding="async"><figcaption>${esc(m.caption)}</figcaption></figure>`).join('')}
     </div>
+    ${(() => {
+      // Same deal as the studio cards: poster frame, preload="none", nothing
+      // on the wire until someone presses play.
+      const films = (wall[c.slug]?.videos || []).filter((v) => hasMedia(v.src));
+      return films.length ? `
+    <div class="k-gallery ck-gallery" style="margin-top:18px">
+      ${films.map((v) => `<figure><video controls preload="none" playsinline${hasMedia(v.poster) ? ` poster="${mediaUrl(v.poster)}"` : ''} aria-label="${esc(c.client + ': ' + v.caption)}"><source src="${mediaUrl(v.src)}" type="video/mp4"></video><figcaption>${esc(v.caption)}</figcaption></figure>`).join('')}
+    </div>` : '';
+    })()}
   </div>
 </section>` : '';
   })()}

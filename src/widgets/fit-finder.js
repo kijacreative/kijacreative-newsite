@@ -13,6 +13,13 @@
   'use strict';
   var K = window.KIJA;
 
+  /* Calendly target. window.KIJA_LINKS is injected by the page shell from
+     src/data/site.js; the fallback keeps the widget working if a page is
+     pasted somewhere the shell did not run. */
+  function bookLink() {
+    return (window.KIJA_LINKS && window.KIJA_LINKS.consultation) || 'https://calendly.com/kiel-kijacreative/free-consultation';
+  }
+
   /* --- intake ------------------------------------------------------------ */
   var STEPS = [
     { id:'industry', ask:'First, what world do you operate in?', label:'Industry',
@@ -306,7 +313,7 @@
           '<p class="k-dim k-sm" style="margin-top:18px;max-width:56ch">' + esc(rec.note) + '</p>' +
           '<dl class="k-meta" style="margin-top:30px">' + summary + '</dl>' +
           '<div class="k-btns" style="margin-top:30px">' +
-            '<a class="k-btn k-btn--primary k-btn--lg" href="/book" data-track="cta_book_from_fit_finder">' +
+            '<a class="k-btn k-btn--primary k-btn--lg" href="' + bookLink() + '" target="_blank" rel="noopener" data-track="cta_book_from_fit_finder">' +
               'Book the call <span class="k-btn__arrow">&rarr;</span></a>' +
             '<a class="k-btn k-btn--ghost k-btn--lg" href="' + rec.offer.href + '" data-track="cta_offer_from_fit_finder">' +
               'Read about ' + esc(rec.offer.name) + '</a>' +
@@ -326,7 +333,7 @@
       K && K.track('fit_finder_fallback', { message: String(err && err.message) });
       try { formStep(); } catch (e2) {
         root.innerHTML = '<p class="k-dim">Something broke on our side. ' +
-          '<a class="k-link" href="/book">Book a call instead</a> and we will do this live.</p>';
+          '<a class="k-link" href="' + bookLink() + '" target="_blank" rel="noopener">Book a call instead</a> and we will do this live.</p>';
       }
     }
   }

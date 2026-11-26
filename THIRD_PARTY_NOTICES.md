@@ -62,3 +62,31 @@ src/widgets/home-b.js) reimplements general interaction patterns — pinned
 horizontal scroll, fling cards, spreading card fan, cursor label, proximity
 push, scribble page transition — from scratch, with marks and stickers drawn
 for Kija.
+
+## JetBrains Mono — src/fonts/jetbrains-mono-latin-{400,500}-normal.woff2
+Used by ProofMail only (`src/proofmail/proofmail.css` declares the faces, so
+no Kija page downloads them). Latin subsets taken from Fontsource
+(`@fontsource/jetbrains-mono@5.2.5`), which repackages the upstream release
+unmodified.
+
+```
+Copyright 2020 The JetBrains Mono Project Authors
+(https://github.com/JetBrains/JetBrainsMono)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is available with a FAQ at: https://openfontlicense.org
+
+PERMISSION & CONDITIONS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the Font Software, to use, study, copy, merge, embed, modify, redistribute,
+and sell modified and unmodified copies of the Font Software, subject to the
+conditions of the SIL Open Font License, Version 1.1 — in particular that the
+Font Software may not be sold by itself, that copyright and licence notices
+are retained, and that no modified version may use the Reserved Font Name.
+
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT.
+```
