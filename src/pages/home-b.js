@@ -42,7 +42,7 @@ const PRINTS = [   // two loose columns on the sticker side, clear of the headli
   ['beverage-displays', '2026/02/Veuve-Deer-Head-scaled.webp', 91, 22, 2.5],
   ['latino-arts', '2026/02/09042022-12.webp', 77, 61, 1.5],
   ['mammogram-poster-girls', '2026/02/Busted-Poster-scaled.webp', 92, 57, -2],
-  ['event-weis', '2026/02/LogoCardsShot-scaled.webp', 85, 88, 1]
+  ['cliqbux', 'studio/cliqbux/analyzer-report.webp', 85, 88, 1]
 ];
 const print = ([slug, img, x, t, r]) => {
   const c = cases.find((k) => k.slug === slug);
@@ -146,6 +146,33 @@ export default function homeB() {
         <span class="kb-gaps">${['message', 'look', 'conversion', 'consistency'].map((g) => `<span class="kb-gap is-on" data-kb-gap>${g}</span>`).join('')}</span>
       </figcaption>
     </figure>
+  </div>
+</section>
+
+<!-- ===== WE BUILD SYSTEMS — the positioning, said plainly, with proof ===== -->
+<section class="kb-systems" aria-labelledby="kb-systems-h">
+  <div class="k-wrap kb-systems__grid">
+    <div>
+      <p class="kb-systems__eyebrow">What Kija is</p>
+      <h2 class="kb-systems__h" id="kb-systems-h">We build<br><span>systems.</span></h2>
+      <p class="kb-systems__p">Brands, websites, sales tools and automation that keep working long after launch day. For Cliqbux, that meant a website evaluation system and a site generator that sell their product to restaurants, and a partnership on every order.</p>
+      <ul class="kb-systems__parts">
+        <li><a href="/services/brand-development" data-track="cta_home_systems_part">Brand systems</a></li>
+        <li><a href="/services/website-design" data-track="cta_home_systems_part">Website systems</a></li>
+        <li><a href="/services/marketing-automation" data-track="cta_home_systems_part">Sales &amp; automation systems</a></li>
+        <li><a href="/services/ongoing-marketing" data-track="cta_home_systems_part">Marketing systems</a></li>
+      </ul>
+      <div class="k-btns" style="margin-top:28px">
+        <a class="k-btn k-btn--primary k-btn--lg" href="/work/cliqbux" data-track="cta_home_systems_cliqbux">See the Cliqbux system</a>
+      </div>
+    </div>
+    ${hasMedia('studio/cliqbux/analyzer-orders.webp') ? `
+    <a class="kb-systems__proof" href="/work/cliqbux" data-bubble="Open" data-track="cta_home_systems_proof">
+      ${hasMedia('studio/cliqbux/cliqbux-logo-on-dark.svg') ? `<img class="kb-systems__logo" src="${mediaUrl('studio/cliqbux/cliqbux-logo-on-dark.svg')}" alt="Cliqbux">` : ''}
+      <span class="kb-systems__shot"><img src="${mediaUrl('studio/cliqbux/analyzer-orders.webp')}" alt="Cliqbux Restaurant Analyzer: where a restaurant’s online orders go today (sample data)" loading="lazy" decoding="async"></span>
+      <span class="kb-systems__fig"><b>6.5%</b> per order on Cliqbux, against 15–30% on delivery apps</span>
+      <span class="kb-systems__fig"><b>45%</b> Kija’s partner share of all orders</span>
+    </a>` : ''}
   </div>
 </section>
 

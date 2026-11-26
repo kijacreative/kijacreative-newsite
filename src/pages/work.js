@@ -111,6 +111,7 @@ export function casePage(slug) {
   const body = `
 <header class="k-section k-glow" style="padding-top:clamp(48px,7vw,84px)">
   <div class="k-wrap">
+    ${c.logo && hasMedia(c.logo.light) ? `<img class="ck-logo" src="${mediaUrl(c.logo.light)}" alt="${esc(c.client)}">` : ''}
     <p class="k-eyebrow">${esc(tierLabel)} · ${esc(c.client)}${c.tagline ? ` · “${esc(c.tagline.replace(/[“”"]/g, ''))}”` : ''}</p>
     <h1 class="k-split-text" style="margin-top:20px;font-size:var(--k-t-xxl);max-width:18ch">${esc(c.headline)}</h1>
     <p class="k-lede" style="margin-top:26px;max-width:58ch">${esc(c.summary)}</p>
@@ -132,7 +133,7 @@ ${c.metrics.length ? `
     <div class="k-grid k-g${Math.min(c.metrics.length, 3)}">
       ${c.metrics.map((m) => kpiCard(m)).join('')}
     </div>
-    <p class="k-label k-label--dim" style="margin-top:20px">Figures confirmed in writing by ${esc(c.client)}.</p>
+    <p class="k-label k-label--dim" style="margin-top:20px">${esc(c.metricsNote || `Figures confirmed in writing by ${c.client}.`)}</p>
   </div>
 </section>` : ''}
 

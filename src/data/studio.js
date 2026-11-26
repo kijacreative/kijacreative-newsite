@@ -257,8 +257,9 @@ export const studio = [
   { slug: 'sara-kolata', name: 'Sara Kolata', disc: ['brand', 'web'], status: 'concept', show: false, note: 'Still in pitch phase (owner, 2026-11-17). Confidential strategy never shown.' },
   { slug: 'corner-wines', name: 'Corner Wines', disc: ['brand'], status: 'concept', show: false, note: 'Proposal page, not a website.' },
   { slug: 'myogen', name: 'MyoGen Bioscience', disc: ['brand'], status: null, show: false, note: 'Logo system only; no website.' },
-  { slug: 'cliqbux-analyzer', name: 'Cliqbux Restaurant Analyzer', disc: ['product'], status: null, show: false, note: 'An app rather than a website; confirm before showing.' }
-  /* SSR Apparel (Monk Holdings) was removed from the site on 2026-11-24 at the
+  /* Cliqbux Restaurant Analyzer was held here until it became a flagship case
+     study; it lives in cases.js now and must not be listed twice.
+     SSR Apparel (Monk Holdings) was removed from the site on 2026-11-24 at the
      owner's request. Its assets are still in the shared drive; collect-selects
      skips the folder. */
 ];
@@ -269,4 +270,4 @@ const ORDER = ['triton-studios', 'taylormade-law', 'catawba-yaupon', 'lisa-kalmi
   'latino-arts', 'mercurian-studios', 'packorial', 'palmers-lodge', 'darling-reclaimed', 'kink', 'nonos', 'dimaco'];
 const rank = (p) => { const i = ORDER.indexOf(p.slug); return i < 0 ? 99 : i; };
 export const shownStudio = () => studio.filter((p) => p.show).sort((a, b) => rank(a) - rank(b));
-export const DISCIPLINES = [['brand', 'Brand'], ['web', 'Web'], ['campaign', 'Campaign'], ['product', 'Product']];
+export const DISCIPLINES = [['brand', 'Brand'], ['web', 'Web'], ['campaign', 'Campaign'], ['product', 'Systems']];

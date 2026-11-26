@@ -8,6 +8,23 @@
    ========================================================================== */
 
 export const caseKits = {
+  cliqbux: {
+    hero: ['studio/cliqbux/analyzer-report.webp'],
+    signature: { line: 'We build systems.', note: 'Not a logo, not a site: the tools that sell Cliqbux to restaurants. They liked the evaluation tool enough to ask for more of the system, then made Kija a 45% partner on all orders. We meet every week on their site, marketing, sales and strategy.' },
+    modules: [
+      { type: 'fees', title: 'Keep more<br>of every order', sub: 'The math the analyzer puts in front of every restaurant. Slide to a restaurant’s monthly online sales.',
+        min: 5000, max: 150000, step: 5000, value: 60000, appsLow: 0.15, appsHigh: 0.30, cliqbux: 0.065,
+        note: 'Illustrative. Fees are a share of online order sales: 15–30% is the range the analyzer shows for delivery apps like DoorDash and Uber Eats; about 6.5% is Cliqbux’s all-in cost, card processing included.' },
+      { type: 'shots', title: 'One report,<br>one restaurant', sub: 'Screens from the Restaurant Analyzer, shown with sample data.',
+        items: [
+          ['studio/cliqbux/analyzer-report.webp', 'Order Readiness Score and what’s working'],
+          ['studio/cliqbux/analyzer-orders.webp', 'Where the restaurant’s online orders go today'],
+          ['studio/cliqbux/analyzer-search.webp', 'What people search for nearby'],
+          ['studio/cliqbux/analyzer-ai.webp', 'What AI assistants say, and the full checklist']
+        ] }
+    ]
+  },
+
   'oak-cliff-pilates': {
     hero: ['selects/oak-cliff-pilates/OCP Bishop Team.jpg', '2026/02/OCP-Grand-Opening-308-scaled.webp'],
     signature: { line: 'Are You Down with OCP?', note: 'A question that became a community password. From new-member welcomes to t-shirts to Instagram captions, the line carries the brand without ever feeling like a tagline.' },

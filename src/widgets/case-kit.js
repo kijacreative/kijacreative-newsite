@@ -54,6 +54,20 @@
     root.classList.add('is-live'); paint();
   });
 
+  /* fees: delivery apps vs Cliqbux */
+  $$('[data-ck="fees"]').forEach(function (root) {
+    var cfg = JSON.parse(root.getAttribute('data-cfg')), input = root.querySelector('[data-ck-in]');
+    var out = function (k) { return root.querySelector('[data-ck-out="' + k + '"]'); };
+    var paint = function () {
+      var v = +input.value, lo = v * cfg.lo, hi = v * cfg.hi, cq = v * cfg.cq;
+      out('sales').textContent = money(v); out('apps').textContent = money(lo) + '–' + money(hi);
+      out('cq').textContent = money(cq); out('keep').textContent = '+' + money(lo - cq) + '–' + money(hi - cq);
+      out('year').textContent = money((lo - cq) * 12) + '–' + money((hi - cq) * 12) + ' a year';
+    };
+    input.addEventListener('input', paint); input.addEventListener('change', function () { track('case_module', { module: 'fees', value: input.value }); });
+    root.classList.add('is-live'); paint();
+  });
+
   /* impact: every $150 funds a screening */
   $$('[data-ck="impact"]').forEach(function (root) {
     var cfg = JSON.parse(root.getAttribute('data-cfg')), input = root.querySelector('[data-ck-in]');

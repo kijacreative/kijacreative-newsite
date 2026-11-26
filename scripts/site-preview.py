@@ -60,10 +60,10 @@ for m in manifest:
     if not os.path.exists(f): continue
     h = read(f)
     h = re.sub(r'<link rel="preload"[^>]*>\n?', '', h)
-    h = re.sub(r'<link rel="stylesheet" href="/assets/[^"]+">\n?', '', h)
+    h = re.sub(r'<link rel="stylesheet" href="/assets/[^"]+">\n?', '', h)   # (any ?v= fingerprint included)
     h = h.replace('</head>', '<style>@@CSS@@</style></head>', 1)
     h = re.sub(r'<script>(?:(?!</script>).)*?kija_ab_.*?</script>', '', h, flags=re.S)   # A/B redirects
-    h = re.sub(r'<script src="/assets/([^"]+)" defer></script>',
+    h = re.sub(r'<script src="/assets/([^"?]+)(?:\?[^"]*)?" defer></script>',
                lambda mm: '@@JS:%s@@' % mm.group(1), h)
     h = re.sub(r'<source src="https://kijacreative\.com[^"]*" type="video/mp4">\s*', '', h)
     PAGES[url] = h
