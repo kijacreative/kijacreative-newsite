@@ -12,7 +12,6 @@
     utmCookieDays: 90,
     // Wired at deploy time — see CLAUDE.md §Deploy.
     endpoint: (window.KIJA_ENDPOINT || ''),   // serverless proxy that holds the GHL PIT token
-    calendar: 'https://brand.kijacreative.com/widget/booking/IvRyDWXB23MJfz0G6ddg',
     debug: /[?&]kdebug=1/.test(location.search)
   };
 
